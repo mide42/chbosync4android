@@ -17,3 +17,5 @@ For the following description it is assumed that you have an installation of Ecl
  * One project should appear in the table unter the _"Root Directory"_; ensure that in column _"Project to Import"_ this project is selected and click on button _"Finish"_.
 
  * The project contains all libraries needed for compiling in the folder _"external-libs"_. 
+
+ * Start the app in the emulator or a device connected via the _"Android Debug Bridge (ADB)"_ to your PC by opening the context menu (right button of mouse) of the node labled _"ChBoSync"_ in the _"Package Explorer"_ and choose _"Run As | Android Application"_. 
