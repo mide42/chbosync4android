@@ -1,4 +1,4 @@
-#summary Infos on Android-App "PTBV SyncML Client", on which CBoSync is based.
+#summary Infos on Android-App "PTBV SyncML Client", on which ChBoSync is based.
 #labels SyncML
 
 
@@ -15,6 +15,6 @@ See the description of the page in the App Store for details of what was changed
 
 
 
-_CBoSync_ is directly based on _"PTBV SyncML Client"_, and therefore indirectly based on the Funambol client.
+_ChBoSync_ is directly based on _"PTBV SyncML Client"_, and therefore indirectly based on the Funambol client.
 
-The _"PTBV SyncML Client"_ cannot sync notes, but _CBoSync_ can do this.
+The _"PTBV SyncML Client"_ cannot sync notes, but _ChBoSync_ can do this.

@@ -1,18 +1,18 @@
 #summary Description how to use the Eclipse project of the app's source code.
 #labels Eclipse,source,import,ADT
 
-The source code of _CBoSync_ is provided as Eclipse project in the SVN repository of this project at _code.google.com_.
+The source code of _ChBoSync_ is provided as Eclipse project in the SVN repository of this project at _code.google.com_.
 
 For the following description it is assumed that you have an installation of Eclipse with the _"Android Developer Tools (ADT)"_, which can be obtained at the following URL: http://developer.android.com/sdk/index.html
 
 
- * Check out the folder _"trunk/CboSync_EclipseProject"_ from the SVN repository of this project (see tab _"[https://code.google.com/p/cbosync4android/source/checkout Source]"_ of this GoogleCode project).
+ * Check out the folder _"trunk/ChBoSync_EclipseProject"_ from the SVN repository of this project (see tab _"[https://code.google.com/p/ChBoSync4android/source/checkout Source]"_ of this GoogleCode project).
 
  * In Eclipse/ADT choose _"Import ..."_ in menu _"File"_.
 
  * Selection of import source: _"Existing Android Code Into Workspace"_ under node _"Android"_.
 
- * Folder to select as _"Root Directory"_: _"CboSync_EclipseProject"_
+ * Folder to select as _"Root Directory"_: _"ChBoSync_EclipseProject"_
 
  * One project should appear in the table unter the _"Root Directory"_; ensure that in column _"Project to Import"_ this project is selected and click on button _"Finish"_.
 
