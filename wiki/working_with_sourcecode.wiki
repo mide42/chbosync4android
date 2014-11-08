@@ -6,7 +6,7 @@ The source code of _ChBoSync_ is provided as Eclipse project in the SVN reposito
 For the following description it is assumed that you have an installation of Eclipse with the _"Android Developer Tools (ADT)"_, which can be obtained at the following URL: http://developer.android.com/sdk/index.html
 
 
- * Check out the folder _"trunk/ChBoSync_EclipseProject"_ from the SVN repository of this project (see tab _"[https://code.google.com/p/ChBoSync4android/source/checkout Source]"_ of this GoogleCode project).
+ * Check out the folder _"trunk/ChBoSync_EclipseProject"_ from the SVN repository of this project (see tab _"[https://code.google.com/p/chbosync4android/source/checkout Source]"_ of this GoogleCode project).
 
  * In Eclipse/ADT choose _"Import ..."_ in menu _"File"_.
 
