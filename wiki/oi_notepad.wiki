@@ -1,0 +1,17 @@
+#summary Infos on "Open Intents Notepad" (Android App).
+#labels notepad,openintents,notes
+
+
+_"OI Notepad"_ is an open source app for managing personal notes on Android devices (_"OI"_ stands for _"Open Intents"_). You have to install this app on your Android device to be able to synchronize notes with _CboSync_.
+
+The authors of _CboSync_ are _NOT_ related to the authors of _"OI Notepad"_.
+
+_"OI Notepad"_ can be installed from Google's app store at https://play.google.com/store/apps/details?id=org.openintents.notepad .
+
+
+For more information see:
+ * http://www.openintents.org/en/notepad
+
+ * http://code.google.com/p/openintents/
+
+You might want to also install _[https://play.google.com/store/apps/details?id=org.openintents.about "OI About"]_, which is another free app from the _"Open Intents"_ project needed to view the about info of _"OI Notepad"_.

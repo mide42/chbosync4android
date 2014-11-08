@@ -1,0 +1,6 @@
+#summary Some screenshots showing CboSync.
+
+
+On this page there are some screenshots taken from _CboSync_.
+
+https://cbosync4android.googlecode.com/svn/wiki/images/AboutScreen.png

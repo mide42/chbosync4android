@@ -1,0 +1,24 @@
+#summary Changes between "PTBV Sync" to CboSync.
+#labels changes
+
+The following is a list of modification made in the source of to obtain _CboSync_:
+
+ * Reactivated (commented in) synchronization of notes (requires that the free app _[oi_notepad "OI Notepad"]_ is installed on the device).
+
+ * Users can now move the app's installation to the SDCard.
+
+ * Several tiny improvements in the source code (e.g., improving formatting).
+
+ * Requires no longer a menu button on the device.
+
+ * Changed information displayed on about dialog.
+
+ * About activity can now also be opened by a button from the login screen (so even if the user has no valid credentials for any SyncML server he can access the about activity with the license information). 
+
+ 
+----
+ 
+
+For a list of changes made to obtain _[PTBV_SyncML_Client PTBV SyncML Client]_ based on the source code of 
+_[Funambol Funambol's SyncML Client]_ you can look at the description of the corresponding 
+[https://play.google.com/store/apps/details?id=de.ptbv.android.syncmlclient appstore page].
