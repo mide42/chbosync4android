@@ -101,12 +101,18 @@ public class AndroidAboutScreen extends Activity implements AboutScreen {
         poweredBy     = (TextView)  findViewById(R.id.poweredBy        );
         poweredByLogo = (ImageView) findViewById(R.id.poweredByLogo    );
         company       = (TextView)  findViewById(R.id.aboutCompanyName );
-        portalInfo    = (TextView)  findViewById(R.id.aboutPortalInfo  );
-        
+        portalInfo    = (TextView)  findViewById(R.id.aboutPortalInfo  );        
+                
 
         Button closeButton = ((Button) findViewById(R.id.aboutClose));
         closeButton.setOnClickListener( new CloseListener() );
        
+        
+        // for ChBoSync: HTML formatting for text in TextView element.
+        // String resource defined using CDATA block.
+        TextView basedOnTextView = (TextView)  findViewById(R.id.basedOnPtbvAndFunambolText);
+        basedOnTextView.setText( Html.fromHtml( getString(R.string.basedOnPtbvAndFunambol)) );
+        
                         
         // Initialize the view for this controller
         initializer = App.i().getAppInitializer();
