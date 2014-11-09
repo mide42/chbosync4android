@@ -120,6 +120,10 @@ public class AndroidAboutScreen extends Activity implements AboutScreen {
         Customization customization = initializer.getCustomization();
         aboutScreenController = new AboutScreenController(cont, this, customization);
         aboutScreenController.addNecessaryFields();        
+        
+        
+        if ( AndroidUtils.isAndroidEmulator() ) 
+        	Toast.makeText(this, "App is running in Emulator.", Toast.LENGTH_SHORT).show();
     }
     
     

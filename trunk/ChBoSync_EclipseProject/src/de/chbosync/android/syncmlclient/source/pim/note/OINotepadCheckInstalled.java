@@ -70,7 +70,7 @@ public class OINotepadCheckInstalled {
 	/**
 	 * Method to open entry of app "OI Notepad" in Google's appstore.
 	 * Before the intent is actually is dispatched method 
-	 * {@link de.chbosync.android.syncmlclient.source.pim.note.OINoteCheckInstalled.isIntentSupported(Intent, Context)}
+	 * {@link de.chbosync.android.syncmlclient.source.pim.note.OINoteCheckInstalled#isIntentSupported(Intent, Context)}
 	 * is invoked to find out if the current device can handle this intent 
 	 * (if we would dispatch this intent and the device is not capable of handling it, 
 	 * then the app would crash). 

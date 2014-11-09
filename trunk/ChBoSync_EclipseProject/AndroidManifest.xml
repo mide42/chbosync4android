@@ -38,9 +38,10 @@
           package="de.chbosync.android.syncmlclient"
           android:versionCode="2"
           android:versionName="1.0 (Nov 2014)"
-          android:installLocation="auto"  >
+          android:installLocation="auto" >
 
-    <uses-sdk android:minSdkVersion="15" android:targetSdkVersion="19"/>
+    
+    <uses-sdk android:minSdkVersion="15" android:targetSdkVersion="19"/><!-- API-Level 15 is Android version 4.0.3/4.0.4 -->
     
     <uses-permission android:name="android.permission.READ_CONTACTS"         />
     <uses-permission android:name="android.permission.WRITE_CONTACTS"        />
