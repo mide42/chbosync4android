@@ -68,9 +68,9 @@ public class AndroidCustomization implements Customization {
     private static final String TAG_LOG = "AndroidCustomization";
 
     // Settings customization
-    private final String   SERVER_URI              = "http://demo.horde.org/rpc.php";
-    private final String   USERNAME                = "demo";
-    private final String   PASSWORD                = "";
+    private String   SERVER_URI  = "http://demo.horde.org/rpc.php";
+    private String   USERNAME    = "demo";
+    private String   PASSWORD    = "";
 
     private final String   FULL_NAME               = "ChBoSync";
     private final String   APPLICATION_NAME        = "ChBoSync";
@@ -296,10 +296,21 @@ public class AndroidCustomization implements Customization {
     private static AndroidCustomization instance = null;
     
     /**
-     * Private constructor for the singleton pattern enforcement
+     * Private constructor for the singleton pattern enforcement.
+     * 
+     * Added for ChBoSync: Only when the app is running in an emulator
+     * then the default server URL & user name for the demo server
+     * will be provided. 
      */
     private AndroidCustomization() {
         initSourcesInfo();
+        
+        if ( AndroidUtils.isAndroidEmulator() == false) {
+        	// App is running on real device, so do not provide default server URL & username
+        	SERVER_URI = "";
+        	USERNAME   = "";
+        	PASSWORD   = "";
+        }
     }
 
     /**
@@ -547,7 +558,7 @@ public class AndroidCustomization implements Customization {
         return SERVER_URI;
     }
 
-    public String getUserDefault() {
+    public String getUserDefault() {    	
         return USERNAME;
     }
 

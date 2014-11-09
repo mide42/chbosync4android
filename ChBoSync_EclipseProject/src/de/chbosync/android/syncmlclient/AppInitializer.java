@@ -150,22 +150,7 @@ public class AppInitializer {
         return appSyncSourceManager;
     }
 
-    /**
-     * Check for presence of emulator
-     * @return
-     */
-    public static boolean isAndroidEmulator() {
-        String model = Build.MODEL;
-        String product = Build.PRODUCT;
-        boolean isEmulator = false;
-        if (product != null) {
-            isEmulator = product.equals("sdk") || product.contains("_sdk") || product.contains("sdk_");
-        } else if (model !=null) {
-        	isEmulator = model.equals("sdk") || model.contains("_sdk") || model.contains("sdk_");
-        }
-        return isEmulator;
-    }
-
+    
     private void initLog() {
         MultipleAppender ma = new MultipleAppender();
 
@@ -193,11 +178,10 @@ public class AppInitializer {
         }
 
         // If we are running in the emulator, we also use the AndroidLogger
-        if (isAndroidEmulator() || "debug".equals(BuildInfo.MODE)) {
+        if (AndroidUtils.isAndroidEmulator() || "debug".equals(BuildInfo.MODE)) {
             // This is an emulator, or a debug build
             AndroidLogAppender androidLogAppender = new AndroidLogAppender("SyncMLClient");
-            ma.addAppender(androidLogAppender);
-            
+            ma.addAppender(androidLogAppender);            
         }
 
         Log.initLog(ma, Log.TRACE);

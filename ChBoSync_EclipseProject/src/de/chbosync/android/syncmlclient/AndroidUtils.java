@@ -36,6 +36,7 @@
 package de.chbosync.android.syncmlclient;
 
 import android.content.Context;
+import android.os.Build;
 import android.os.Environment;
 import android.telephony.TelephonyManager;
 import android.util.Log;
@@ -52,6 +53,10 @@ public class AndroidUtils {
      * Uses the telephony manager to understand if the client is running on a
      * simulator or a real device. On the simulator the device id is a 15 chars
      * long 0 sequence (os < 2.1).
+     * 
+     * The project contains another method to detect if the app is running in
+     * an Emulator or not: {@link de.chbosync.android.syncmlclient.AppInitializer#isAndroidEmulator()}.
+     * 
      * @param context the application Context
      * @return true if the device id is a 0s sequence, false otherwise.
      */
@@ -61,7 +66,37 @@ public class AndroidUtils {
         String deviceId = tm.getDeviceId();
         return "000000000000000".equals(deviceId);
     }
+    
+    
+    /**
+     * Check if this app is running in Emulator.
+     * 
+     * For ChBoSync: Implementation of this method replaced (because the old one did not recognize
+     * the GenyMotion Emulator) and moved it here from class {@link de.chbosync.android.syncmlclient.AppInitializer}.
+     * 
+     * In contrast to the above method <tt>isSimulator(Context)</tt>, this method
+     * does <i>NOT</i> require a reference to the context object (having this method in
+     * class <tt>AndroidUtils</tt> seems to be more suitable for the reusability of this method).
+     * 
+     * For testing you can display a toast saying that the app is running in an emulator at the end
+     * of method {@link de.chbosync.android.syncmlclient.activities.AndroidAboutScreen#onCreate(Bundle)}.
+     * 
+     * 
+     * @return <tt>true</tt> if this app is running in an Emulator, <tt>false</tt> if this app is running on a real device.
+     */
+    public static boolean isAndroidEmulator() {
+    	    	    
+    	String overallProduct = Build.PRODUCT;
+    	
+    	boolean result = overallProduct.equals( "google_sdk" ) ||
+    					 overallProduct.equals( "sdk"        ) ||
+    	                 overallProduct.equals( "sdk_x86"    ) ||
+    	                 overallProduct.equals( "vbox86p"    ); 
+    	
+    	return result;    	
+    }
 
+    
     /**
      * Checks if the sdcard is mounted.
      * 
