@@ -4,6 +4,8 @@
 
 _ChBoSync_ uses the library _"Joda-Time"_ for working with date & time values. This library was _NOT_ modified.
 
+_"Joda-Time"_ is just one of several libraries developed by the _"Joda Project"_, see http://www.joda.org .
+
 For more information on this library please visit http://www.joda.org/joda-time/.
 
 _"Joda-Time"_ is licensed under the _"Apache License, Version 2.0"_. For more information on this license you can visit the following links:
