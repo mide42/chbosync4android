@@ -1,17 +1,15 @@
 #summary Infos on Android-App "PTBV SyncML Client", on which ChBoSync is based.
-#labels SyncML
+#labels SyncML,PTBV
 
 
 _"PTBV SyncML Client"_ is a free Android app by Andreas Wolff, which is based on Funambol.
 
 
-Entry in Google's App Store: https://play.google.com/store/apps/details?id=de.ptbv.android.syncmlclient
+This app can be found in Google's App Store: https://play.google.com/store/apps/details?id=de.ptbv.android.syncmlclient
 
 
 
-
-
-See the description of the page in the App Store for details of what was changed in comparison to the _[Funambol]_ client.
+See the description in the App Store for details of what was changed in comparison to the _[Funambol]_ client.
 
 
 
