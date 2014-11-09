@@ -1,6 +1,8 @@
 #summary Description how to use the Eclipse project of the app's source code.
 #labels Eclipse,source,import,ADT
 
+=Using the Eclipse project=
+
 The source code of _ChBoSync_ is provided as Eclipse project in the SVN repository of this project at _code.google.com_.
 
 For the following description it is assumed that you have an installation of Eclipse with the _"Android Developer Tools (ADT)"_, which can be obtained at the following URL: http://developer.android.com/sdk/index.html
@@ -19,3 +21,8 @@ For the following description it is assumed that you have an installation of Ecl
  * The project contains all libraries needed for compiling in the folder _"external-libs"_ (several Funambol libraries and _"[joda_time_library Joda Time]"_).
 
  * Start the app in the emulator or a device connected via the _"Android Debug Bridge (ADB)"_ to your PC by opening the context menu (right button of mouse) of the node labled _"ChBoSync"_ in the _"Package Explorer"_ and choose _"Run As | Android Application"_. 
+
+
+=Get along in the source code=
+
+A good starting point for exploring the source code are the screen classes in package _de.chbosync.android.syncmlclient.activities_, e.g. _AndroidHomeScreen_ or _AndroidLoginScreen_. These classes are subclasses of class _android.app.Activity_.
