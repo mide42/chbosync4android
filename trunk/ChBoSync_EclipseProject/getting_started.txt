@@ -1,0 +1,23 @@
+1) developer.android.com =>ADT runterladen und installieren
+   Images für HOM runterladen (HOM seperat installieren, bis verfügbar wird)
+
+Quellcode exportieren und "new->project->android existing from sources importieren"
+   Im projekt: libs in Build-Pfad aufnehmen: Project/Properties, bei Order and Export .jar anticken
+
+Test-Account: demo.horde.org/rpc.php demo/demo oder guest/guest
+
+
+Für Hardware anschließen: USB-Treiber installieren (Samsung, Google etc.)
+
+
+Need to rebuild Funambol Jars?
+   Install ANT: Download, src/bin extract to c:\ant, add c:\ant\bin to path
+   ant --version to test
+
+
+	Buildfile: C:\Users\D050289\Desktop\android_ptbv\externals\java-sdk\client\build\android\build.xml
+	           anpassen: target="5" source="5" debug="${debug}"
+	ant ausführen in C:\Users\D050289\Desktop\android_ptbv\externals\java-sdk\client\build\android
+        Output-File nach lib im Eclipse Prject rein
+
+
