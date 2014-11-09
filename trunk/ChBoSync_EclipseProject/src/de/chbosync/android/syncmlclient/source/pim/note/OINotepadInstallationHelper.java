@@ -20,8 +20,13 @@ package de.chbosync.android.syncmlclient.source.pim.note;
 
 import java.util.List;
 
+import de.chbosync.android.syncmlclient.R;
+import de.chbosync.android.syncmlclient.activities.AndroidHomeScreen;
+
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
@@ -44,7 +49,7 @@ import android.net.Uri;
  * 
  * Class added for ChBoSync (Nov 2014).
  */
-public class OINotepadCheckInstalled {
+public class OINotepadInstallationHelper {
 
 	/** ID of app "OI Notepad" to find out if it is already installed on the device and
 	 *  to open the entry in the appstore if needed.
@@ -120,5 +125,53 @@ public class OINotepadCheckInstalled {
 		// If at least one app was found that can handle the intent then this method returns "true"
 		return list.size() > 0;		
 	}		
+	
+	
+	/**
+	 * Shows a dialog telling the user that the appstore client is not available no the current device. 
+	 * 
+	 * @param context Needed for creation of dialog
+	 */
+	public static void showDialog_AppstoreClientNotAvailable(Context context) {
+
+		AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(context);
+		dialogBuilder.setTitle  ( R.string.dialog_title_operation_not_possible );
+		dialogBuilder.setMessage( R.string.dialog_appstoreclient_not_available );
+		
+		dialogBuilder.setPositiveButton( R.string.dialog_continue, null );
+		dialogBuilder.setCancelable(false); // no Cancel-Button needed
+		
+		AlertDialog dialog = dialogBuilder.create();
+		dialog.show();						
+	}
+	
+	
+	/**
+	 * Shows confirmation dialog asking the user if he really wants to open the entry of "OI Notepad"
+	 * to install it on the device.
+	 * 
+	 * @param activity Needed for creation of dialog
+	 */
+	public static void showDialog_ConfirmQuestionGoToAppstoreClient(Activity activity) {
+
+		final Activity activityFinal = activity;
+		
+		AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(activity);
+		dialogBuilder.setTitle  ( R.string.dialog_title_appstore_client );
+		dialogBuilder.setMessage( R.string.dialog_goto_appstore_client  );
+		
+		final DialogInterface.OnClickListener onYesButtonHandler = new DialogInterface.OnClickListener() {						
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+				OINotepadInstallationHelper.openEntryForOINotepadInAppstore(activityFinal);
+			}
+		};
+		
+		dialogBuilder.setPositiveButton( R.string.button_yes, onYesButtonHandler );
+		dialogBuilder.setNegativeButton( R.string.button_no,  null );
+		
+		AlertDialog dialog = dialogBuilder.create();
+		dialog.show();					
+	}
 	
 }

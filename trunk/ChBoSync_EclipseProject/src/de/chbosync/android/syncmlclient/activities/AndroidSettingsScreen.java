@@ -65,7 +65,7 @@ import de.chbosync.android.syncmlclient.controller.AndroidSettingsScreenControll
 
 
 /**
- * This is the container Activity for all the settings (Sync, Advanced)
+ * This is the container Activity for all the settings (Sync, Advanced).
  */
 public class AndroidSettingsScreen extends Activity
         implements Screen {
@@ -87,6 +87,7 @@ public class AndroidSettingsScreen extends Activity
 
     private List<AndroidSettingsTab> settingsTabList = new ArrayList<AndroidSettingsTab>();
 
+    
     /**
      * Called with the activity is first created.
      */

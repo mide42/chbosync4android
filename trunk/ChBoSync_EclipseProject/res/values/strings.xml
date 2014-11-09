@@ -297,5 +297,13 @@
 <string name="joda_license">Joda-Time is licenced under the \"Apache License Version 2.0\":</string>
 <string name="joda_license_url">http://www.joda.org/joda-time/license.html</string>
 <string name="intent_open_url_not_supported">Your device does not support the displaying of websites in a browser.</string>
-
+<string name="advanced_settings_oi_notepad_title">OI Notepad</string>
+<string name="advanced_settings_oi_notepad_desc">ChBoSync cannot sync notes when the free app \"OI Notepad\" is not installed on the device. You can configure that when this app is not found on the device a button to install this app is shown instead of the sync button.</string>
+<string name="dialog_appstoreclient_not_available">Sorry, but it seems that the appstore client required for installing new apps is not available on your device.</string>
+<string name="dialog_title_operation_not_possible">Operation not possible</string>
+<string name="dialog_goto_appstore_client">Do you want to open the entry for \"OI Notepad\" in the app store?</string>
+<string name="dialog_title_appstore_client">Installation of \"OI Notepad\"</string>
+<string name="button_install_oi_notepad">Install \"OI Notepad\"</string>
+<string name="dialog_text_oinotepad_already_installed">The app \"OI Notepad\" is already installed on your device.</string>
+<string name="conf_show_oinotepad_dummy_sync_button">Show button to install \"OI Notepad\" instead of sync button</string>
 </resources>
