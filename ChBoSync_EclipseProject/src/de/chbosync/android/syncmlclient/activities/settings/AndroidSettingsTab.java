@@ -66,11 +66,11 @@ public abstract class AndroidSettingsTab extends ScrollView implements TabHost.T
 
     protected Activity activity;
     
-    public AndroidSettingsTab(Activity a, Bundle savedInstanceState) {
+    public AndroidSettingsTab(Activity activity, Bundle savedInstanceState) {
 
-        super(a);
+        super(activity);
 
-        this.activity = a;
+        this.activity = activity;
 
         // Init the configuration and localization
         controller = AndroidController.getInstance();
@@ -82,6 +82,15 @@ public abstract class AndroidSettingsTab extends ScrollView implements TabHost.T
         setId(getLayoutId());
     }
 
+    
+    /**
+     * Added for ChBoSync
+     * 
+     */
+    public Activity getActivity() {
+    	return this.activity;
+    }
+    
     /**
      * Add a divider View to a ViewGroup object
      * @param vg

@@ -40,7 +40,9 @@ import java.util.Iterator;
 import java.util.List;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.ContextMenu;
@@ -54,8 +56,6 @@ import android.view.ViewGroup.LayoutParams;
 import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.funambol.client.configuration.Configuration;
 import com.funambol.client.controller.Controller;
@@ -64,21 +64,19 @@ import com.funambol.client.controller.UISyncSourceController;
 import com.funambol.client.customization.Customization;
 import com.funambol.client.localization.Localization;
 import com.funambol.client.source.AppSyncSource;
-import com.funambol.client.source.AppSyncSourceManager;
 import com.funambol.client.ui.Bitmap;
 import com.funambol.client.ui.DisplayManager;
 import com.funambol.client.ui.HomeScreen;
 import com.funambol.client.ui.UISyncSourceContainer;
 import com.funambol.util.Log;
 
-import de.chbosync.android.syncmlclient.R;
 import de.chbosync.android.syncmlclient.AndroidAppSyncSourceManager;
-import de.chbosync.android.syncmlclient.AndroidUtils;
 import de.chbosync.android.syncmlclient.App;
 import de.chbosync.android.syncmlclient.AppInitializer;
+import de.chbosync.android.syncmlclient.R;
 import de.chbosync.android.syncmlclient.controller.AndroidHomeScreenController;
 import de.chbosync.android.syncmlclient.source.pim.note.OINoteManager;
-import de.chbosync.android.syncmlclient.source.pim.note.OINotepadCheckInstalled;
+import de.chbosync.android.syncmlclient.source.pim.note.OINotepadInstallationHelper;
 
 
 /**
@@ -773,16 +771,15 @@ public class AndroidHomeScreen extends Activity implements HomeScreen, UISyncSou
             }
             
             // If "OI Notepad" is not installed display button for installation of this app        
-            /*
-            if (OINoteManager.getOINotepadInstalled() == true) {
+            if (OINoteManager.getOINotepadInstalled() == false) {
             	 LinearLayout.LayoutParams linLayoutParams2 = new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
-            	 int margin = adaptSizeToDensity(20);
+            	 
+            	 int margin = adaptSizeToDensity(20); // add a bigger gap to indicate that now another type of buttons is comming
             	 linLayoutParams2.setMargins(0, margin, 0, 0); // top=margin
-
-            	 linLayoutForButtons.addView(createSyncingNotesDisabledButton(), linLayoutParams2);            	
+            	 
+            	 linLayoutForButtons.addView( createSyncingNotesDisabledButton(), linLayoutParams2);            	
             } 
-            */            	             
-            
+            	                         
         } // run()
         
     } // end of inner class
@@ -806,7 +803,15 @@ public class AndroidHomeScreen extends Activity implements HomeScreen, UISyncSou
     	notesDisabledButton.setOnClickListener(new OnClickListener() {			
 			@Override
 			public void onClick(View view) {
-				Toast.makeText(AndroidHomeScreen.this, "Would now try to open Play-Client", Toast.LENGTH_LONG).show();				
+
+				if ( OINotepadInstallationHelper.isIntentToOpenAppStoreClientSupported(AndroidHomeScreen.this) == true ) {
+					
+					OINotepadInstallationHelper.showDialog_ConfirmQuestionGoToAppstoreClient(AndroidHomeScreen.this);		
+										
+				} else {
+
+					OINotepadInstallationHelper.showDialog_AppstoreClientNotAvailable(AndroidHomeScreen.this);	
+				}
 			}
 		});
     	

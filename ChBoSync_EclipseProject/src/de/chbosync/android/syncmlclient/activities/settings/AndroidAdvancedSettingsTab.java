@@ -38,6 +38,7 @@ package de.chbosync.android.syncmlclient.activities.settings;
 import java.util.Hashtable;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
@@ -56,6 +57,8 @@ import de.chbosync.android.syncmlclient.activities.AndroidDisplayManager;
 import de.chbosync.android.syncmlclient.activities.AndroidSettingsScreen;
 import de.chbosync.android.syncmlclient.controller.AndroidAdvancedSettingsScreenController;
 import de.chbosync.android.syncmlclient.controller.AndroidController;
+import de.chbosync.android.syncmlclient.source.pim.note.OINoteManager;
+import de.chbosync.android.syncmlclient.source.pim.note.OINotepadInstallationHelper;
 
 
 /**
@@ -96,6 +99,11 @@ public class AndroidAdvancedSettingsTab extends AndroidSettingsTab
     // Bandwidth saver elements
     private LinearLayout bandwidthSaverSection;
     private TwoLinesCheckBox saveBandwidthCheckBox;
+    
+    // Added for ChBoSync: Elements concerning "OI Notepad"
+    private Button installOINotepadButton;
+    private TwoLinesCheckBox showNoteDummySyncButton;
+    private LinearLayout oiNotepadSection;
 
     private ArrayAdapter aa;
     private Hashtable<String, Integer> logLevelReference = new Hashtable<String, Integer>();
@@ -111,11 +119,11 @@ public class AndroidAdvancedSettingsTab extends AndroidSettingsTab
 
     /**
      * Default constructor.
-     * @param a the Activity which contains this View
+     * @param activity the Activity which contains this View
      * @param state
      */
-    public AndroidAdvancedSettingsTab(Activity a, Bundle state) {
-        super(a, state);
+    public AndroidAdvancedSettingsTab(Activity activity, Bundle state) {
+        super(activity, state);
 
         AndroidController cont = AndroidController.getInstance();
 
@@ -313,11 +321,62 @@ public class AndroidAdvancedSettingsTab extends AndroidSettingsTab
         devSettingsSection = (LinearLayout) findViewById(R.id.advanced_settings_dev_settings_section);
         devSettingsBtn = (Button) findViewById(R.id.advanced_settings_dev_settings_button);
         devSettingsBtn.setOnClickListener(new DevSettingsListener());
+        addDivider(devSettingsSection);
+        
+        
+        // Added for ChBoSync
+        oiNotepadSection = (LinearLayout) findViewById(R.id.advanced_settings_show_oi_notepad_missing_button);
+        installOINotepadButton = (Button) findViewById(R.id.advanced_settings_button_install_oi_notepad);
+        installOINotepadButton.setOnClickListener( new OINotepadInstallListener() );
+        showNoteDummySyncButton = new TwoLinesCheckBox(activity);
+        showNoteDummySyncButton.setText1(localization.getLanguage("conf_show_oinotepad_dummy_sync_button"));
+        //showNoteDummySyncButton.setText2(localization.getLanguage("conf_...")); // for further description below text1 in a smaller font
+        showNoteDummySyncButton.setPadding(0, showNoteDummySyncButton.getPaddingBottom(), 
+        		                              showNoteDummySyncButton.getPaddingRight (),
+        		                              showNoteDummySyncButton.getPaddingBottom() );
+        oiNotepadSection.addView(showNoteDummySyncButton);
     }
 
     public void cancelSettings() {
     }
 
+    
+    /**
+     * Inner class for call-back invoked when the user presses the button for installing "OI Notepad"
+     * Added for ChBoSync
+     */
+    private class OINotepadInstallListener implements OnClickListener {
+        public void onClick(View view) {
+        	Activity activity = AndroidAdvancedSettingsTab.this.getActivity();
+        	
+        	if ( OINoteManager.getOINotepadInstalled() ) {
+        		
+				// Display dialog saying that installing of apps on the device seems not to be possible
+				AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(activity);
+				dialogBuilder.setTitle  ( R.string.dialog_title_operation_not_possible );
+				dialogBuilder.setMessage( R.string.dialog_text_oinotepad_already_installed );
+				
+				dialogBuilder.setPositiveButton( R.string.dialog_continue, null );
+				dialogBuilder.setCancelable(false); // no Cancel-Button needed
+				
+				AlertDialog dialog = dialogBuilder.create();
+				dialog.show();		
+        		
+        	} else {
+        		
+				if ( OINotepadInstallationHelper.isIntentToOpenAppStoreClientSupported(activity) == true ) {
+					
+					OINotepadInstallationHelper.showDialog_ConfirmQuestionGoToAppstoreClient(activity);		
+										
+				} else {
+
+					OINotepadInstallationHelper.showDialog_AppstoreClientNotAvailable(activity);	
+				}        		
+        		
+        	}
+        }
+    } // end of inner class OINotepadInstallListener
+    
     /**
      * A call-back invoked when the user presses the reset button.
      */

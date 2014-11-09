@@ -111,7 +111,7 @@ public class AndroidConfiguration extends Configuration {
     /**
      * Load the value referred to the configuration given the key
      * @param key the String formatted key representing the value to be loaded
-     * @return String String formatted vlaue related to the give key
+     * @return String String formatted value related to the given key
      */
     protected String loadKey(String key) {
         return settings.getString(key, null);
