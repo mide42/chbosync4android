@@ -13,7 +13,9 @@ The following is a list of modification made in the source of to obtain _ChBoSyn
 
  * Changed information displayed on about dialog.
 
- * About activity can now also be opened by a button from the login screen (so even if the user has no valid credentials for any SyncML server he can access the about activity with the license information). 
+ * _About Activity_ can now also be opened by a button from the login screen (so even if the user has no valid credentials for any SyncML server he can access the about activity with the license information). 
+
+ * Replaced implementation of method to detect if app is running in Emulator (see method _AndroidUtils::isAndroidEmulator()_ ).
 
  
 ----
