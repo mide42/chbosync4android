@@ -256,7 +256,7 @@ public final class R {
         public static final int conf_sync_mode_title=0x7f0500cb;
         public static final int conf_upload_older_media=0x7f0500cf;
         public static final int conf_upload_older_media_warning=0x7f0500c0;
-        /**  Now strings added for ChBoSync 
+        /**  Strings added for ChBoSync 
  Now strings added for ChBoSync 
          */
         public static final int contentdescr_logo=0x7f050119;
@@ -276,6 +276,7 @@ public final class R {
         public static final int dialog_appstoreclient_not_available=0x7f05012c;
         public static final int dialog_cancel=0x7f050073;
         public static final int dialog_cancel_import=0x7f050093;
+        public static final int dialog_confirm_logout_question=0x7f050134;
         public static final int dialog_continue=0x7f0500e4;
         public static final int dialog_delete1=0x7f0500dc;
         public static final int dialog_delete2=0x7f0500db;
@@ -307,6 +308,7 @@ public final class R {
         public static final int dialog_sync_now=0x7f050082;
         public static final int dialog_text_oinotepad_already_installed=0x7f050131;
         public static final int dialog_title_appstore_client=0x7f05012f;
+        public static final int dialog_title_confirm_logout=0x7f050133;
         public static final int dialog_title_operation_not_possible=0x7f05012d;
         public static final int dialog_try_later=0x7f050115;
         public static final int dialog_wait_for_media_identification=0x7f050056;
