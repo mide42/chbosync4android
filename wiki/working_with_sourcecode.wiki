@@ -1,4 +1,4 @@
-#summary Description how to use the Eclipse project of the app's source code.
+#summary Description on how to use the Eclipse project of the app's source code.
 #labels Eclipse,source,import,ADT
 
 =Using the Eclipse project=
