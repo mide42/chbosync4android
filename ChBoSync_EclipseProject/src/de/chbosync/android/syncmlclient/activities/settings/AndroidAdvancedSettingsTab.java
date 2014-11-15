@@ -68,7 +68,7 @@ import de.chbosync.android.syncmlclient.source.pim.note.OINotepadInstallationHel
  * interfaces for further informations.
  */
 public class AndroidAdvancedSettingsTab extends AndroidSettingsTab
-        implements AdvancedSettingsScreen {
+                                        implements AdvancedSettingsScreen {
 
     private static final String TAG_LOG = "AndroidAdvancedSettingsTag";
 
@@ -111,7 +111,7 @@ public class AndroidAdvancedSettingsTab extends AndroidSettingsTab
 
     private int originalLogLevel;
     private boolean originalBandwidthStatus;
-    private boolean originalRemoteUriStatus;
+    //private boolean originalRemoteUriStatus;
 
     private AndroidDisplayManager dm;
 

@@ -306,7 +306,7 @@ public class AndroidHomeScreen extends Activity implements HomeScreen, UISyncSou
                 homeScreenController.showConfigurationScreen();
                 break;
             case LOGOUT_ID:
-                homeScreenController.logout();
+                showConfirmQuestionLogout();
                 break;
             case ABOUT_ID:
                 homeScreenController.showAboutScreen();
@@ -315,6 +315,31 @@ public class AndroidHomeScreen extends Activity implements HomeScreen, UISyncSou
         return super.onOptionsItemSelected(item);
     }
 
+    
+    /**
+     * Method shows dialog with confirmation question asking the user if he really wants to log out.  
+     * Added for CboSync
+     */
+    protected void showConfirmQuestionLogout() {
+    	
+		AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
+		dialogBuilder.setTitle  ( R.string.dialog_title_confirm_logout    );
+		dialogBuilder.setMessage( R.string.dialog_confirm_logout_question );
+		
+		final DialogInterface.OnClickListener onYesButtonHandler = new DialogInterface.OnClickListener() {						
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+				homeScreenController.logout();
+			}
+		};
+		
+		dialogBuilder.setPositiveButton( R.string.button_yes, onYesButtonHandler );
+		dialogBuilder.setNegativeButton( R.string.button_no,  null );
+		
+		AlertDialog dialog = dialogBuilder.create();
+		dialog.show();	    	
+    }
+    
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenuInfo menuInfo) {
         super.onCreateContextMenu(menu, v, menuInfo);

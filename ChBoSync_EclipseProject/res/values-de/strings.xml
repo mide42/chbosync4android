@@ -298,4 +298,7 @@
 <string name="button_install_oi_notepad">\"OI Notepad\"installieren</string>
 <string name="dialog_text_oinotepad_already_installed">Die App \"OI Notepad\" ist bereits auf diesem Gerät installiert.</string>
 <string name="conf_show_oinotepad_dummy_sync_button">Button zum Installieren von \"OI Notepad\" anstelle von Sync-Button anzeigen</string>
+<string name="dialog_title_confirm_logout">Bestätigung für Logout</string>
+<string name="dialog_confirm_logout_question">Wolllen Sie sich wirklich beim SyncML-Server abmelden? Um sich wieder bei diesem anzumelden werden Sie erneut Ihre Anmelde-Daten eingeben müssen.</string>
+
 </resources>

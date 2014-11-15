@@ -49,9 +49,9 @@ import com.funambol.syncml.spds.DeviceConfig;
 import com.funambol.util.Base64;
 
 /**
- * Container for the main client client configuration information. Relized using
- * the singleton pattern. Access this class using the getInstance() metod
- * invocation
+ * Container for the main client client configuration information. Realized using
+ * the singleton pattern. Access this class using the getInstance() method
+ * invocation.
  */
 public class AndroidConfiguration extends Configuration {
 
