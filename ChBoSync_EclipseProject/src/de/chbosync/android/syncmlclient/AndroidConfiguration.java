@@ -57,6 +57,9 @@ public class AndroidConfiguration extends Configuration {
 
     private static final String TAG_LOG = "AndroidConfiguration";
 
+    /** Key for the preferences file, will lead to file "fnblPref.xml"
+     * in the app's folder "shared_prefs".
+     */
     public static final String KEY_FUNAMBOL_PREFERENCES = "fnblPref";
     
     private static AndroidConfiguration instance = null;
@@ -66,7 +69,11 @@ public class AndroidConfiguration extends Configuration {
     private        DeviceConfig devconf;
 
     /**
-     * Private contructor to enforce the Singleton implementation
+     * Private contructor to enforce the Singleton implementation.
+     * 
+     * The SharedPreferences will be saved at the following path on the Android device:
+     * /data/data/de.chbosync.android.syncmlclient/shared_prefs/fnblPref.xml
+     * 
      * @param context the application Context
      * @param customization the Customization object passed by the getInstance
      * call
@@ -79,7 +86,7 @@ public class AndroidConfiguration extends Configuration {
     {
         super(customization, appSyncSourceManager);
         this.context = context;
-        settings = context.getSharedPreferences(KEY_FUNAMBOL_PREFERENCES, 0);
+        settings = context.getSharedPreferences(KEY_FUNAMBOL_PREFERENCES, 0); // Name for preferences file: fnblPref.xml
         editor = settings.edit();
     }
 
@@ -244,5 +251,70 @@ public class AndroidConfiguration extends Configuration {
         // Now migrate the basic configuration (this will update version)
         super.migrateConfig();
     }
+    
+    
+    // *** Starting here: Methods/attributes added for ChBoSync ***
+    
+    /** Key for the preference "showDummyButtonForNotesSyncing". */
+    protected static final String CONF_SHOW_DUMMY_BUTTON_FOR_SYNCING_NOTES = "DUMMY_BUTTON_FOR_SYNCING_NOTES";
+    
+    /** Member variable holding the current state of the preference value "showDummyButtonForNotesSyncing". */
+    protected boolean showDummyButtonForNotesSyncing = true;
+    
+    
+    /**
+     * 
+     * @return <tt>true</tt> if dummy button instead of sync button
+     *         for notes should be shown when "OI Notepad" is not available
+     *         on the device; <tt>false</tt> otherwise.
+     */
+    public boolean getShowDummyButtonForNotesSyncing() {
+    	return showDummyButtonForNotesSyncing;
+    }
+    
+    
+    /**
+     * 
+     * @param enabled <tt>true</tt> if dummy button instead of sync button
+     *        for notes should be shown when "OI Notepad" is not available
+     *        on the device; <tt>false</tt> otherwise.
+     */
+    public void setShowDummyButtonForNotesSyncing(boolean enabled) {
+    	showDummyButtonForNotesSyncing = enabled;
+    }
+
+    
+    /**
+     * Overwriting of method for loading of preferences from shared preferences, so 
+     * that preference for "showDummyButtonForNotesSyncing" is also loaded.
+     */
+	@Override
+	public int load() {
+
+		if (loaded) {
+			return CONF_OK;
+		}
+		
+		showDummyButtonForNotesSyncing = loadBooleanKey(CONF_SHOW_DUMMY_BUTTON_FOR_SYNCING_NOTES, true); // "true" is default value
+		
+		return super.load();
+	}
+    
+	
+	/**
+	 * Overwriting of method for loading of preferences from shared preferences, so 
+     * that preference for "showDummyButtonForNotesSyncing" is also saved.
+     * 
+	 * @return Either {@link com.funambol.client.configuration.Configuration.CONF_OK} or
+	 *         {@link com.funambol.client.configuration.Configuration.CONF_INVALID}.
+	 */
+	@Override
+	public int save() {
+		
+		saveBooleanKey(CONF_SHOW_DUMMY_BUTTON_FOR_SYNCING_NOTES, showDummyButtonForNotesSyncing);
+		
+		return super.save();
+	}
+    
 
 }

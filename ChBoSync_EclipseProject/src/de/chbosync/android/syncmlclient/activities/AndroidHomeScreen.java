@@ -57,7 +57,6 @@ import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
-import com.funambol.client.configuration.Configuration;
 import com.funambol.client.controller.Controller;
 import com.funambol.client.controller.HomeScreenController;
 import com.funambol.client.controller.UISyncSourceController;
@@ -71,6 +70,7 @@ import com.funambol.client.ui.UISyncSourceContainer;
 import com.funambol.util.Log;
 
 import de.chbosync.android.syncmlclient.AndroidAppSyncSourceManager;
+import de.chbosync.android.syncmlclient.AndroidConfiguration;
 import de.chbosync.android.syncmlclient.App;
 import de.chbosync.android.syncmlclient.AppInitializer;
 import de.chbosync.android.syncmlclient.R;
@@ -121,6 +121,9 @@ public class AndroidHomeScreen extends Activity implements HomeScreen, UISyncSou
     private String syncItemText;
 
     private boolean screenLocked = false;
+    
+    // Changed for ChBoSync: Local variable of onCreate() method was made a member variable
+    protected AndroidConfiguration configuration = null;
 
     /**
      * Called with the activity is first created.
@@ -145,6 +148,7 @@ public class AndroidHomeScreen extends Activity implements HomeScreen, UISyncSou
 
         // Now initialize everything
         customization = initializer.getCustomization();
+        configuration = initializer.getConfiguration();
         appSyncSourceManager = initializer.getAppSyncSourceManager();
 
         Controller controller = initializer.getController();
@@ -199,8 +203,7 @@ public class AndroidHomeScreen extends Activity implements HomeScreen, UISyncSou
         }
 
         // If during the upgrade some source was disabled because its sync type
-        // is no longer supported, then we shall inform the user
-        Configuration configuration = initializer.getConfiguration();
+        // is no longer supported, then we shall inform the user        
         if (Log.isLoggable(Log.INFO)) {
             Log.info(TAG, "source sync type changed = " + configuration.getPimSourceSyncTypeChanged());
         }
@@ -796,7 +799,8 @@ public class AndroidHomeScreen extends Activity implements HomeScreen, UISyncSou
             }
             
             // If "OI Notepad" is not installed display button for installation of this app        
-            if (OINoteManager.getOINotepadInstalled() == false) {
+            
+            if (configuration.getShowDummyButtonForNotesSyncing() && OINoteManager.getOINotepadInstalled() == false) {
             	 LinearLayout.LayoutParams linLayoutParams2 = new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
             	 
             	 int margin = adaptSizeToDensity(20); // add a bigger gap to indicate that now another type of buttons is comming
