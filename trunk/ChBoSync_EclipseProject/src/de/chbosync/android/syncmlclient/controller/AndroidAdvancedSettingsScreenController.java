@@ -47,6 +47,7 @@ import com.funambol.client.controller.DialogController;
 import com.funambol.util.Log;
 import com.funambol.util.LogContent;
 
+import de.chbosync.android.syncmlclient.AndroidConfiguration;
 import de.chbosync.android.syncmlclient.App;
 import de.chbosync.android.syncmlclient.AppInitializer;
 import de.chbosync.android.syncmlclient.ContactsImporter;
@@ -73,9 +74,33 @@ public class AndroidAdvancedSettingsScreenController extends AdvancedSettingsScr
      */
     public AndroidAdvancedSettingsScreenController(Controller controller, AndroidAdvancedSettingsTab screen) {
         super(controller, screen);
-        a = (Activity) screen.getUiScreen();
+        a = (Activity) screen.getUiScreen();        
+    }
+    
+    
+    /**
+     * Overwritten for setting initial value of CheckBox for preference 
+     * "showDummyButtonForNotesSyncing".
+     * Saving is done in method <tt>checkAndSave()</tt>. 
+     * Added for ChBoSync 
+     */
+    @Override
+    public void initialize() {    	
+    	super.initialize();
+    	
+    	if(this.screen instanceof AndroidAdvancedSettingsTab) {
+    		
+    		AndroidAdvancedSettingsTab aast = (AndroidAdvancedSettingsTab) screen;
+    		
+    		if (this.configuration instanceof AndroidConfiguration) {
+    			AndroidConfiguration ac = (AndroidConfiguration)this.configuration;
+    			
+    			aast.setShowDummyButtonForNotesSyncing( ac.getShowDummyButtonForNotesSyncing() );
+    		}    		    		
+    	}    	    	
     }
 
+    
     /**
      * Realize the Send log action. Implement the client dependent send log
      * feature using the android native intent implementation in order to call
@@ -149,6 +174,7 @@ public class AndroidAdvancedSettingsScreenController extends AdvancedSettingsScr
     @Override
     public void checkAndSave() {
         super.checkAndSave();
+        
         AppInitializer appInitializer = App.i().getAppInitializer();
         if (screen.getBandwidthSaver()) {
             // We need to acquire a WiFi lock to keep the WiFi active and
@@ -158,6 +184,17 @@ public class AndroidAdvancedSettingsScreenController extends AdvancedSettingsScr
         } else {
             appInitializer.releaseWiFiLock(false);
         }
+        
+        // Added for ChBoSync
+    	if(this.screen instanceof AndroidAdvancedSettingsTab) {
+    		AndroidAdvancedSettingsTab aast = (AndroidAdvancedSettingsTab) screen;
+    		
+    		if (this.configuration instanceof AndroidConfiguration) {
+    			AndroidConfiguration ac = (AndroidConfiguration)this.configuration;
+    			
+    			ac.setShowDummyButtonForNotesSyncing(aast.getShowDummyButtonForNotesSyncing());    			
+    		}    		
+    	}    	    	
     }
 
     @Override

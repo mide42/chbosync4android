@@ -52,6 +52,7 @@ import com.funambol.client.ui.AdvancedSettingsScreen;
 import com.funambol.client.ui.Screen;
 import com.funambol.util.Log;
 
+import de.chbosync.android.syncmlclient.AndroidConfiguration;
 import de.chbosync.android.syncmlclient.R;
 import de.chbosync.android.syncmlclient.activities.AndroidDisplayManager;
 import de.chbosync.android.syncmlclient.activities.AndroidSettingsScreen;
@@ -104,8 +105,8 @@ public class AndroidAdvancedSettingsTab extends AndroidSettingsTab
     private Button installOINotepadButton;
     private TwoLinesCheckBox showNoteDummySyncButton;
     private LinearLayout oiNotepadSection;
-
-    private ArrayAdapter aa;
+    private boolean originalShowNoteDummySyncButton;
+    
     private Hashtable<String, Integer> logLevelReference = new Hashtable<String, Integer>();
     private LinearLayout settingsContainer;
 
@@ -176,8 +177,16 @@ public class AndroidAdvancedSettingsTab extends AndroidSettingsTab
     public void saveSettings(SaveSettingsCallback callback) {
         //FIX-ME - return true if and only if the save action is successful
         screenController.checkAndSave();
-        originalLogLevel = configuration.getLogLevel();
+        
+        originalLogLevel        = configuration.getLogLevel();
         originalBandwidthStatus = configuration.getBandwidthSaverActivated();
+        
+        if (configuration instanceof AndroidConfiguration) { // added for ChBoSync
+        	AndroidConfiguration ac = (AndroidConfiguration)configuration;
+        	originalShowNoteDummySyncButton = ac.getShowDummyButtonForNotesSyncing();
+        }
+        
+        
         callback.saveSettingsResult(true);
     }
 
@@ -192,6 +201,11 @@ public class AndroidAdvancedSettingsTab extends AndroidSettingsTab
             hasChanges = true;
         }
 
+        // the next one was added for ChBoSync
+        if ( (showNoteDummySyncButton != null) && (originalShowNoteDummySyncButton != getShowDummyButtonForNotesSyncing()) ){
+        	hasChanges = true;
+        }
+        
         return hasChanges;
     }
 
@@ -263,6 +277,24 @@ public class AndroidAdvancedSettingsTab extends AndroidSettingsTab
     public boolean getBandwidthSaver(){
         return saveBandwidthCheckBox.isChecked();
     }
+    
+    /**
+     * Setter for state of <i>TwoLinesCheckBox</i> for preference "showDummyButtonForNotesSyncing".
+     * Added for ChBoSync
+     */
+    public void setShowDummyButtonForNotesSyncing(boolean enabled) {
+    	originalShowNoteDummySyncButton = enabled;
+        showNoteDummySyncButton.setChecked(enabled);
+    }
+
+    /**
+     * Getter for current state of <i>TwoLinesCheckBox</i> for preference "showDummyButtonForNotesSyncing". 
+     * Added for ChBoSync
+     * 
+     */
+    public boolean getShowDummyButtonForNotesSyncing() {
+    	return showNoteDummySyncButton.isChecked();
+    }
 
     private void initScreenElements() {
 
@@ -296,7 +328,7 @@ public class AndroidAdvancedSettingsTab extends AndroidSettingsTab
 
         spin = (Spinner) findViewById(R.id.advanced_settings_log_level_spinner);
 
-        aa = new ArrayAdapter<CharSequence>(activity, android.R.layout.simple_spinner_item);
+        ArrayAdapter<CharSequence> aa = new ArrayAdapter<CharSequence>(activity, android.R.layout.simple_spinner_item);
 
         aa.add(localization.getLanguage("advanced_settings_log_level_none"));
         aa.add(localization.getLanguage("advanced_settings_log_level_error"));
