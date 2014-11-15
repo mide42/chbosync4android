@@ -17,7 +17,8 @@ The following is a list of modification made in the source of to obtain _ChBoSyn
 
  * Replaced implementation of method to detect if app is running in Emulator (see method _AndroidUtils::isAndroidEmulator()_ ).
 
- 
+ * Dialog with confirmation question on logout.
+
 ----
  
 
