@@ -301,7 +301,7 @@
 <string name="advanced_settings_oi_notepad_desc">ChBoSync cannot sync notes when the free app \"OI Notepad\" is not installed on the device. You can configure that when this app is not found on the device a button to install this app is shown instead of the sync button.</string>
 <string name="dialog_appstoreclient_not_available">Sorry, but it seems that the appstore client required for installing new apps is not available on your device.</string>
 <string name="dialog_title_operation_not_possible">Operation not possible</string>
-<string name="dialog_goto_appstore_client">Do you want to open the entry for \"OI Notepad\" in the app store?</string>
+<string name="dialog_goto_appstore_client">Do you want to open the entry for \"OI Notepad\" in the app store? After installing this app you might have to restart ChBoSync or even your device, so that \"OI Notepad\" can be recognized.</string>
 <string name="dialog_title_appstore_client">Installation of \"OI Notepad\"</string>
 <string name="button_install_oi_notepad">Install \"OI Notepad\"</string>
 <string name="dialog_text_oinotepad_already_installed">The app \"OI Notepad\" is already installed on your device.</string>

@@ -80,6 +80,8 @@ import de.chbosync.android.syncmlclient.source.pim.note.OINotepadInstallationHel
 
 
 /**
+ * Activity for presenting the main screen of the app, i.e. the screen with the
+ * buttons to trigger the syncing of individual syncing sources (e.g., calendar, notes). 
  * Class contains several inner classes.
  */
 public class AndroidHomeScreen extends Activity implements HomeScreen, UISyncSourceContainer {
@@ -89,9 +91,11 @@ public class AndroidHomeScreen extends Activity implements HomeScreen, UISyncSou
     private static final String FIRST_SYNC_ALERT_PENDING         = "FirstSyncAlertPending";
     private static final String WIFI_NOT_AVAILABLE_ALERT_PENDING = "WifiNotAvailableAlertPending";
 
-    private final int SETTINGS_ID = Menu.FIRST;
-    private final int LOGOUT_ID   = SETTINGS_ID + 1;
-    private final int ABOUT_ID    = LOGOUT_ID + 1;
+    // some constants for the options menu
+    private static final int MENU_ITEM_SETTINGS_ID = Menu.FIRST;
+    private static final int MENU_ITEM_LOGOUT_ID   = MENU_ITEM_SETTINGS_ID + 1;
+    private static final int MENU_ITEM_ABOUT_ID    = MENU_ITEM_LOGOUT_ID   + 1;
+    //private static final int MENU_ITEM_REFRESH_ID  = MENU_ITEM_ABOUT_ID    + 1;
 
     private final int SYNC_SOURCE_ID     = Menu.FIRST;
     private final int GOTO_SOURCE_ID     = SYNC_SOURCE_ID + 1;
@@ -265,20 +269,21 @@ public class AndroidHomeScreen extends Activity implements HomeScreen, UISyncSou
     @Override
 	public boolean onCreateOptionsMenu(Menu menu) {
     	super.onCreateOptionsMenu(menu);
+    	
         if (syncItemText == null) {
             syncItemText = localization.getLanguage("menu_sync");
-        	}
+        }
 
-        MenuItem settingsItem = menu.add(0, SETTINGS_ID, Menu.NONE, localization.getLanguage("menu_settings"));
+        MenuItem settingsItem = menu.add(0, MENU_ITEM_SETTINGS_ID, Menu.NONE, localization.getLanguage("menu_settings"));
         settingsItem.setIcon(android.R.drawable.ic_menu_preferences);
         
-        MenuItem logoutItem = menu.add(0, LOGOUT_ID, Menu.NONE, localization.getLanguage("menu_logout"));
+        MenuItem logoutItem = menu.add(0, MENU_ITEM_LOGOUT_ID, Menu.NONE, localization.getLanguage("menu_logout"));
         logoutItem.setIcon(R.drawable.ic_menu_logout);
         
-        MenuItem aboutItem = menu.add(0, ABOUT_ID, Menu.NONE, localization.getLanguage("menu_about"));
+        MenuItem aboutItem = menu.add(0, MENU_ITEM_ABOUT_ID, Menu.NONE, localization.getLanguage("menu_about"));
         aboutItem.setShortcut('0', 'A');
         aboutItem.setIcon(android.R.drawable.ic_menu_info_details);
-        
+                
         return true;
     }
 
@@ -301,24 +306,30 @@ public class AndroidHomeScreen extends Activity implements HomeScreen, UISyncSou
         Log.trace(TAG, "Resumed activity (foreground status on)");
     }
 
+    /**
+     * Event-Handler for the option menu items
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle all of the possible menu actions
-        switch (item.getItemId()) {
-            case SETTINGS_ID:
+        switch ( item.getItemId() ) {
+            case MENU_ITEM_SETTINGS_ID:
                 homeScreenController.showConfigurationScreen();
                 break;
-            case LOGOUT_ID:
+                
+            case MENU_ITEM_LOGOUT_ID:
                 showConfirmQuestionLogout();
                 break;
-            case ABOUT_ID:
+                
+            case MENU_ITEM_ABOUT_ID:
                 homeScreenController.showAboutScreen();
                 break;
         }
+        
         return super.onOptionsItemSelected(item);
     }
 
-    
+        
     /**
      * Method shows dialog with confirmation question asking the user if he really wants to log out.  
      * Added for CboSync
@@ -392,6 +403,7 @@ public class AndroidHomeScreen extends Activity implements HomeScreen, UISyncSou
 
     @Override
     public boolean onContextItemSelected(MenuItem item) {
+    	
         AdapterContextMenuInfo info = (AdapterContextMenuInfo) item.getMenuInfo();
 
         int id = item.getItemId();
@@ -798,7 +810,7 @@ public class AndroidHomeScreen extends Activity implements HomeScreen, UISyncSou
                 idx++;
             }
             
-            // If "OI Notepad" is not installed display button for installation of this app        
+            // If "OI Notepad" is not installed then display button for installation of this app        
             
             if (configuration.getShowDummyButtonForNotesSyncing() && OINoteManager.getOINotepadInstalled() == false) {
             	 LinearLayout.LayoutParams linLayoutParams2 = new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);

@@ -49,6 +49,7 @@ import android.widget.RelativeLayout;
 import android.widget.TabHost;
 import android.widget.TextView;
 
+import com.funambol.client.controller.HomeScreenController;
 import com.funambol.client.localization.Localization;
 import com.funambol.client.ui.Screen;
 import com.funambol.util.Log;
@@ -279,6 +280,9 @@ public class AndroidSettingsScreen extends Activity
         }
         
         // Save the configuration for all the tabs
+        AndroidAdvancedSettingsTab aast    = null;
+        boolean syncButtonsHaveToBeUpdated = false;
+        
         for(AndroidSettingsTab tab : settingsTabList) {
             
             if (Log.isLoggable(Log.INFO)) {
@@ -286,14 +290,31 @@ public class AndroidSettingsScreen extends Activity
             }
 
             boolean hasChanges = tab.hasChanges();
-            if(!hasChanges) {
+            if(hasChanges == false) {
                 callback.tabSettingsSaved(false);
                 continue;
             }
             
+            // next block was added for ChBoSync
+            if (tab instanceof AndroidAdvancedSettingsTab) {
+            	
+            	aast = (AndroidAdvancedSettingsTab) tab;
+            	if ( aast.hasShowNotesDummySyncButtonChanges() )
+            	  syncButtonsHaveToBeUpdated = true; 
+            }
+            
+            
             // Save the settings for this tab
             tab.saveSettings(callback);
-        }
+                     
+            
+            // next block was added for ChBoSync
+            if (syncButtonsHaveToBeUpdated == true) {
+            	ahsc.updateSyncButtons();
+            	syncButtonsHaveToBeUpdated = false;
+            }
+            	            	            	            		
+        } // for tabs
     }
 
     private class SaveCallback extends SaveSettingsCallback {
@@ -320,7 +341,7 @@ public class AndroidSettingsScreen extends Activity
     }
 
     /**
-     * @return true if there are changes in settings
+     * @return true if there are changes in settings (i.e. changes for at least one of the two tab).
      */
     public boolean hasChanges() {
         boolean hasChanges = false;

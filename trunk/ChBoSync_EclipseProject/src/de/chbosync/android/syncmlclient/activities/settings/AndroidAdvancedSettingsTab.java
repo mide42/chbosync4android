@@ -190,6 +190,10 @@ public class AndroidAdvancedSettingsTab extends AndroidSettingsTab
         callback.saveSettingsResult(true);
     }
 
+    /**
+     * Method returns <tt>true</tt>, when at least one of the following three preferences was changed:
+     * loglevel, bandwith saver, dummy button for notes syncing.
+     */
     public boolean hasChanges() {
         boolean hasChanges = false;
 
@@ -209,6 +213,23 @@ public class AndroidAdvancedSettingsTab extends AndroidSettingsTab
         return hasChanges;
     }
 
+    
+    /**
+     * Same as method <tt>hasChanges</tt> in this class, but just for one preference
+     * (nedeed because based on a change of this preference a refresh of the buttons
+     * to be shown on the homescreen might have to be triggered).
+     * 
+     * Added for ChBoSync
+     */
+    public boolean hasShowNotesDummySyncButtonChanges() {
+        if ( (showNoteDummySyncButton != null) && 
+        	 (originalShowNoteDummySyncButton != getShowDummyButtonForNotesSyncing()) )
+        	
+        	return true;
+        else
+    	    return false;
+    }
+    
     public void enableResetCommand(boolean enable) {
         resetBtn.setEnabled(enable);
     }
