@@ -19,6 +19,10 @@ The following is a list of modification made in the source of to obtain _ChBoSyn
 
  * Dialog with confirmation question on logout.
 
+ * When syncing of notes is not possible because the free app _[oi_notepad "OI Notepad"]_ is not installed on the device, then the app can show a _"fallback button"_ telling the reason to user (as replacement for the real button for syncing notes). By pressing on this _fallback button_ the user can directly open the entry for _[oi_notepad "OI Notepad"]_ in the app store client. 
+
+ * A button for opening the entry for _[oi_notepad "OI Notepad"]_ in the app store client was added to the tab _"Advanced"_ of the settings.
+
 ----
  
 
