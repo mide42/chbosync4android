@@ -6,7 +6,7 @@ _"OI Notepad"_ is an open source app for managing personal notes on Android devi
 
 The developers of _ChBoSync_ are _NOT_ related to the developers of _"OI Notepad"_.
 
-_"OI Notepad"_ can be installed from Google's app store at https://play.google.com/store/apps/details?id=org.openintents.notepad .
+_"OI Notepad"_ can be installed from Google's app store at https://play.google.com/store/apps/details?id=org.openintents.notepad . The APK file of this app is also available for direct download at https://code.google.com/p/openintents/downloads/list .
 
 
 For more information see:
