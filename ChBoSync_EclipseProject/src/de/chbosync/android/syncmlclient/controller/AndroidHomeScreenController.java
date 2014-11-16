@@ -306,15 +306,14 @@ public class AndroidHomeScreenController extends HomeScreenController {
     }
 
     @Override
-    public synchronized void
-    continueSynchronizationAfterFirstSyncDialog(String syncType,
-    											List<AppSyncSource> filteredSources,
-                                                boolean refresh,
-                                                int direction,
-                                                int delay,
-                                                boolean fromOutside,
-                                                boolean continueSyncFromDialog)
-    {
+    public synchronized void continueSynchronizationAfterFirstSyncDialog(String syncType,    
+							    									     List<AppSyncSource> filteredSources,
+							                                             boolean refresh,
+							                                             int direction,
+							                                             int delay,
+							                                             boolean fromOutside,
+							                                             boolean continueSyncFromDialog) {
+    	
         // If the sync shall continue after dialog check, the sync must proceed
         // through the native sync application
         if(!continueSyncFromDialog || filteredSources.isEmpty()) {
@@ -343,4 +342,18 @@ public class AndroidHomeScreenController extends HomeScreenController {
             Log.error(TAG_LOG, "Unable to switch to logout", ex);
         }
     }
+    
+    /**
+     * Update which buttons have to be shown.
+     * 
+     * Added for ChBoSync
+     */
+    public void updateSyncButtons() {
+    	
+    	if (this.homeScreen instanceof AndroidHomeScreen) {
+    		AndroidHomeScreen ahs = (AndroidHomeScreen) this.homeScreen;
+    		ahs.updateVisibleItems();
+    	}    	
+    }
+    
 }
