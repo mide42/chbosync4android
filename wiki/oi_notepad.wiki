@@ -15,3 +15,5 @@ For more information see:
  * http://code.google.com/p/openintents/
 
 You might want to also install _[https://play.google.com/store/apps/details?id=org.openintents.about "OI About"]_, which is another free app from the _"Open Intents"_ project needed to view the about info of _"OI Notepad"_.
+
+The data exchange between _ChBoSync_ and _"OI Notepad"_ is realized using a so called _[http://developer.android.com/guide/topics/providers/content-providers.html Content-Provider]_.
