@@ -103,7 +103,6 @@ public class OINoteManager extends AbstractDataManager<Note> {
 
     }
 
-    private AppSyncSource appSource = null;
 
     /**
      * Default constructor.
@@ -112,7 +111,7 @@ public class OINoteManager extends AbstractDataManager<Note> {
      */
     public OINoteManager(Context context, AppSyncSource appSource) {
         super(context);
-        this.appSource = appSource;
+        //this.appSource = appSource;
     }
 
     /**

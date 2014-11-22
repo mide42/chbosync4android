@@ -35,8 +35,10 @@
 
 package de.chbosync.android.syncmlclient.source.pim.note;
 
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.io.StringReader;
 import java.io.UnsupportedEncodingException;
 
 import com.funambol.common.pim.model.common.Property;
@@ -53,7 +55,11 @@ public class Note {
     private long id = -1;
     private Property title;
     private Property body;
+    
+    /** Fallback text for empty notes, to be used in titled and/or body. */
+    protected static String TEXT_EMPTY_NOTE = "<Empty Note>";
 
+    
     public Note() {
         super();
     }
@@ -89,17 +95,45 @@ public class Note {
     public void setPlainText(byte note[]) throws UnsupportedEncodingException {
         // there is just a body for plain notes
         String bodyValue = new String(note, "UTF-8");
-        body = new Property(bodyValue);
-
-        // Extract the title
-        int lfIdx = bodyValue.indexOf("\n");
-        if (lfIdx >= 0) {
-            title = new Property(bodyValue.substring(0, lfIdx));
+        
+        if (bodyValue.trim().length() > 0) {
+            body  = new Property(bodyValue);
+            title = new Property(extractTitle(bodyValue));        	
         } else {
-            if (bodyValue.length() < 32) {
-                title = new Property(bodyValue);
-            }
+        	body  = new Property(TEXT_EMPTY_NOTE);
+        	title = new Property(TEXT_EMPTY_NOTE);
         }
+        
+    }    
+    
+    /**
+     * Method to obtain title from the whole body of a note
+     * (first non-empty line is returned as title).
+     * Added for ChBoSync.
+     * 
+     * @param body Whole payload text of the note.
+     * @return String to be used as title (first non-empty line).
+     */
+    protected String extractTitle(String bodyString) {
+    	    	    	
+    	try {
+    		String currentLine = null;
+    		BufferedReader reader = new BufferedReader(new StringReader(bodyString));
+    		while ( (currentLine = reader.readLine() ) != null ) {
+    		
+    			currentLine = currentLine.trim();
+    			if ( currentLine.length() > 0) {
+    				return currentLine;
+    			}
+    			
+    		}
+    	}
+    	catch (IOException ex) {
+    		Log.error(TAG, "Exception when parsing note's body for extraction of title: " + ex);
+    		return TEXT_EMPTY_NOTE;
+    	}
+    	
+    	return TEXT_EMPTY_NOTE;   	
     }
 
     public void toPlainText(OutputStream os, boolean allFields) throws IOException {
