@@ -171,9 +171,10 @@ public class AndroidCustomization implements Customization {
     private final long     CHECK_UPDATE_INTERVAL   = (long)24*(long)60*(long)60*(long)1000; // 1 day in milliseconds
     private final long     REMINDER_UPDATE_INTERVAL= (long)2 *(long)60*(long)60*(long)1000; // 2 hours in milliseconds
 
+    // As of ChBoSync no longer used.
     private final String   SUPPORT_EMAIL_ADDRESS   = "fac_log@funambol.com";
 
-    // Tha name of the SQLite Database used to store application data
+    // The name of the SQLite Database used to store application data
     // (e.g. the configuration, sources tracker data)
     private final String   FUNAMBOL_SQLITE_DB_NAME = "funambol.db";
     
@@ -419,9 +420,15 @@ public class AndroidCustomization implements Customization {
         return DISPLAY_NAME_SUPPORTED;
     }
 
+
+    /**
+     * Getter for e-mail address (to funambol.com), was used for sending
+     * logfile via e-mail, but as of ChBoSync no longer used. 
+     */
     public String getSupportEmailAddress() {
         return SUPPORT_EMAIL_ADDRESS;
     }
+
 
     public Class<?> getLoginScreenClass() {
         return LOGIN_SCREEN_CLASS_NAME;
