@@ -337,16 +337,16 @@ public class OINoteManager extends AbstractDataManager<Note> {
     }
 
     /**
+     * Putting title and body of the note into an object of class <tt>ContentValues</tt>,
+     * so it can be inserted into "OI Notepad" via a Content Resolver.
      */
     private ContentValues createNoteContentValues(Note note) throws IOException {
 
         ContentValues cv = new ContentValues();
 
-        // Put title property
         putStringProperty(Notes.TITLE, note.getTitle(), cv);
 
-        // Body
-        putStringProperty(Notes.NOTE, note.getBody(), cv);
+        putStringProperty(Notes.NOTE,  note.getBody(),  cv);
 
         return cv;
     }

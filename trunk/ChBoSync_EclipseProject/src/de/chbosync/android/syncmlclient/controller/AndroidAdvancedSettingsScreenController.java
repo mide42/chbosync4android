@@ -119,15 +119,15 @@ public class AndroidAdvancedSettingsScreenController extends AdvancedSettingsScr
             String[] to = {customization.getSupportEmailAddress()};
             Intent sendIntent = new Intent(Intent.ACTION_SEND);
             sendIntent.putExtra(Intent.EXTRA_EMAIL, to);
-            sendIntent.putExtra(Intent.EXTRA_SUBJECT, "Android Sync Client Log");
+            sendIntent.putExtra(Intent.EXTRA_SUBJECT, "ChBoSync Client Log");
 
             //if the sdcard is present the log is made in
             if (lc.getContentType() == LogContent.FILE_CONTENT) {
                 sendIntent.putExtra(Intent.EXTRA_STREAM, Uri.parse("file://" + log));
-                sendIntent.putExtra(Intent.EXTRA_TEXT, "Android Sync Client Log Attached");
+                sendIntent.putExtra(Intent.EXTRA_TEXT, "ChBoSync Client Log Attached");
                 sendIntent.setType("text/plain");
             } else {
-                sendIntent.putExtra(Intent.EXTRA_TEXT, "Android Sync Client Log:\n" + log);
+                sendIntent.putExtra(Intent.EXTRA_TEXT, "ChBoSync Client Log:\n" + log);
                 sendIntent.setType("text/plain");
             }
 
