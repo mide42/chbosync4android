@@ -12,7 +12,7 @@ For more information on _Horde_ you can refer to:
 
  * Article in English Wikipedia: http://en.wikipedia.org/wiki/Horde_%28software%29
 
- * Demo account: http://demo.horde.org/login.php  (username & password are mentioned on bottom of this page)
+ * Demo account: http://demo.horde.org/login.php  (username & password are mentioned on bottom of the page)
 
  * Horde Syncing mailing list: http://lists.horde.org/mailman/listinfo/sync
 
