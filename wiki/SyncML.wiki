@@ -1,0 +1,11 @@
+#summary Short description of the SyncML protocol.
+#labels SyncML,Protocal
+
+SyncML (Synchronized Markup Langauge) is an XML-based standard for synchronizing data like contacts, calendar entries, personal notes via networks between different personal devices of a user.
+
+_ChBoSync_ is a client for _SyncML_.
+
+
+Links for further information on SyncML:
+ * Chapter in wikibook _"ML - Managing Data Exchange"_ on SyncML: _[http://en.wikibooks.org/wiki/XML_-_Managing_Data_Exchange/SyncML here]_.
+ * ...
