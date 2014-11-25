@@ -1,12 +1,12 @@
 #summary Short description of the SyncML protocol.
-#labels SyncML,Protocal
+#labels SyncML,Protocol,dataformat
 
-SyncML (Synchronization Markup Language) is an XML-based standard for synchronizing data like contacts, calendar entries, personal notes via networks between different personal devices of a user.
+_SyncML (Synchronization Markup Language)_ is an XML-based standard for synchronizing data like contacts, calendar entries, personal notes via networks between different personal devices of a user.
 
-_ChBoSync_ is a client for _SyncML_. The groupware _[Horde]_ can act as SyncML server (if the necessary modules are installed). 
+_ChBoSync_ is a client for _SyncML_. The groupware _[Horde]_ can act as _SyncML_ server (if the necessary modules are installed). 
 
 
-Links for further information on SyncML:
+Links for further information on _SyncML_:
  * Chapter in Wikibook _"ML - Managing Data Exchange"_ on SyncML: _[http://en.wikibooks.org/wiki/XML_-_Managing_Data_Exchange/SyncML here]_.
 
  * Article in English Wikipedia: http://en.wikipedia.org/wiki/SyncML
