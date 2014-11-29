@@ -23,6 +23,10 @@ The following is a list of modification made in the source of to obtain _ChBoSyn
 
  * A button for opening the entry for _[oi_notepad "OI Notepad"]_ in the app store client was added to the tab _"Advanced"_ of the settings.
 
+ * Added handling of empty notes; title of a note is now the first non-empty row; for completely empty notes a fallback text is used.
+
+ * When sending the log file via e-mail then no longer an e-mail address of the original developer is inserted as default recipient.
+
 ----
  
 
