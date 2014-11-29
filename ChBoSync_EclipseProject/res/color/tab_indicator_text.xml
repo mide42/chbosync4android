@@ -35,7 +35,10 @@
  -->
  
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:state_selected="true" android:color="#FFF"/>
-    <item android:color="#777"/> <!-- not selected -->
+    
+    <!-- Colors for caption of tabs in setting screen -->
+    <item android:state_selected="true"  android:color="#FFFFFF" />
+    <item android:state_selected="false" android:color="#FFFFFF" />
+    
 </selector>
 

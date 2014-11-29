@@ -41,7 +41,7 @@
           android:installLocation="auto" >
 
     
-    <uses-sdk android:minSdkVersion="15" android:targetSdkVersion="19"/><!-- API-Level 15 is Android version 4.0.3/4.0.4 -->
+    <uses-sdk android:minSdkVersion="15" android:targetSdkVersion="19" /><!-- API-Level 15 is Android version 4.0.3/4.0.4 -->
     
     <uses-permission android:name="android.permission.READ_CONTACTS"         />
     <uses-permission android:name="android.permission.WRITE_CONTACTS"        />
@@ -69,7 +69,7 @@
                   android:screenOrientation="portrait"
                   android:configChanges="keyboardHidden|orientation">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+                <action   android:name="android.intent.action.MAIN"       />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

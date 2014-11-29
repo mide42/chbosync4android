@@ -45,6 +45,7 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TabHost;
 import android.widget.TextView;
@@ -169,7 +170,7 @@ public class AndroidSettingsScreen extends Activity
         // Set the tab widget background
         tabs.getTabWidget().setBackgroundResource(R.color.black);
 
-        setupSettingsTab(new AndroidSyncSettingsTab(this, state), tabs);
+        setupSettingsTab(new AndroidSyncSettingsTab    (this, state), tabs);
         setupSettingsTab(new AndroidAdvancedSettingsTab(this, state), tabs);
 
         // Select the last selected tab
@@ -192,21 +193,34 @@ public class AndroidSettingsScreen extends Activity
         tabs.addTab(syncTabSpec);
 
         // If the TabWidget contains the separators, it should be doubled
+
         int tabIndex = tabs.getTabWidget().getTabCount()-1;
 
         // Define custom background resource for each TabWidget child
-        View trl=tabs.getTabWidget().getChildAt(tabIndex);
-        trl.setBackgroundResource(R.drawable.tab_indicator_bg);
+        View childViewAtTabIndex = tabs.getTabWidget().getChildAt(tabIndex);
+        childViewAtTabIndex.setBackgroundResource(R.drawable.tab_indicator_bg);
 
-        //modified cbo to prevent crash if called from main menu/settings
-        try {
-        	((TextView)((RelativeLayout)trl).getChildAt(1)).setTextAppearance(this, R.style.tab_widget);
+
+        //modified for ChBoSync to prevent crash if called from main menu/settings
+        if (childViewAtTabIndex instanceof RelativeLayout) {
+        	RelativeLayout relativeLayout = (RelativeLayout) childViewAtTabIndex;
+        	View childView = relativeLayout.getChildAt(1);
+        	if (childView instanceof TextView) {
+        		TextView tv = (TextView) childView;
+        		tv.setTextAppearance(this, R.style.tab_widget);
         	}
-        catch (ClassCastException e)
-        	{
-            //don't need to crash at this point,
-        	}        
         	
+        } else if (childViewAtTabIndex instanceof LinearLayout) {
+        	
+        	LinearLayout linLayout = (LinearLayout) childViewAtTabIndex;
+        	View childView = linLayout.getChildAt(1);
+        	if (childView instanceof TextView) {
+        		TextView tv = (TextView) childView;
+        		tv.setTextAppearance(this, R.style.tab_widget);
+        	}        	
+        }
+        	
+                
         settingsTabList.add(tab);
     }
 
