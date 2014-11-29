@@ -4,3 +4,6 @@
 On this page there are some screenshots taken from _ChBoSync_.
 
 https://chbosync4android.googlecode.com/svn/wiki/images/AboutScreen.png
+
+
+https://chbosync4android.googlecode.com/svn/wiki/images/SettingsTab2.png
