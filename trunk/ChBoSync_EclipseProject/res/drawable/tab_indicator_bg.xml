@@ -35,22 +35,27 @@
  -->
 
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <!-- Unselected state -->
+    
+    <!-- Unselected state --> 
     <item android:state_focused="false" 
-        android:state_selected="false" 
-        android:state_pressed="false" 
-        android:drawable="@drawable/tab_unselected" />
+          android:state_selected="false" 
+          android:state_pressed="false" 
+          android:drawable="@drawable/tab_unselected" /> 
+          
     <!-- Selected state -->
     <item android:state_focused="false" 
-        android:state_selected="true" 
-        android:state_pressed="false" 
-        android:drawable="@drawable/tab_selected" />
+          android:state_selected="true" 
+          android:state_pressed="false" 
+          android:drawable="@drawable/tab_selected" />
+    
     <!-- Focused state -->
     <item android:state_focused="true" 
-        android:state_selected="true" 
-        android:state_pressed="false" 
-        android:drawable="@drawable/tab_focus" />
+          android:state_selected="true" 
+          android:state_pressed="false" 
+          android:drawable="@drawable/tab_focus" />
+    
     <!-- Pressed state -->
     <item android:state_pressed="true" 
-        android:drawable="@drawable/tab_press" />
+          android:drawable="@drawable/tab_press" />
+    
 </selector>

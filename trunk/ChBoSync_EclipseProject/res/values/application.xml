@@ -35,9 +35,9 @@
  -->
 
 <resources>
-    <string name="app_name">ChBoSync</string>
-    <string name="company_name">ChBoSync</string>
-    <string name="account_label">ChBoSync</string>
-    <string name="account_type">de.chbosync</string>
-    <string name="calendar_name">SyncML calendar</string>
+    <string name="app_name"      >ChBoSync</string>
+    <string name="company_name"  >ChBoSync</string>
+    <string name="account_label" >ChBoSync</string>
+    <string name="account_type"  >de.chbosync</string>
+    <string name="calendar_name" >SyncML calendar</string>
 </resources>
