@@ -1,10 +1,10 @@
 #summary List of versions of ChBoSync published in Google's app store.
 #labels versions
 
-In the following table the versions of ChBoSync published in Google's app store are listed:
+In the following table the versions of _ChBoSync_ published in Google's app store are listed:
 
-|| *Version* || *Date* || *Tag in SVN Repository* ||
-|| 1.0       ||        ||                         ||
-|| ...       ||        ||                         ||
+|| *Version* || *Date*      || *Tag in SVN Repository* ||
+|| 1.0       || xx Dec 2014 ||                         ||
+|| ...       ||             ||                         ||
 
 The tag in the SVN Repository mentioned in this table represents a snapshot of the app's source code which was used to create the build which was uploaded to the app store. For all tags see _[https://code.google.com/p/chbosync4android/source/browse/#svn%2Ftags  this folder]_ in the Subversion repository. 
