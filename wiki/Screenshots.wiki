@@ -1,10 +1,14 @@
 #summary Some screenshots showing ChBoSync.
 
 
-On this page you'll find screenshots showing _ChBoSync_.
+On this page you'll find additional screenshots showing _ChBoSync_.
 
+=Settings Screen=
 
 https://chbosync4android.googlecode.com/svn/wiki/images/SettingsTab2.png
+
+
+=About Screen=
 
 https://chbosync4android.googlecode.com/svn/wiki/images/AboutScreen1.png
 
