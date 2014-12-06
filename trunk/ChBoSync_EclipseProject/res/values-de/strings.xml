@@ -164,7 +164,7 @@
 <string name="type_tasks">Aufgaben</string>
 <string name="label_data_im">IM</string>
 <string name="dialog_refresh_which">Daten zurücksetzten?</string>
-<string name="login_help_text">Geben Sie die Kontoangaben ein und klicken dann auf ANMELDEN um auf Ihr Onlinekonto zuzugreiffen.</string>
+<string name="login_help_text">Füllen Sie die folgenden Felder aus und klicken Sie auf ANMELDEN:</string>
 <string name="advanced_settings_log_level_error">Fehler</string>
 <string name="label_family_name">Familienname</string>
 <string name="label_data_nickname">Nickname</string>
@@ -285,6 +285,8 @@
 <string name="agpl_text">Für den Volltext der GNU AGPL bitte auf den folgenden Link klicken:</string>
 <string name="url_agpl">https://gnu.org/licenses/agpl-3.0.en.html</string>
 <string name="basedOnPtbvAndFunambol"><![CDATA[ChBoSync basiert auf dem <i>PTBV SyncML Client</i> von Andreas Wolff, welcher wiederum auf dem <i>Funambol SyncML Client</i> basiert. ChBoSync wurde im November 2014 als Open-Source-Projekt veröffentlicht.]]></string>
+<string name="button_yes">Ja</string>
+<string name="button_no">Nein</string>
 <string name="buttonAboutThisApp">Über diese App</string>
 <string name="syncing_notes_disabled">Synchronisation von Notizen: deaktiviert</string>
 <string name="usage_of_joda_time_library">Diese App verwndet \"Joda-Time\" als externe Bibliothek:</string>
