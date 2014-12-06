@@ -49,6 +49,7 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.funambol.client.configuration.Configuration;
 import com.funambol.client.controller.SyncSettingsScreenController;
@@ -80,7 +81,7 @@ public class AndroidSyncSettingsTab extends AndroidSettingsTab
 
     private SyncSettingsScreenController screenController;
 
-    private LinearLayout ll;
+    private LinearLayout linearLayout;
     
     public AndroidSyncSettingsTab(Activity a, Bundle state) {
         super(a, state);
@@ -91,26 +92,29 @@ public class AndroidSyncSettingsTab extends AndroidSettingsTab
     private void initialize() {
     	
         // Prepare container layout
-        ll = new LinearLayout(activity);
-        ll.setOrientation(LinearLayout.VERTICAL);
-        ll.setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.FILL_PARENT,
+        linearLayout = new LinearLayout(activity);
+        linearLayout.setOrientation(LinearLayout.VERTICAL);
+        linearLayout.setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.FILL_PARENT,
                                                          LayoutParams.WRAP_CONTENT));
+        
+        View.inflate(activity, R.layout.powered_by_textview, linearLayout);
+
 
         // Add the global sync mode setting
         if(syncModeView != null) {
-            ll.addView(syncModeView);
+            linearLayout.addView(syncModeView);
         }
 
         if(syncIntervalView != null && !syncIntervalViewShown){
-            ll.addView(syncIntervalView);
+            linearLayout.addView(syncIntervalView);
             syncIntervalViewShown = true;
         }
 
         if(c2sPushView != null) {
             if(syncModeView != null) {
-                addDivider(ll);
+                addDivider(linearLayout);
             }
-            ll.addView(c2sPushView);
+            linearLayout.addView(c2sPushView);
         }
 
         // Add all the source settings
@@ -120,17 +124,17 @@ public class AndroidSyncSettingsTab extends AndroidSettingsTab
                 continue;
             }
             if(!first) {
-                addDivider(ll);
+                addDivider(linearLayout);
             } else {
                 first = false;
                 if(syncModeView != null) {
-                    addBigDivider(ll);
+                    addBigDivider(linearLayout);
                 }
             }
-            ll.addView(item);
+            linearLayout.addView(item);
         }
 
-        this.addView(ll);
+        this.addView(linearLayout);
     }
 
     /**
@@ -242,13 +246,13 @@ public class AndroidSyncSettingsTab extends AndroidSettingsTab
             if(syncIntervalView != null && !syncIntervalView.isShown() &&
                     !syncIntervalViewShown) {
                 // This is the position of the interval
-                ll.addView(syncIntervalView, 1);
+                linearLayout.addView(syncIntervalView, 1);
                 syncIntervalViewShown = true;
             }
         } else {
             if(syncIntervalView!= null && syncIntervalView.isShown() &&
                     syncIntervalViewShown) {
-                ll.removeView(syncIntervalView);
+                linearLayout.removeView(syncIntervalView);
                 syncIntervalViewShown = false;
             }
         }

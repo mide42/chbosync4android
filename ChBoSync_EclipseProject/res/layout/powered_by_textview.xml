@@ -34,43 +34,10 @@
  * the words "Powered by Funambol".
  -->
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="fill_parent"
-              android:layout_height="wrap_content"
-              android:minHeight="?android:attr/listPreferredItemHeight"
-              android:paddingRight="?android:attr/scrollbarSize"
-              android:paddingLeft="12dip">
+<!-- This layout file was added for ChBoSync -->
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+          android:text="@string/powered_by_funambol"
+          android:layout_gravity="center_horizontal" 
+          style="@style/powered_by_style"
+          android:id="@+id/powered_by_label" />
 
-    <CheckBox android:id="@+id/checkbox"        
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:gravity="center_vertical"
-              android:orientation="vertical" />
-        
-    <RelativeLayout android:id="@+id/textContainer"        
-			        android:layout_width="wrap_content"
-			        android:layout_height="wrap_content"
-			        android:layout_marginLeft="4dip"
-			        android:layout_marginRight="4dip"
-			        android:layout_marginTop="6dip"
-			        android:layout_marginBottom="6dip"
-			        android:layout_weight="1">
-
-        <TextView android:id="@+id/text1"            
-	              android:layout_width="wrap_content"
-	              android:layout_height="wrap_content"
-	              android:maxLines="2"
-	              android:ellipsize="marquee"
-	              android:textAppearance="@style/funambol_standard_text"/>
-
-        <TextView android:id="@+id/text2"            
-	              android:layout_width="wrap_content"
-	              android:layout_height="wrap_content"
-	              android:layout_below="@id/text1"
-	              android:layout_alignLeft="@id/text1"
-	              android:maxLines="3"
-	              android:textAppearance="@style/funambol_small_text"/>
-
-    </RelativeLayout>
-    
-</LinearLayout>
