@@ -3,7 +3,9 @@
 
 On this page you'll find additional screenshots showing _ChBoSync_.
 
-==Main Screen when _"[oi_notepad OI Notepad]"_ is not installed==
+=Main Screen when _"[oi_notepad OI Notepad]"_ is not installed=
+
+https://chbosync4android.googlecode.com/svn/wiki/images/MainScreen_NoOINotepad.png
 
 
 =Settings Screen=
