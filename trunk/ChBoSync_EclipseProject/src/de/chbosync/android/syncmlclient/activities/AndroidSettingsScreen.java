@@ -114,8 +114,7 @@ public class AndroidSettingsScreen extends Activity
         cancelButton.setOnClickListener(new CancelListener());
 
         int directionAlertId = 0;
-
-        int typeAlertId = 0;
+        int typeAlertId      = 0;
 
         if (savedInstanceState != null) {
             directionAlertId = savedInstanceState.getInt(REFRESH_DIRECTION_ALERT_PENDING);
@@ -139,7 +138,6 @@ public class AndroidSettingsScreen extends Activity
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
-        AndroidController gc = AndroidController.getInstance();
 
         super.onSaveInstanceState(outState);
 
@@ -151,7 +149,7 @@ public class AndroidSettingsScreen extends Activity
         int id = tabs.getCurrentTab();
         outState.putInt(LAST_SELECTED_TAB_ID, id);
 
-        //Notifies to the Bundle resorce if a selection alert is pending (For example after screen rotation)
+        //Notifies to the Bundle resource if a selection alert is pending (For example after screen rotation)
         if (displayManager.isAlertPending(AndroidDisplayManager.REFRESH_DIRECTION_DIALOG_ID)) {
             displayManager.dismissSelectionDialog(AndroidDisplayManager.REFRESH_DIRECTION_DIALOG_ID);
             outState.putInt(REFRESH_DIRECTION_ALERT_PENDING, AndroidDisplayManager.REFRESH_DIRECTION_DIALOG_ID);

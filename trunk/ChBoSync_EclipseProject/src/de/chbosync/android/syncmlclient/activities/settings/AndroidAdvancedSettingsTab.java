@@ -197,11 +197,11 @@ public class AndroidAdvancedSettingsTab extends AndroidSettingsTab
     public boolean hasChanges() {
         boolean hasChanges = false;
 
-        if((logSection != null) && (originalLogLevel != getViewLogLevel())) {
+        if( (logSection != null) && (originalLogLevel != getViewLogLevel()) ) {
             hasChanges = true;
         }
         
-        if((bandwidthSaverSection != null) && (originalBandwidthStatus != getBandwidthSaver())) {
+        if( (bandwidthSaverSection != null) && (originalBandwidthStatus != getBandwidthSaver()) ) {
             hasChanges = true;
         }
 
@@ -319,11 +319,11 @@ public class AndroidAdvancedSettingsTab extends AndroidSettingsTab
 
     private void initScreenElements() {
 
-        logLevelReference.put(localization.getLanguage("advanced_settings_log_level_none"), Log.DISABLED);
-        logLevelReference.put(localization.getLanguage("advanced_settings_log_level_error"), Log.ERROR);
-        logLevelReference.put(localization.getLanguage("advanced_settings_log_level_info"), Log.INFO);
-        logLevelReference.put(localization.getLanguage("advanced_settings_log_level_debug"), Log.DEBUG);
-        logLevelReference.put(localization.getLanguage("advanced_settings_log_level_trace"), Log.TRACE);
+        logLevelReference.put( localization.getLanguage("advanced_settings_log_level_none" ), Log.DISABLED);
+        logLevelReference.put( localization.getLanguage("advanced_settings_log_level_error"), Log.ERROR   );
+        logLevelReference.put( localization.getLanguage("advanced_settings_log_level_info" ), Log.INFO    );
+        logLevelReference.put( localization.getLanguage("advanced_settings_log_level_debug"), Log.DEBUG   );
+        logLevelReference.put( localization.getLanguage("advanced_settings_log_level_trace"), Log.TRACE   );
 
         saveBandwidthCheckBox = new TwoLinesCheckBox(activity);
         saveBandwidthCheckBox.setText1(localization.getLanguage("conf_save_bandwidth"));
