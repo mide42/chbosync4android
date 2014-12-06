@@ -188,9 +188,9 @@
 <string name="advanced_settings_import_title">Kontakte importieren</string>
 <string name="signup_failed_empty_fields_message">Bitte geben Sie alle angeforderten Informationen ein</string>
 <string name="label_other">Andere</string>
-<string name="conf_upload_older_media_warning">Ein Upload Ihrer �lteren __Quelle__ kann viel Speicherplatz Ihres Online-Kontos verbrauchen. Daher empfiehlt sich dies ausschlie�lich f�r Premium-Konten.</string>
+<string name="conf_upload_older_media_warning">Ein Upload Ihrer älteren __Quelle__ kann viel Speicherplatz Ihres Online-Kontos verbrauchen. Daher empfiehlt sich dies ausschlie�lich für Premium-Konten.</string>
 <string name="login_failed_empty_params">Sorry! Benutzername, Passwort und Server Url sind notwendig. Noch einmal versuchen!</string>
-<string name="advanced_settings_log_level_title">Logging level</string>
+<string name="advanced_settings_log_level_title">Logging Level</string>
 <string name="type_all">Alles</string>
 <string name="checking_credentials_title">Anmelden&#8230;</string>
 <string name="signup_signing_up">Konto wird erstellt&#8230;</string>

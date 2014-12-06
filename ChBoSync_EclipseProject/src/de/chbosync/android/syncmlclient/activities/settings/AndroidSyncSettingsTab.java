@@ -69,9 +69,9 @@ public class AndroidSyncSettingsTab extends AndroidSettingsTab
     
     private static final int LAYOUT_ID = R.id.sync_settings_tab;
 
-    private SyncModeSettingView syncModeView;
+    private SyncModeSettingView      syncModeView;
     private SyncIntervallSettingView syncIntervalView;
-    private C2SPushSettingView c2sPushView;
+    private C2SPushSettingView       c2sPushView;
 
     private boolean syncIntervalViewShown = false;
     
@@ -89,6 +89,7 @@ public class AndroidSyncSettingsTab extends AndroidSettingsTab
     }
 
     private void initialize() {
+    	
         // Prepare container layout
         ll = new LinearLayout(activity);
         ll.setOrientation(LinearLayout.VERTICAL);
@@ -223,9 +224,9 @@ public class AndroidSyncSettingsTab extends AndroidSettingsTab
     }
 
     public void removeAllItems() {
-        syncModeView = null;
+        syncModeView     = null;
         syncIntervalView = null;
-        c2sPushView = null;
+        c2sPushView      = null;
         sourceItems.clear();
     }
 

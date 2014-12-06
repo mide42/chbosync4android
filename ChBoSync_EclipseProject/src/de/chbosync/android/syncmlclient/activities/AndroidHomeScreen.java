@@ -95,11 +95,11 @@ public class AndroidHomeScreen extends Activity implements HomeScreen, UISyncSou
     private static final int MENU_ITEM_SETTINGS_ID = Menu.FIRST;
     private static final int MENU_ITEM_LOGOUT_ID   = MENU_ITEM_SETTINGS_ID + 1;
     private static final int MENU_ITEM_ABOUT_ID    = MENU_ITEM_LOGOUT_ID   + 1;
-    //private static final int MENU_ITEM_REFRESH_ID  = MENU_ITEM_ABOUT_ID    + 1;
+    //private static final int MENU_ITEM_REFRESH_ID  = MENU_ITEM_ABOUT_ID  + 1;
 
     private final int SYNC_SOURCE_ID     = Menu.FIRST;
-    private final int GOTO_SOURCE_ID     = SYNC_SOURCE_ID + 1;
-    private final int SETTINGS_SOURCE_ID = GOTO_SOURCE_ID + 1;
+    private final int GOTO_SOURCE_ID     = SYNC_SOURCE_ID     + 1;
+    private final int SETTINGS_SOURCE_ID = GOTO_SOURCE_ID     + 1;
     private final int CANCEL_SOURCE_ID   = SETTINGS_SOURCE_ID + 1;
 
     private AndroidHomeScreenController homeScreenController;
@@ -734,7 +734,7 @@ public class AndroidHomeScreen extends Activity implements HomeScreen, UISyncSou
 
                 // Prepare the source icon to be displayed
                 Bitmap sourceIcon = null;
-                if (appSource.isWorking() && appSource.isEnabled() ) {
+                if ( appSource.isWorking() && appSource.isEnabled() ) {
                     sourceIcon = customization.getSourceIcon(appSource.getId());
                 } else {
                     sourceIcon = customization.getSourceDisabledIcon(appSource.getId());

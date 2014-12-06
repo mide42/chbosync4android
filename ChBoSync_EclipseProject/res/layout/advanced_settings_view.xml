@@ -46,110 +46,109 @@
     
     
     <LinearLayout android:id="@+id/advanced_settings_band_saver_section"
-        style="@style/advanced_settings_layout">
+                  style="@style/advanced_settings_layout">
         <TextView android:id="@+id/advanced_settings_band_saver_title"
-            android:text="@string/advanced_settings_band_saver_title"
-            style="@style/funambol_title"/>
+                  android:text="@string/advanced_settings_band_saver_title"
+                  style="@style/funambol_title"/>
         <TextView android:id="@+id/advanced_settings_band_saver_desc_info"
-            android:text="@string/advanced_settings_band_saver_info"
-            style="@style/funambol_standard_text"/>
+                  android:text="@string/advanced_settings_band_saver_info"
+                  style="@style/funambol_standard_text"/>
     </LinearLayout>
 
     <LinearLayout android:id="@+id/advanced_settings_import_section"
-        style="@style/advanced_settings_layout">
+                  style="@style/advanced_settings_layout">
         <TextView android:id="@+id/advanced_settings_import_title"
-            android:text="@string/advanced_settings_import_title"
-            style="@style/funambol_title"/>
+                  android:text="@string/advanced_settings_import_title"
+                  style="@style/funambol_title"/>
         <TextView android:id="@+id/advanced_settings_import_desc"
-            android:text="@string/advanced_settings_import_info"
-            style="@style/funambol_standard_text"/>
+                  android:text="@string/advanced_settings_import_info"
+                  style="@style/funambol_standard_text"/>
 
         <LinearLayout style="@style/advanced_settings_button_raw_layout">
             <Button android:id="@+id/advanced_settings_import_button"
-                style="@style/funambol_button"
-                android:text="@string/advanced_settings_import_button_label"/>
+                    style="@style/funambol_button"
+                    android:text="@string/advanced_settings_import_button_label"/>
         </LinearLayout>
     </LinearLayout>
 
     <LinearLayout android:id="@+id/advanced_settings_log_section"
-        style="@style/advanced_settings_layout">
+                  style="@style/advanced_settings_layout">
         <TextView android:id="@+id/advanced_settings_log_level_title"
-            android:text="@string/advanced_settings_log_level_title"
-            style="@style/funambol_title"/>
+                  android:text="@string/advanced_settings_log_level_title"
+                  style="@style/funambol_title"/>
         <TextView android:id="@+id/advanced_settings_log_desc_info"
-            android:text="@string/advanced_settings_log_info"
-            style="@style/funambol_standard_text"/>
+                  android:text="@string/advanced_settings_log_info"
+                  style="@style/funambol_standard_text"/>
 
     
             <LinearLayout android:id="@+id/advanced_settings_log_section2"
-            style="@style/advanced_spinner_layout">
+                          style="@style/advanced_spinner_layout">
             <Spinner android:id="@+id/advanced_settings_log_level_spinner"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:drawSelectorOnTop="true"
-
-                android:prompt="@string/advanced_settings_log_level_title"/>
+                     android:layout_width="fill_parent"
+                     android:layout_height="wrap_content"
+                     android:drawSelectorOnTop="true"
+                     android:prompt="@string/advanced_settings_log_level_title"/>
 
         </LinearLayout>
     
     
         <LinearLayout android:id="@+id/advanced_settings_send_log_button_raw"
-            style="@style/advanced_settings_button_raw_layout">
+                      style="@style/advanced_settings_button_raw_layout">
             <Button android:id="@+id/advanced_settings_send_log_button"
-                style="@style/funambol_button"
-                android:text="@string/advanced_settings_send_log_button_label"/>
+                    style="@style/funambol_button"
+                    android:text="@string/advanced_settings_send_log_button_label"/>
             <Button android:id="@+id/advanced_settings_view_log_button"
-                style="@style/funambol_button"
-                android:text="@string/advanced_settings_view_log_button_label"/>
+                    style="@style/funambol_button"
+                    android:text="@string/advanced_settings_view_log_button_label"/>
         </LinearLayout>
         
     </LinearLayout>
 
     <LinearLayout android:id="@+id/advanced_settings_reset_section"
-        style="@style/advanced_settings_layout">
+                  style="@style/advanced_settings_layout">
         <TextView android:id="@+id/advanced_settings_reset_title"
-            android:text="@string/advanced_settings_reset_title"
-            style="@style/funambol_title"/>
+                  android:text="@string/advanced_settings_reset_title"
+                  style="@style/funambol_title"/>
         <TextView android:id="@+id/advanced_settings_reset_desc"
-            android:text="@string/advanced_settings_reset_info"
-            style="@style/funambol_standard_text"/>
+                  android:text="@string/advanced_settings_reset_info"
+                  style="@style/funambol_standard_text"/>
 
         <LinearLayout style="@style/advanced_settings_button_raw_layout">
             <Button android:id="@+id/advanced_settings_reset_button"
-                style="@style/funambol_button"
-                android:text="@string/advanced_settings_reset_button_label"/>
+                    style="@style/funambol_button"
+                    android:text="@string/advanced_settings_reset_button_label"/>
         </LinearLayout>
     </LinearLayout>
 
     <LinearLayout android:id="@+id/advanced_settings_dev_settings_section"
-        style="@style/advanced_settings_layout">
+                  style="@style/advanced_settings_layout">
         <TextView android:id="@+id/advanced_settings_dev_settings_title"
-            android:text="@string/advanced_settings_dev_settings_title"
-            style="@style/funambol_title"/>
+                  android:text="@string/advanced_settings_dev_settings_title"
+                  style="@style/funambol_title"/>
         <TextView android:id="@+id/advanced_settings_dev_settings_desc"
-            android:text="@string/advanced_settings_dev_settings_info"
-            style="@style/funambol_standard_text"/>
+                  android:text="@string/advanced_settings_dev_settings_info"
+                  style="@style/funambol_standard_text"/>
 
         <LinearLayout style="@style/advanced_settings_button_raw_layout">
             <Button android:id="@+id/advanced_settings_dev_settings_button"
-                style="@style/funambol_button"
-                android:text="@string/advanced_settings_dev_settings_button_label"/>
+                    style="@style/funambol_button"
+                    android:text="@string/advanced_settings_dev_settings_button_label"/>
         </LinearLayout>
     </LinearLayout>
     
     <!-- Added for ChBoSync -->
     <LinearLayout android:id="@+id/advanced_settings_show_oi_notepad_missing_button"
-        style="@style/advanced_settings_layout">
+                  style="@style/advanced_settings_layout">
         <TextView android:id="@+id/advanced_settings_oi_notepad_title"
-            android:text="@string/advanced_settings_oi_notepad_title"
-            style="@style/funambol_title"/>        
+                  android:text="@string/advanced_settings_oi_notepad_title"
+                  style="@style/funambol_title"/>        
         <TextView android:id="@+id/advanced_settings_oi_notepad_desc"
-            android:text="@string/advanced_settings_oi_notepad_desc"
-            style="@style/funambol_standard_text"/>    
+                  android:text="@string/advanced_settings_oi_notepad_desc"
+                  style="@style/funambol_standard_text"/>    
         <LinearLayout style="@style/advanced_settings_button_raw_layout">
             <Button android:id="@+id/advanced_settings_button_install_oi_notepad"
-                style="@style/funambol_button"
-                android:text="@string/button_install_oi_notepad" />
+                    style="@style/funambol_button"
+                    android:text="@string/button_install_oi_notepad" />
         </LinearLayout>                    
     </LinearLayout>    
     
