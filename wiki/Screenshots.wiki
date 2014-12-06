@@ -13,14 +13,10 @@ https://chbosync4android.googlecode.com/svn/wiki/images/MainScreen_NoOINotepad.p
 ----
 =Settings Screen:=
 
-https://chbosync4android.googlecode.com/svn/wiki/images/SettingsTab1.png
-
-https://chbosync4android.googlecode.com/svn/wiki/images/SettingsTab2.png
+|| https://chbosync4android.googlecode.com/svn/wiki/images/SettingsTab1.png ||  https://chbosync4android.googlecode.com/svn/wiki/images/SettingsTab2.png ||
 
 
 ----
 =About Screen:=
 
-https://chbosync4android.googlecode.com/svn/wiki/images/AboutScreen1.png
-
-https://chbosync4android.googlecode.com/svn/wiki/images/AboutScreen2.png
+|| https://chbosync4android.googlecode.com/svn/wiki/images/AboutScreen1.png || https://chbosync4android.googlecode.com/svn/wiki/images/AboutScreen2.png ||
