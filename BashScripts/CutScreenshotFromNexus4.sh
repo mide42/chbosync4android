@@ -14,13 +14,18 @@
 # PNG files with screenshots to be processed have to be in the same folder as this script.
 # When using Cygwin on Windows this script can be started by double click.
 #
+# Example: 
+# Input files:  screenshot_1.png, screenshot_2.png (both 768 x 1280)
+# Output files: screenshot_1.png, screenshot_2.png (both 768 x 1132)
+#               screenshot_1_resized.png, screenshot_2_resized.png (both 385 x 566)
+#
 # This script is distributed WITHOUT ANY WARRANTY!
 #
 # August 2014, September 2014, December 2014.
 
-PATH=$PATH:/usr/bin
+PATH=$PATH:/usr/bin  # needed so that app can be started with double click on Windows
 
-COUNTER=0
+NUMBER_OF_FILES=0
 
 
 # Check if at least one png file can be found in the current folder
@@ -28,32 +33,32 @@ ls *.png > /dev/null 2> /dev/null
 if [ $? -ne 0 ]
 then
 
-	echo -e "\n\nError: Could not find any png files in the current folder.\n"
+  echo -e "\n\nError: Could not find any png files in the current folder.\n"
 
 else
 
-	for IMAGE_FILE in *.png
-	do
+  for IMAGE_FILE in *.png
+  do
 
-	  let COUNTER+=1
+    let NUMBER_OF_FILES+=1
 
-	  echo -e "\nProcessing File "${COUNTER}": "${IMAGE_FILE}
+    echo -e "\nProcessing File "${NUMBER_OF_FILES}": "${IMAGE_FILE}
 	  
-	  # Crop the status bar at the top of the image (50 pixels)
-	  # and the soft buttons at the bottom (100 pixels).
-	  # Also draws a thin black border around the picture.
-	  # Mogrify replaces the image file!!!
-	  mogrify -crop 768x1130+0+50 -bordercolor black -border 1  $IMAGE_FILE
+    # Crop the status bar at the top of the image (50 pixels)
+    # and the soft buttons at the bottom (100 pixels).
+    # Also draws a thin black border around the picture.
+    # Mogrify replaces the image file!!!
+    mogrify -crop 768x1130+0+50 -bordercolor black -border 1  $IMAGE_FILE
 
-	  # Creating copy of image which is resized to 50 % (used on homepage of app).
-	  TARGET_FILE_NAME=$(basename $IMAGE_FILE .png)"_resized.png"
-	  /usr/bin/convert $IMAGE_FILE -resize 50% $TARGET_FILE_NAME
-	  # Using fully qualified path to convert to prevent that Window's "convert.exe"
-	  # is started (convert.exe is for conversion of FAT volumes to NTFS).
+    # Creating copy of image which is resized to 50 % (used on homepage of app).
+    TARGET_FILE_NAME=$(basename $IMAGE_FILE .png)"_resized.png"
+    /usr/bin/convert $IMAGE_FILE -resize 50% $TARGET_FILE_NAME
+    # Using fully qualified path to convert to prevent that Window's "convert.exe"
+    # is started (convert.exe is for conversion of FAT volumes to NTFS).
 	  
-	done
+  done
 
-	echo -e "\n\nNumber of files processed: "$COUNTER
+  echo -e "\n\nNumber of files processed: "${NUMBER_OF_FILES}
 
 fi
 
