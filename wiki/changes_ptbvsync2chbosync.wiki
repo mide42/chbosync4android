@@ -1,7 +1,7 @@
 #summary Changes between "PTBV Sync" to ChBoSync.
 #labels changes
 
-The following is a list of modification made in the source of to obtain _ChBoSync_:
+The following is a list of modification made in the source of the _[PTBV_SyncML_Client  PTBV SyncML Client]_ to obtain _ChBoSync_:
 
  * Reactivated (commented in) synchronization of notes (requires that the free app _[oi_notepad "OI Notepad"]_ is installed on the device).
 
