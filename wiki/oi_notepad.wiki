@@ -10,7 +10,7 @@ _"OI Notepad"_ can be installed from Google's app store at https://play.google.c
 
 
 For more information see:
- * http://www.openintents.org/en/notepad
+ * http://caique.arvixe.com/~oi/notepad
 
  * http://code.google.com/p/openintents/
 
