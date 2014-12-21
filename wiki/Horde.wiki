@@ -14,7 +14,7 @@ For more information on _Horde_ you can refer to:
 
  * Demo account: http://demo.horde.org/login.php  (username & password are mentioned on bottom of the page)
 
- * Horde Syncing mailing list: http://lists.horde.org/mailman/listinfo/sync
+ * Horde Syncing mailing list: http://lists.horde.org/mailman/listinfo/sync (_[http://lists.horde.org/archives/sync/Week-of-Mon-20141215/003196.html Posting]_ on this list announcing _ChBoSync_).
 
 
 _ChBoSync_ did _NOT_ alter the source code of _Horde_. We mention _Horde_ in this Wiki because _ChBoSync_ was only tested with Horde's _[SyncML]_ service so far.
