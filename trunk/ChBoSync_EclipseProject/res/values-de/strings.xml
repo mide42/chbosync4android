@@ -293,14 +293,19 @@
 <string name="joda_time_project_url">"http://www.joda.org/joda-time/"</string>
 <string name="joda_license">Joda-Time steht unter der \"Apache License Version 2.0\":</string>
 <string name="joda_license_url">http://www.joda.org/joda-time/license.html</string>
+<string name="intent_open_url_not_supported">Ihr Gerät unterstützt nicht die Anzeige von Webseiten im Browser.</string>
 <string name="advanced_settings_oi_notepad_title">OI Notepad</string>
 <string name="advanced_settings_oi_notepad_desc">ChBoSync kann keine Notizen synchronisieren, wenn die kostenlose App \"OI Notepad\" nicht auf dem Gerät installiert ist. Es kann eingestellt werden, dass wenn diese App nicht gefunden wird anstelle des Sync-Buttons ein Button zum Installieren dieser App angezeigt wird.</string>
+<string name="dialog_appstoreclient_not_available">Der Appstore Client, der für das Installieren neuer Apps notwendig ist, ist auf Ihrem Gerät nicht vorhanden.</string>
+<string name="dialog_title_operation_not_possible">Vorgang nicht möglich</string>
 <string name="dialog_goto_appstore_client">Möchten Sie den Eintrag von \"OI Notepad\" im App-Store öffnen? Nach der Installation dieser App müssen Sie möglicherweise ChBoSync oder sogar Ihr Gerät neu starten, damit \"OI Notepad\" erkannt werden kann.</string>
 <string name="dialog_title_appstore_client">Installation von \"OI Notepad\"</string>
-<string name="button_install_oi_notepad">\"OI Notepad\"installieren</string>
+<string name="button_install_oi_notepad">\"OI Notepad\" installieren</string>
 <string name="dialog_text_oinotepad_already_installed">Die App \"OI Notepad\" ist bereits auf diesem Gerät installiert.</string>
 <string name="conf_show_oinotepad_dummy_sync_button">Button zum Installieren von \"OI Notepad\" anstelle von Sync-Button anzeigen</string>
 <string name="dialog_title_confirm_logout">Bestätigung für Logout</string>
+<string name="oinotepad_not_installed">Die kostenlose App \"OI Notepad\" ist nicht auf Ihrem Gerät installiert. Es können deshalb keine Notizen synchronisiert werden.</string>
+<string name="install_oinotepad_now">Möchten Sie diese App jetzt installieren?</string>
 <string name="dialog_confirm_logout_question">Wolllen Sie sich wirklich beim SyncML-Server abmelden? Um sich wieder bei diesem anzumelden werden Sie erneut Ihre Anmelde-Daten eingeben müssen.</string>
 
 </resources>
