@@ -23,7 +23,7 @@
 #
 # August 2014, September 2014, December 2014.
 
-PATH=$PATH:/usr/bin  # needed so that app can be started with double click on Windows
+PATH=$PATH:/usr/bin  # Needed so that script can be started with double click when using Cygwin
 
 NUMBER_OF_FILES=0
 
