@@ -3,7 +3,7 @@
 
 
 In the Subversion repository of this project some auxiliary 
-_[http://en.wikipedia.org/wiki/Bash_(Unix_shell) Bash shell]_ scripts can be found under _[https://code.google.com/p/chbosync4android/source/browse/#svn%2Ftrunk%2FBashScripts trunk/BashScripts]_. These scripts can be executed on a Linux system (they were tested with _OpenSuse 13.1_) or with _[https://www.cygwin.com/ Cygwin32]_ on Windows.
+_[http://en.wikipedia.org/wiki/Bash_(Unix_shell) Bash]_ scripts (scripts for the Bash shell) can be found under _[https://code.google.com/p/chbosync4android/source/browse/#svn%2Ftrunk%2FBashScripts trunk/BashScripts]_. These scripts can be executed on a Linux system (they were tested with _OpenSuse 13.1_) or with _[https://www.cygwin.com Cygwin32]_ on Windows.
 
 List of scripts:
 
@@ -13,8 +13,10 @@ List of scripts:
 
   * _*ExtractStringResourceNames.sh*_: Script for extracting the identifiers of translatable strings in XML resource files. The list of identifiers of each XML file is written to a text file in sorted order. These text files can be compared to find missing translations.
 
-The script files that do image processing need _[http://www.imagemagick.org ImageMagick]_ to be installed (is also available as package for CygWin).
+The script files that do image processing need _[http://www.imagemagick.org ImageMagick]_ to be installed (is also available as package for Cygwin).
 
 Please also read the comments at top of each of these script files.
 
-These script were written especially for _ChoBoSync_, i.e. there were not taken from the _[Funambol Funambol] open source project_ or the _[PTBV_SyncML_Client  PTBV SyncML client]_. The scripts are distributed _WITHOUT ANY WARRANTY_!
+These script were written especially for _ChoBoSync_, i.e. they were not taken from the _[Funambol Funambol] open source project_ or the _[PTBV_SyncML_Client  PTBV SyncML client]_. 
+
+The scripts are distributed _WITHOUT ANY WARRANTY_!
