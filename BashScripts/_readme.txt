@@ -7,4 +7,4 @@ The scripts are distributed WITHOUT ANY WARRANTY!
 Please read the comments at the top of the individual script files.
 
 The scrips were tested using Cygwin32 on Windows 7 and OpenSuse 13.1;
-some scripts require that ImageMagick is installed.
+the scripts working on images need ImageMagick to be installed.
