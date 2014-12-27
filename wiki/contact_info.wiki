@@ -1,4 +1,4 @@
-#summary Info on how to contact the developers of CBoSync.
+#summary Info on how to contact the developers of ChBoSync.
 #labels contact
 
 For contacting the developers of this app you can write an e-mail to the following address: 
