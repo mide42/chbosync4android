@@ -1,4 +1,4 @@
-#summary Changes between "PTBV Sync" to ChBoSync.
+#summary Changes made to the "PTBV SyncML Client" for obtaining ChBoSync.
 #labels changes
 
 The following is a list of modification made in the source of the _[PTBV_SyncML_Client  PTBV SyncML Client]_ to obtain _ChBoSync_:
