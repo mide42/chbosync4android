@@ -5,7 +5,7 @@ In the following table the versions of _ChBoSync_ published in Google's app stor
 
 || *Version* || *Date*      || *Tag in SVN Repository* || *Changelog* ||
 || 1.0       || 07 Dec 2014 || _[https://code.google.com/p/chbosync4android/source/browse/#svn%2Ftags%2F2014-12-07_Version_1.0 2014-12-07_Version_1.0]_ || [changes_ptbvsync2chbosync Click here] ||
-|| 1.1       ||             ||                         || [changes_chboSync_version_1 Click here] ||
+|| 1.1       ||             || To be released in 2015                        || [changes_chboSync_version_1 Click here] ||
 || ...       ||             ||                         || ||
 
 The tag in the SVN Repository mentioned in this table represents a snapshot of the app's source code which was used to create the build which was uploaded to the app store. For all tags see _[https://code.google.com/p/chbosync4android/source/browse/#svn%2Ftags the folder "svn/tags"]_ in the Subversion repository. 
