@@ -7,8 +7,6 @@ The following is a list of modification made in the source of the _[PTBV_SyncML_
 
  * Users can now move the app's installation to the SDCard.
 
- * Several tiny improvements in the source code (e.g., improving formatting).
-
  * Requires no longer a menu button on the device.
 
  * Changed information displayed on about dialog.
@@ -17,7 +15,7 @@ The following is a list of modification made in the source of the _[PTBV_SyncML_
 
  * Replaced implementation of method to detect if app is running in Emulator (see method _AndroidUtils::isAndroidEmulator()_ ).
 
- * Dialog with confirmation question on logout.
+ * Added dialog with confirmation question on logout.
 
  * When syncing of notes is not possible because the free app _[oi_notepad "OI Notepad"]_ is not installed on the device, then the app can show a _"fallback button"_ telling the reason to user (as replacement for the real button for syncing notes). By pressing on this _fallback button_ the user can directly open the entry for _[oi_notepad "OI Notepad"]_ in the app store client. 
 
@@ -25,8 +23,9 @@ The following is a list of modification made in the source of the _[PTBV_SyncML_
 
  * Added handling of empty notes; title of a note is now the first non-empty row; for completely empty notes a fallback text is used.
 
- * When sending the log file via e-mail then no longer an e-mail address of the original developer is inserted as default recipient.
+ * When sending the log file via e-mail, then no longer an e-mail address of the original developer is inserted as default recipient.
 
+ * Several tiny improvements in the source code (e.g., improving formatting).
 ----
  
 
