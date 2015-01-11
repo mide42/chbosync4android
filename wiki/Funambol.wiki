@@ -7,7 +7,7 @@ Homepage of Funambol open source project: http://sourceforge.net/projects/funamb
 
 Source code for Funambol Android client (Open Source): http://sourceforge.net/projects/funambol/files/android/
 
-Article in Wikipedia: http://sourceforge.net/projects/funambol/
+Article in Wikipedia: http://en.wikipedia.org/wiki/Funambol
 
 The Funambol open source project also contains server-side components, but they were _NOT_ modified for _ChBoSync_.
 
