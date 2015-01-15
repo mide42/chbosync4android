@@ -74,7 +74,8 @@ public class AstridTaskManager extends AbstractDataManager<Calendar> {
     private static final String TAG_LOG = "AstridTaskManager";
 
     /** Native calendar authority. Value calendar[String] */
-    public static final String AUTHORITY = "com.todoroo.astrid";
+    //public static final String AUTHORITY = "com.todoroo.astrid";
+    public static final String AUTHORITY = "com.eztransition.tasquid";
 
     private AppSyncSource appSource = null;
 
@@ -83,7 +84,8 @@ public class AstridTaskManager extends AbstractDataManager<Calendar> {
      */
     public static final class Tasks {
 
-        public static final Uri CONTENT_URI = Uri.parse("content://com.todoroo.astrid/tasks");
+        //public static final Uri CONTENT_URI = Uri.parse("content://com.todoroo.astrid/tasks");
+    	public static final Uri CONTENT_URI = Uri.parse("content://com.eztransition.tasquid/tasks");
 
         public static final String _ID                = "_id";
         public static final String TITLE              = "title";

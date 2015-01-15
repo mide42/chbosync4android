@@ -343,6 +343,7 @@ public class AndroidAppSyncSourceManager extends AppSyncSourceManager {
         int order = getSourcePosition(id);
         appSyncSource.setUiSourceIndex(order);
 
+
         appSyncSource.setHasSetting(AppSyncSource.SYNC_MODE_SETTING,
                 customization.isSyncDirectionVisible(),
                 customization.getDefaultSourceSyncModes(id, deviceInfo.getDeviceRole()));
@@ -371,7 +372,8 @@ public class AndroidAppSyncSourceManager extends AppSyncSourceManager {
             if (Log.isLoggable(Log.DEBUG)) {
                 Log.debug(TAG_LOG, "Checking if Astrid is available");
             }
-            ProviderInfo info = pm.resolveContentProvider("com.todoroo.astrid", 0);
+            //ProviderInfo info = pm.resolveContentProvider("com.todoroo.astrid", 0);
+            ProviderInfo info = pm.resolveContentProvider("com.eztransition.tasquid", 0);            
             if (info != null) {
                 if (Log.isLoggable(Log.INFO)) {
                     Log.info(TAG_LOG, "Astrid provider found, enable task source");
