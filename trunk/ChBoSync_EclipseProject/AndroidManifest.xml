@@ -59,6 +59,11 @@
     <uses-permission android:name="android.permission.WAKE_LOCK"             /> <!-- required to do Wifi-Lock -->
  
  
+    <!-- Permissions needed for access to content provider of external app "Tasquid" (needed for syncing of tasks) -->
+ 	<uses-permission android:name="com.todoroo.astrid.READ"   /> 	
+ 	<uses-permission android:name="com.todoroo.astrid.WRITE"  />
+    
+ 	
     <application android:icon="@drawable/logo"            
                  android:label="@string/app_name"
                  android:name="de.chbosync.android.syncmlclient.App"
