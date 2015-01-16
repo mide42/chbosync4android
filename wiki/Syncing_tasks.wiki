@@ -1,13 +1,13 @@
-#summary Notes on the possibility to sync tasks with ChBoSync
+#summary Notes on the possibility to sync tasks with ChBoSync using the app "Tasquid"_.
 #labels astrid,tasquid
 
-*!!! ChBoSync version 1.0 does _NOT_ support the syncing of tasks. This wiki page is about a possible feature that might be added in the future. !!!*
+*!!! ChBoSync version 1.0 does _NOT_ support the syncing of tasks so far. This wiki page is about a possible feature that might be added in the future. !!!*
 
 = Introduction =
 
-The original [Funambol] SyncML client for Android supported the syncing of tasks (ToDo lists). For this is was necessary that the Android app _"Astrid"_ by Toodoroo Inc was installed on the Android device. The syncing of tasks was disabled by the developer of the _[PTBV_SyncML_Client PTBV SyncML client]_ (like syncing of notes was also disabled). The communication between the SyncML app and Astrid was based on a _[Content Provider http://developer.android.com/guide/topics/providers/content-providers.html]_ offered by the Astrid app.
+The original _[Funambol] SyncML client_ for Android supported the syncing of tasks (ToDo lists). For this is was necessary that the Android app _"Astrid"_ by Toodoroo Inc was installed on the Android device. The syncing of tasks was disabled by the developer of the _[PTBV_SyncML_Client PTBV SyncML client]_ (like syncing of notes was also disabled). The communication between the _[Funambol] SyncML client_ and _"Astrid"_ was based on a _[http://developer.android.com/guide/topics/providers/content-providers.html Content Provider]_ offered by the Astrid app.
 
-However, Astrid is no longer available as app in Google's app store, because Astrid was purchased by Yahoo around May 2013. The source code of the Astrid app was released under an open source license: https://github.com/todoroo/astrid
+However, _"Astrid"_ is no longer available as app in Google's app store, because _Astrid/Toodoroo_ was purchased by Yahoo around May 2013. The source code of the Astrid app was released under an open source license: https://github.com/todoroo/astrid
 
 Based on Astrid's code the app _Tasquid_ was developed, which is also available in Google's app store:
  * http://www.tasquid.com
@@ -15,6 +15,7 @@ Based on Astrid's code the app _Tasquid_ was developed, which is also available 
  * https://www.facebook.com/tasquid
  * https://github.com/shaded2/Tasquid
 
+The developers of _ChBoSync_ are neither related to the developers of _"Astrid"_ nor _"Tasquid"_.
 
 = Changes needed in the source code of _ChBoSync_ =
 
@@ -30,3 +31,12 @@ The following is a list of changes necessary to re-enable the syncing of tasks f
 
 
 See also the _[https://code.google.com/p/chbosync4android/source/detail?r=94 changelist for r94]_ in this project's Subversion repository.
+
+
+= Changes needed in the source code of _Tasquid_ =
+
+To use _Tasquid_ together with _ChBoSync_ it is also necessary to make a little change in the source code of _Tasquid_ (in the library project _"astridApi"_ to be more precise). *This means that the current version 4.6.8 of _Tasquid_, which is available in Google's app store, _CANNOT_ be used with _ChBoSync_.*
+
+The following change has to be made in class _AstridApiConstants_ (package _com.todoroo.astrid.api_): The constant _"API_PACKAGE"_ has to have the value _"com.eztransition.tasquid"_ rather than _"com.todoroo.astrid"_. This has to be changed, because in _Tasquid's_ manifest file the attribute _"android:authorities"_ for the content provider _"com.todoroo.astrid.provider.Astrid3ContentProvider"_ was changed to _"com.eztransition.tasquid"_. 
+
+Without this change the URIs added to the _UriMatcher_ object created in the static initializer block of class _Astrid3ContentProvider_ have a authority part at the beginning which does not match the authority definied in the manifest file. This prevents any app (not just _ChBoSync_) from actually accessing this content provider.
