@@ -1,4 +1,4 @@
-#summary Notes on the possibility to sync tasks with ChBoSync using the app "Tasquid"_.
+#summary Notes on the possibility to sync tasks with ChBoSync using the app "Tasquid".
 #labels astrid,tasquid
 
 *!!! ChBoSync version 1.0 does _NOT_ support the syncing of tasks so far. This wiki page is about a possible feature that might be added in the future. !!!*
@@ -43,6 +43,6 @@ Without this change the URIs added to the _UriMatcher_ object created in the sta
 
 = Further limitation of _Tasquid_ = 
 
-*_Tasquid_ runs only on Android devices with an ARM CPU*, but not on devices with an x86 or MIPS CPU/ABI. Since most Android smartphones & tablets have an ARM CPU this is only a minor limitation. The installation of the app on devices with a non-ARM CPU will fail. However, this also means that when working with the Emulator no x86 image can be used. Emulator instances based on an x86 image (such as used by the _[http://www.genymotion.com Genymotion Emulator]_) are usually much faster than emulators with ARM images, because the virtualization support of the desktop's computer x86 CPU cannot be utilized. 
+*_Tasquid_ runs only on Android devices with an ARM CPU*, but not on devices with an x86 or MIPS CPU/ABI. Since most Android smartphones & tablets have an ARM CPU this is only a minor limitation. The installation of _Tasquid_ on devices with a non-ARM CPU will fail. However, this also means that when working with the Emulator no x86 image can be used. Emulator instances based on an x86 image (such as used by the _[http://www.genymotion.com Genymotion Emulator]_) are usually much faster than emulators with ARM images, because the virtualization support of the desktop's computer x86 CPU can be utilized. 
 
-The reason for this limitation is that the library (sub-)project _"android-aac-enc"_ depends on a native library named _"libaac-encoder"_, but this library is only provided for ARM (see _[this folder https://github.com/shaded2/Tasquid/tree/master/android-aac-enc/libs]_ in _Tasquid's_ github repository).
+The reason for this limitation is that the library (sub-)project _"android-aac-enc"_ depends on a native library named _"libaac-encoder"_, but this library is only provided for ARM (see _[https://github.com/shaded2/Tasquid/tree/master/android-aac-enc/libs this folder]_ in _Tasquid's_ github repository).
