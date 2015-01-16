@@ -308,4 +308,9 @@
 <string name="install_oinotepad_now">Möchten Sie diese App jetzt installieren?</string>
 <string name="dialog_confirm_logout_question">Wolllen Sie sich wirklich beim SyncML-Server abmelden? Um sich wieder bei diesem anzumelden werden Sie erneut Ihre Anmelde-Daten eingeben müssen.</string>
 
+<!--  Strings needed for Tasquid's permissions (3rd-party-app needed for syncing of task, fork/successor of "Astrid") -->
+<string name="read_permission_label">Tasquid Zugriffsrechte</string>
+<string name="read_permission_desc">Aufgaben lesen, Aufgabenfilter anzeigen</string>  
+<string name="write_permission_label">Tasquid Zugriffsrechte</string>
+<string name="write_permission_desc">Aufgaben erstellen, existierende bearbeiten</string>
 </resources>

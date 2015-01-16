@@ -59,7 +59,17 @@
     <uses-permission android:name="android.permission.WAKE_LOCK"             /> <!-- required to do Wifi-Lock -->
  
  
-    <!-- Permissions needed for access to content provider of external app "Tasquid" (needed for syncing of tasks) -->
+    <!-- Permissions needed for access to content provider of external app "Tasquid" (needed for syncing of tasks). -->
+    <permission android:name="com.todoroo.astrid.READ"
+                android:description="@string/read_permission_desc"
+                android:protectionLevel="normal"
+                android:label="@string/read_permission_label" />
+
+    <permission android:name="com.todoroo.astrid.WRITE"
+                android:description="@string/write_permission_desc"
+                android:protectionLevel="normal"
+                android:label="@string/write_permission_label" />
+    
  	<uses-permission android:name="com.todoroo.astrid.READ"   /> 	
  	<uses-permission android:name="com.todoroo.astrid.WRITE"  />
     

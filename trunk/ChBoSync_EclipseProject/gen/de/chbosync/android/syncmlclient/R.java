@@ -412,6 +412,11 @@ public final class R {
         public static final int portal_info=0x7f0500d9;
         public static final int powered_by_funambol=0x7f050117;
         public static final int psw_label=0x7f05001c;
+        public static final int read_permission_desc=0x7f050136;
+        /**   Strings needed for Tasquid's permissions (3rd-party-app needed for syncing of task, fork/successor of "Astrid") 
+  Strings needed for Tasquid's permissions (3rd-party-app needed for syncing of task, fork/successor of "Astrid") 
+         */
+        public static final int read_permission_label=0x7f050135;
         public static final int removePicture=0x7f05006c;
         public static final int revert_button=0x7f0500e9;
         public static final int save_button=0x7f05003c;
@@ -511,6 +516,8 @@ public final class R {
         public static final int word_at=0x7f050104;
         public static final int word_today=0x7f0500d4;
         public static final int word_yesterday=0x7f0500a1;
+        public static final int write_permission_desc=0x7f050138;
+        public static final int write_permission_label=0x7f050137;
     }
     public static final class style {
         public static final int advanced_settings_button_raw_layout=0x7f07000c;
