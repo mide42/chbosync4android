@@ -40,3 +40,9 @@ To use _Tasquid_ together with _ChBoSync_ it is also necessary to make a little 
 The following change has to be made in class _AstridApiConstants_ (package _com.todoroo.astrid.api_): The constant _"API_PACKAGE"_ has to have the value _"com.eztransition.tasquid"_ rather than _"com.todoroo.astrid"_. This has to be changed, because in _Tasquid's_ manifest file the attribute _"android:authorities"_ for the content provider _"com.todoroo.astrid.provider.Astrid3ContentProvider"_ was changed to _"com.eztransition.tasquid"_. 
 
 Without this change the URIs added to the _UriMatcher_ object created in the static initializer block of class _Astrid3ContentProvider_ have a authority part at the beginning which does not match the authority definied in the manifest file. This prevents any app (not just _ChBoSync_) from actually accessing this content provider.
+
+= Further limitation of _Tasquid_ = 
+
+*_Tasquid_ runs only on Android devices with an ARM CPU*, but not on devices with an x86 or MIPS CPU/ABI. Since most Android smartphones & tablets have an ARM CPU this is only a minor limitation. The installation of the app on devices with a non-ARM CPU will fail. However, this also means that when working with the Emulator no x86 image can be used. Emulator instances based on an x86 image (such as used by the _[http://www.genymotion.com Genymotion Emulator]_) are usually much faster than emulators with ARM images, because the virtualization support of the desktop's computer x86 CPU cannot be utilized. 
+
+The reason for this limitation is that the library (sub-)project _"android-aac-enc"_ depends on a native library named _"libaac-encoder"_, but this library is only provided for ARM (see _[this folder https://github.com/shaded2/Tasquid/tree/master/android-aac-enc/libs]_ in _Tasquid's_ github repository).
