@@ -308,4 +308,11 @@
 <string name="conf_show_oinotepad_dummy_sync_button">Show button to install \"OI Notepad\" instead of sync button</string>
 <string name="dialog_title_confirm_logout">Confirmation of Logout</string>
 <string name="dialog_confirm_logout_question">Do you really want to logout? You will have to enter your credentials again to connect to the SyncML server.</string>
+
+<!--  Strings needed for Tasquid's permissions (3rd-party-app needed for syncing of task, fork/successor of "Astrid") -->
+<string name="read_permission_label">Tasquid Permission</string>    
+<string name="read_permission_desc">read tasks, display task filters</string>    
+<string name="write_permission_label">Tasquid Permission</string>    
+<string name="write_permission_desc">create new tasks, edit existing tasks</string>
+
 </resources>
