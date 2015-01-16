@@ -1,0 +1,32 @@
+#summary Notes on the possibility to sync tasks with ChBoSync
+#labels astrid,tasquid
+
+*!!! ChBoSync version 1.0 does _NOT_ support the syncing of tasks. This wiki page is about a possible feature that might be added in the future. !!!*
+
+= Introduction =
+
+The original [Funambol] SyncML client for Android supported the syncing of tasks (ToDo lists). For this is was necessary that the Android app _"Astrid"_ by Toodoroo Inc was installed on the Android device. The syncing of tasks was disabled by the developer of the _[PTBV_SyncML_Client PTBV SyncML client]_ (like syncing of notes was also disabled). The communication between the SyncML app and Astrid was based on a _[Content Provider http://developer.android.com/guide/topics/providers/content-providers.html]_ offered by the Astrid app.
+
+However, Astrid is no longer available as app in Google's app store, because Astrid was purchased by Yahoo around May 2013. The source code of the Astrid app was released under an open source license: https://github.com/todoroo/astrid
+
+Based on Astrid's code the app _Tasquid_ was developed, which is also available in Google's app store:
+ * http://www.tasquid.com
+ * https://play.google.com/store/apps/details?id=com.eztransition.tasquid
+ * https://www.facebook.com/tasquid
+ * https://github.com/shaded2/Tasquid
+
+
+= Changes needed in the source code of _ChBoSync_ =
+
+The following is a list of changes necessary to re-enable the syncing of tasks for _ChBoSync_ (with _Tasquid_ instead of _Astrid_):
+
+ * Add the following two permissions to the manifest file: _"com.todoroo.astrid.READ"_ and _"com.todoroo.astrid.WRITE"_. These permissions are needed to access the content provider offered by _Tasquid_.
+
+ * Class _AndroidAppSyncSourceManager_ in package _de.chbosync.android.syncmlclient_, method _setupTasksSource()_: When invoking method _resolveContentProvider()_ the first argument has to be _"com.eztransition.tasquid"_ instead of _"com.todoroo.astrid"_. The purpose of this change is that _ChBoSync_ can detect that _Tasquid_ is installed on the same device (when no task app is found then syncing of tasks is disabled by _ChBoSync_).
+
+ * Class _AndroidCustomization_ in package _de.chbosync.android.syncmlclient_: The values for the two constants _"TASKS_AVAILABLE"_ and _"TASKS_ENABLED"_ have to be set to _"true"_. Further, the value _"AndroidAppSyncSourceManager.TASKS_ID"_ for the array _"SOURCES_ORDER"_ has to be re-enabled.
+
+ * Class _AstridTaskManager_ in package _de.chbosync.android.syncmlclient.source.pim.task_: The value of constant _"AUTHORITY"_ has to be changed to _"com.eztransition.tasquid"_. Further, the URI stored in constant _"CONTENT_URI"_ (in inner class _Task_) has to be changed to _"content://com.eztransition.tasquid/tasks"_. The reason for these changes is that the authority/URI for the content provider offered by _Tasquid_ were changed by the developers of _Tasquid_. 
+
+
+See also the _[https://code.google.com/p/chbosync4android/source/detail?r=94 changelist for r94]_ in this project's Subversion repository.
