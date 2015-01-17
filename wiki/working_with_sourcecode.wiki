@@ -61,7 +61,11 @@ When the button for a particular Sync Source is pressed (e.g., for syncing notes
 
  * The work that is done in a background thread (rather than blocking the UI/main thread) is done in method _SyncEngine::run()_. This method just calls method _sync()_ in the same class. 
 
- * Method _sync()_ calls method _synchronize()_ (still in class _SyncEngine_). 
+ * Method _sync()_ calls method _synchronize()_ (still in class _SyncEngine_). Within this method another method of _SyncEngine_ is called, namely _fireSync()_. However, before this is done an instance of class _SyncManager_ is returned, which is also one of _fireSync()'s_ parameters. (There are two implementations of interface _SyncManagerI_, namely the already mentioned class _SyncManager_ and class _SapiSyncManager_; however, for the Sync Sources supported by _ChBoSync_ so far always class _SyncManager_ is chosen. _SapiSyncManager_ seems to be for media content like images.)
+
+ * In method _SyncEngine::fireSync()_ just method _sync()_ of the _SyncManager_ object is invoked.
+
+ * Method _SyncManager:sync()_ is rather long. Somewhere in this method the method _postRequest()_ of the same class in invoked.
 
 
-Hint: To navigate to the source code of any of these classes mentioned without knowing the package you can press _STRG+SHIFT+T_ in ("Open Type") in Eclipse. In this dialog you can search for classes just by their name.
+Hint: To navigate to the source code of any of these classes mentioned without knowing the package you can press _STRG+SHIFT+T_ for dialog _"Open Type"_ in Eclipse. In this dialog you can search for classes just by their name.
