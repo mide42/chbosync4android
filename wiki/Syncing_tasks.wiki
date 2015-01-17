@@ -1,5 +1,5 @@
 #summary Notes on the possibility to sync tasks with ChBoSync using the app "Tasquid".
-#labels astrid,tasquid
+#labels astrid,tasquid,tasks
 
 *!!! ChBoSync version 1.0 does _NOT_ support the syncing of tasks so far. This wiki page is about a possible feature that might be added in the future. !!!*
 
@@ -30,7 +30,7 @@ The following is a list of changes necessary to re-enable the syncing of tasks f
  * Class _AstridTaskManager_ in package _de.chbosync.android.syncmlclient.source.pim.task_: The value of constant _"AUTHORITY"_ has to be changed to _"com.eztransition.tasquid"_. Further, the URI stored in constant _"CONTENT_URI"_ (in inner class _Task_) has to be changed to _"content://com.eztransition.tasquid/tasks"_. The reason for these changes is that the authority/URI for the content provider offered by _Tasquid_ were changed by the developers of _Tasquid_. 
 
 
-See also the _[https://code.google.com/p/chbosync4android/source/detail?r=94 changelist for r94]_ and the _[https://code.google.com/p/chbosync4android/source/detail?spec=svn101&r=101 changelist for r101]_ in this project's Subversion repository.
+See also the _[https://code.google.com/p/chbosync4android/source/detail?r=94 changelist for r94]_ and the _[https://code.google.com/p/chbosync4android/source/detail?spec=svn101&r=101 changelist for r101]_ in this project's Subversion repository. See also SVN tag _[https://chbosync4android.googlecode.com/svn/tags/2015-01-16_TasquidIntegration "svn/tags/2015-01-16_TasquidIntegration"]_.
 
 = Usage of _Tasquid_ =
 
