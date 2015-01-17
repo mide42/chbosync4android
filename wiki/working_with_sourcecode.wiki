@@ -26,3 +26,7 @@ For the following description it is assumed that you have an installation of Ecl
 =Get along in the source code=
 
 A good starting point for exploring the source code are the screen classes in package _de.chbosync.android.syncmlclient.activities_, e.g. _AndroidHomeScreen_ or _AndroidLoginScreen_. These classes are subclasses of class _android.app.Activity_.
+
+The different types of data that can be synced (e.g., contacts, calendar or notes) are called _"Sync Sources"_. For the setup of each of these _Sync Sources_ there is a method in class _AndroidAppSyncSourceManager_, e.g. method _setupContactsSource()_. Each _Sync Source_ is an instance of class _AndroidAppSyncSource_, whereas this class inherits from class _AppSyncSource_. For some data types there are special sub classes of _AndroidAppSyncSource_, e.g. _CalendarAppSyncSource_ and _ContactAppSyncSource_.
+
+The big buttons on the app's main screen used for triggering the syncing of a particular syncing action (e.g. syncing of contacts or notes) are instances of class _AndroidButtonUISyncSource_. 
