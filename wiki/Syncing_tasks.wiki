@@ -32,6 +32,10 @@ The following is a list of changes necessary to re-enable the syncing of tasks f
 
 See also the _[https://code.google.com/p/chbosync4android/source/detail?r=94 changelist for r94]_ and the _[https://code.google.com/p/chbosync4android/source/detail?spec=svn101&r=101 changelist for r101]_ in this project's Subversion repository. See also SVN tag _[https://chbosync4android.googlecode.com/svn/tags/2015-01-16_TasquidIntegration "svn/tags/2015-01-16_TasquidIntegration"]_.
 
+
+https://chbosync4android.googlecode.com/svn/wiki/images/MainScreenWithTaskSyncButton.png
+
+
 = Usage of _Tasquid_ =
 
 When _Tasquid_ is started for the first time, then you will be asked to register for an online account. However, when using _Tasquid_ together with _ChBoSync_ you can skip this, because for syncing with _ChBoSync_ the account on your SyncML enabled groupware server is used.
