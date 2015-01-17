@@ -29,4 +29,8 @@ A good starting point for exploring the source code are the screen classes in pa
 
 The different types of data that can be synced (e.g., contacts, calendar or notes) are called _"Sync Sources"_. For the setup of each of these _Sync Sources_ there is a method in class _AndroidAppSyncSourceManager_, e.g. method _setupContactsSource()_. Each _Sync Source_ is an instance of class _AndroidAppSyncSource_, whereas this class inherits from class _AppSyncSource_. For some data types there are special sub classes of _AndroidAppSyncSource_, e.g. _CalendarAppSyncSource_ and _ContactAppSyncSource_.
 
+If for the activation of a particular _Sync Source_ it has to be checked if a particular 3rd party app is installed on the Android device, then the presence of this app is also checked in the _setupXXXSource()_ method. For example, in method _setupNotesSource()_ it is checked if _[oi_notepad "OI Notepad"]_ is installed. 
+
 The big buttons on the app's main screen used for triggering the syncing of a particular syncing action (e.g. syncing of contacts or notes) are instances of class _AndroidButtonUISyncSource_. 
+
+Class _AndroidHomeScreen_ represents the main screen of the app, i.e. the screen with the big buttons for the individual _Sync Sources_. The creation of these button is done in class _UpdateAvailableSourcesUIThread_, which is an inner class of _AndroidHomeScreen_ . 
