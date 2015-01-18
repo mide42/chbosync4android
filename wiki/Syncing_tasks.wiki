@@ -3,9 +3,9 @@
 
 *!!! ChBoSync version 1.0 does _NOT_ support the syncing of tasks so far. This wiki page is about a possible feature that might be added in the future. !!!*
 
-= Introduction =
+= Introduction: From Astrid to Tasquid =
 
-The original _[Funambol] SyncML client_ for Android supported the syncing of tasks (ToDo lists). For this is was necessary that the Android app _"Astrid"_ by Toodoroo Inc was installed on the Android device. The syncing of tasks was disabled by the developer of the _[PTBV_SyncML_Client PTBV SyncML client]_ (like syncing of notes was also disabled). The communication between the _[Funambol] SyncML client_ and _"Astrid"_ was based on a _[http://developer.android.com/guide/topics/providers/content-providers.html Content Provider]_ offered by the Astrid app.
+The original _[Funambol] SyncML client_ for Android supported the syncing of tasks (ToDo lists). For this is was necessary that the Android app _"Astrid"_ by Toodoroo Inc was installed on the Android device. The syncing of tasks was disabled by the developer of the _[PTBV_SyncML_Client PTBV SyncML client]_ (like syncing of notes was also disabled). The communication between the _[Funambol] SyncML client_ and _"Astrid"_ was based on a _[http://developer.android.com/guide/topics/providers/content-providers.html Content Provider]_ offered by the Astrid app. There is also a _[https://www.youtube.com/watch?v=h3gf0wYEUlY Youtube video]_ showing _Astrid_ in action.
 
 However, _"Astrid"_ is no longer available as app in Google's app store, because _Astrid/Toodoroo_ was purchased by Yahoo around May 2013. The source code of the Astrid app was released under an open source license: https://github.com/todoroo/astrid
 
