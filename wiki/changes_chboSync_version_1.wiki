@@ -5,7 +5,7 @@
 
  * Improved translatable strings.
 
- * Changed _targetSDK_ for compiling from API level 19 to API 21 (but app should still work on devices with at least API level 15 of Android).
+ * Changed _targetSDK_ for compiling from API level 19 to API 21 (Android 5.0), but app should still work on devices with at least API level 15 of Android (Android 4.0.3).
 
 
 
