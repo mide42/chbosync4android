@@ -49,7 +49,7 @@ The following change has to be made in class _AstridApiConstants_ (package _com.
 
 Without this change the URIs added to the _UriMatcher_ object created in the static initializer block of class _Astrid3ContentProvider_ have a authority part at the beginning which does not match the authority definied in the manifest file. This prevents any app (not just _ChBoSync_) from actually accessing this content provider.
 
-E-mail about this was sent to a developer of Tasquid on 16th January 2015.
+This was submitted as issue no 37 in Tasquid's GitHub project: https://github.com/shaded2/Tasquid/issues/37
 
 When compiling _Tasquid_ with Android 4.3 (API-Level 18, _"Jelly Bean MR2"_) or later as _"targetSDK"_, then in the manifest file the following attribut has to be added to the provider tag: _android:exported="true"_. The reason for this is that as of Android 4.3 this attribute is set to _"false"_ by default, see also _[http://stackoverflow.com/a/18853675 this answer on stackoverflow.com]_.
 
