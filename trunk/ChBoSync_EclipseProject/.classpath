@@ -4,13 +4,13 @@
 	<classpathentry exported="true" kind="con" path="com.android.ide.eclipse.adt.LIBRARIES"/>
 	<classpathentry exported="true" kind="con" path="com.android.ide.eclipse.adt.DEPENDENCIES"/>
 	<classpathentry exported="true" kind="lib" path="external-libs/funambol-android-client.jar" sourcepath="external-libs/funambol-android-client.src.jar"/>
-	<classpathentry exported="true" kind="lib" path="external-libs/funambol-android-common.jar" sourcepath="external-libs/funambol-android-common.src.jar"/>
 	<classpathentry exported="true" kind="lib" path="external-libs/funambol-android-pim.jar" sourcepath="external-libs/funambol-android-pim.src.jar"/>
 	<classpathentry exported="true" kind="lib" path="external-libs/funambol-android-sapisync.jar" sourcepath="external-libs/funambol-android-sapisync.src.jar"/>
 	<classpathentry exported="true" kind="lib" path="external-libs/funambol-android-sync.jar" sourcepath="external-libs/funambol-android-sync.src.jar"/>
-	<classpathentry exported="true" kind="lib" path="external-libs/funambol-android-syncml.jar" sourcepath="external-libs/funambol-android-syncml.src.jar"/>
 	<classpathentry exported="true" kind="lib" path="external-libs/joda-time-1.6.jar"/>
+	<classpathentry exported="true" kind="lib" path="external-libs/funambol-android-syncml.jar"/>
 	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="src" path="src-common"/>
 	<classpathentry kind="src" path="gen"/>
 	<classpathentry kind="output" path="bin/classes"/>
 </classpath>

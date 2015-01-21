@@ -164,7 +164,7 @@
 <string name="type_tasks">Aufgaben</string>
 <string name="label_data_im">IM</string>
 <string name="dialog_refresh_which">Daten zurücksetzten?</string>
-<string name="login_help_text">Füllen Sie die folgenden Felder aus und klicken Sie auf ANMELDEN:</string>
+<string name="login_help_text">Füllen Sie die folgenden Felder aus und klicken Sie auf ANMELDEN. Für das Synchronisieren von Notizen muss die kostenlosen App \"OI Notepad\" installiert sein. ACHTUNG: Diese App akzeptiert selbst-signierte Server-Zertifikate.</string>
 <string name="advanced_settings_log_level_error">Fehler</string>
 <string name="label_family_name">Familienname</string>
 <string name="label_data_nickname">Nickname</string>

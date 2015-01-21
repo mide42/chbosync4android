@@ -94,8 +94,8 @@ public class AndroidCustomization implements Customization {
     private final boolean  EVENTS_ENABLED          = true;
 
     private final String   TASKS_DEFAULT_URI       = "task";
-    private final boolean  TASKS_AVAILABLE         = true;
-    private final boolean  TASKS_ENABLED           = true;
+    private final boolean  TASKS_AVAILABLE         = false;
+    private final boolean  TASKS_ENABLED           = false;
 
     private final String   NOTES_DEFAULT_URI       = "note";
     //modified CBO

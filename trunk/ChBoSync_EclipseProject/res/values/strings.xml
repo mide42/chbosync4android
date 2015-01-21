@@ -164,7 +164,7 @@
 <string name="type_tasks">Tasks</string>
 <string name="label_data_im">IM</string>
 <string name="dialog_refresh_which">Reset which way?</string>
-<string name="login_help_text">Enter your account information below and click LOGIN to sync. For notes, the free app \"OI Notepad\" is required.</string>
+<string name="login_help_text">Enter your account information below and click LOGIN to sync. For notes, the free app \"OI Notepad\" is required. WARNING: This app will accept self-signed certificates from the server.</string>
 <string name="advanced_settings_log_level_error">Error</string>
 <string name="label_family_name">Family name</string>
 <string name="label_data_nickname">Nickname</string>
