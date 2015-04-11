@@ -95,7 +95,7 @@ public class AndroidCustomization implements Customization {
 
     private final String   TASKS_DEFAULT_URI       = "task";
     private final boolean  TASKS_AVAILABLE         = false;
-    private final boolean  TASKS_ENABLED           = false;
+    private final boolean  TASKS_ENABLED           = false; // enable also entry AndroidAppSyncSourceManager.TASKS_ID in array SOURCES_ORDER 
 
     private final String   NOTES_DEFAULT_URI       = "note";
     //modified CBO
@@ -158,7 +158,7 @@ public class AndroidCustomization implements Customization {
     // register (see initSourcesInfo below)
     private final int SOURCES_ORDER[] = { AndroidAppSyncSourceManager.CONTACTS_ID,
                                           AndroidAppSyncSourceManager.EVENTS_ID,
-                                          AndroidAppSyncSourceManager.TASKS_ID,
+                                          //AndroidAppSyncSourceManager.TASKS_ID,
                                           AndroidAppSyncSourceManager.NOTES_ID,
                                           //AndroidAppSyncSourceManager.PICTURES_ID,
                                           //AndroidAppSyncSourceManager.VIDEOS_ID,
