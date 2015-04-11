@@ -373,7 +373,7 @@ public class AndroidAppSyncSourceManager extends AppSyncSourceManager {
                 Log.debug(TAG_LOG, "Checking if Astrid is available");
             }
             //ProviderInfo info = pm.resolveContentProvider("com.todoroo.astrid", 0);
-            ProviderInfo info = pm.resolveContentProvider("com.eztransition.tasquid", 0);            
+            ProviderInfo info = pm.resolveContentProvider("com.eztransition.tasquid", 0); // Changed for ChBoSync            
             if (info != null) {
                 if (Log.isLoggable(Log.INFO)) {
                     Log.info(TAG_LOG, "Astrid provider found, enable task source");

@@ -122,7 +122,16 @@
                       android:paddingBottom="5dip"
                       android:text="@string/url_sourcecode"
                       style="@style/copy_link" />
-
+            
+            <TextView android:id="@+id/textview_sourcecode_new"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:layout_gravity="center_horizontal"
+                      android:paddingTop="5dip"
+                      android:paddingBottom="5dip"
+                      android:text="@string/url_sourcecode_new"
+                      style="@style/copy_link" /><!-- Link to github repository because of shutdown of GoogleSource -->
+                                    
             <TextView android:text="@string/agpl_text"
                       android:visibility="visible"
                       style="@style/copy_text" />
