@@ -5,8 +5,6 @@
 
  * Improved translatable strings.
 
- * Changed _targetSDK_ for compiling from API level 19 to API 21 (Android 5.0), but app should still work on devices with at least API level 15 of Android (Android 4.0.3).
-
  * Self-signed certificates from the server are accepted (this feature from the _[PTBV_SyncML_Client]_ was not available in Version 1.1 of _ChBoSync_ due to a error during packaging of the external libs). Added warning on the login screen saying that such certificates are accepted by the app.
 
  * Added link to new sourcecode repository at GitHub on about screen because of the _[https://code.google.com/p/chbosync4android/wiki/Funambol upcoming shutdown of "Google Code"]_. 
