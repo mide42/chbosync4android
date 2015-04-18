@@ -7,10 +7,10 @@
 
  * Self-signed certificates from the server are accepted (this feature from the _[PTBV_SyncML_Client]_ was not available in Version 1.1 of _ChBoSync_ due to a error during packaging of the external libs). Added warning on the login screen saying that such certificates are accepted by the app.
 
- * Added link to new sourcecode repository at GitHub on about screen because of the _[https://code.google.com/p/chbosync4android/wiki/Funambol upcoming shutdown of "Google Code"]_. 
+ * Added link to new sourcecode repository at GitHub on about screen because of the _[http://google-opensource.blogspot.de/2015/03/farewell-to-google-code.html upcoming shutdown of "Google Code"]_. 
 
 
 
 *!!! This version is not yet released !!!*
 
-*Version 1.1 of _ChBoSync_ is to be released in 2015Q2.*
+*Version 1.1 of _ChBoSync_ is to be released in *April 2015*.
