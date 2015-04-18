@@ -33,4 +33,4 @@ For a list of changes made to obtain _[PTBV_SyncML_Client PTBV SyncML Client]_ b
 _[Funambol Funambol's SyncML Client]_ you can look at the description of the corresponding 
 [https://play.google.com/store/apps/details?id=de.ptbv.android.syncmlclient appstore page].
 
-*Limitation/Regression:* Self-signed certificates (for SSL) on the server are no longer supported (but were supported by the _[PTBV_SyncML_Client  PTBV SyncML Client]_).
+*Limitation/Regression:* Self-signed certificates (for SSL) on the server are no longer supported (but were supported by the _[PTBV_SyncML_Client  PTBV SyncML Client]_). This should be fixed as of version 1.1 of ChBoSync (released in April 2015). 
