@@ -3,9 +3,11 @@
 
 In the following table the versions of _ChBoSync_ published in Google's app store are listed:
 
-|| *Version* || *Date*      || *Tag in SVN Repository* || *Changelog* ||
-|| 1.0       || 07 Dec 2014 || _[https://code.google.com/p/chbosync4android/source/browse/#svn%2Ftags%2F2014-12-07_Version_1.0 2014-12-07_Version_1.0]_ || [changes_ptbvsync2chbosync Click here] ||
-|| 1.1       ||18 Apr 2015  || _[https://code.google.com/p/chbosync4android/source/browse/#svn%2Ftags%2F2015-04-18_Version_1.1 2015-04-18_Version_1.1]_                        || [changes_chboSync_version_1 Click here] ||
+|| *Version* || *Date*      || *Tag in SVN Repository* || *Changelog* || *VersionCode* ||
+|| 1.0       || 07 Dec 2014 || _[https://code.google.com/p/chbosync4android/source/browse/#svn%2Ftags%2F2014-12-07_Version_1.0 2014-12-07_Version_1.0]_ || [changes_ptbvsync2chbosync Click here] || 2 ||
+|| 1.1       ||18 Apr 2015  || _[https://code.google.com/p/chbosync4android/source/browse/#svn%2Ftags%2F2015-04-18_Version_1.1 2015-04-18_Version_1.1]_                        || [changes_chboSync_version_1 Click here] || 4 ||
 || ...       ||             ||                         || ||
 
 The tag in the SVN Repository mentioned in this table represents a snapshot of the app's source code which was used to create the build which was uploaded to the app store. For all tags see _[https://code.google.com/p/chbosync4android/source/browse/#svn%2Ftags the folder "svn/tags"]_ in the Subversion repository. 
+
+In column _VersionCode_ the integer used as value for the attribute _"android:versionCode"_ in the app's manifest file is stated.
