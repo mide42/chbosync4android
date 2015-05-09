@@ -3,7 +3,7 @@
 
 In the following table the versions of _ChBoSync_ published in Google's app store are listed:
 
-|| *Version* || *Date*      || *Tag in SVN Repository* || *Changelog* || *VersionCode* ||
+|| *Version* || *Date*      || *Tag in SVN Repository* || *Changelog & Limitations* || *VersionCode* ||
 || 1.0       || 07 Dec 2014 || _[https://code.google.com/p/chbosync4android/source/browse/#svn%2Ftags%2F2014-12-07_Version_1.0 2014-12-07_Version_1.0]_ || [changes_ptbvsync2chbosync Click here] || 2 ||
 || 1.1       ||18 Apr 2015  || _[https://code.google.com/p/chbosync4android/source/browse/#svn%2Ftags%2F2015-04-18_Version_1.1 2015-04-18_Version_1.1]_                        || [changes_chboSync_version_1 Click here] || 4 ||
 || ...       ||             ||                         || ||
