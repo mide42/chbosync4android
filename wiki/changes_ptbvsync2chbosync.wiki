@@ -37,3 +37,5 @@ _[Funambol Funambol's SyncML Client]_ you can look at the description of the cor
 ==Limitation/Regressions== 
 
 Self-signed certificates (for SSL) on the server are no longer supported (but were supported by the _[PTBV_SyncML_Client  PTBV SyncML Client]_). This should be fixed as of version 1.1 of ChBoSync (released in April 2015). 
+
+Synchronization of calendar entries with URLs that contain special characters like ?, =, # might lead to an aborting of the calendar syncing. *Workaround:* Use URL shortender like [http://tinyurl.com tinyurl.com] for such URLs (for example http://tinyurl.com/k4cx3hm ).
