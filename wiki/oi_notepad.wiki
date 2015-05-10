@@ -8,11 +8,23 @@ The developers of _ChBoSync_ are _NOT_ related to the developers of _"OI Notepad
 
 _"OI Notepad"_ can be installed from Google's app store at https://play.google.com/store/apps/details?id=org.openintents.notepad . The APK file of this app is also available for direct download at https://code.google.com/p/openintents/downloads/list .
 
-
 For more information see:
  * http://caique.arvixe.com/~oi/notepad
 
  * http://code.google.com/p/openintents/
+
+<br>
+
+The app can also be obtained via _[https://f-droid.org F-Droid]_, which is an alternative app store which offers only open source apps:
+ * Webpage with appstore entry of _"OI Notepad"_: https://f-droid.org/repository/browse/?fdid=org.openintents.notepad  (download link for APK file at bottom of page).
+
+ * URL for downloading APK file: https://f-droid.org/repo/org.openintents.notepad_10068.apk
+
+ * URL for downloading APK file for installaing _f-droid_ client: https://f-droid.org/FDroid.apk
+
+ * Webpage with appstore entry on _[https://fossdroid.com]_, which is an alternative web frontend for f-droid: https://fossdroid.com/a/oi-notepad.html
+
+<br>
 
 You might want to also install _[https://play.google.com/store/apps/details?id=org.openintents.about "OI About"]_, which is another free app from the _"Open Intents"_ project needed to view the about info of _"OI Notepad"_.
 
