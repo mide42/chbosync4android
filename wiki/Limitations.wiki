@@ -16,7 +16,7 @@ Self-signed certificates (for SSL) from the server are no longer supported (but 
 
 *Versions: 1.0 & 1.1*
 
-The app's icon (e.g. used on the homescreen or the app depot) might be blurry depending on the resolution of the display. The reason for this is that the icon is only available with a size of 47x47 pixels, but for screens with a higher resolution and/or DPI value bigger.
+The app's icon (e.g. used on the homescreen or the app depot) might be blurry depending on the resolution of the display. The reason for this is that the icon is only available with a size of 47x47 pixels, which is appropriate for displays with density class _"MDPI"_ (about 160 DPI). However, for displays with higher density classes like _"HDPI"_ (about 240 DPI) or _"XHDPI"_ (about 320 DPI) this icon has to be scaled about by the Android system at runtime which means that it becomes blurry. 
 <br><br>
 
 
