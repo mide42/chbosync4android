@@ -281,8 +281,8 @@
 <!-- Strings added for ChBoSync -->
 <string name="contentdescr_logo">Logo</string>
 <string name="contentdescr_logoPoweredBy">Logo: Powered by Funambol</string>
-<string name="url_sourcecode">https://code.google.com/p/chbosync4android (to be retired)</string>
-<string name="url_sourcecode_new">https://github.com/mide42?tab=repositories</string>
+<string name="url_sourcecode">https://code.google.com/p/chbosync4android\n(to be retired)</string>
+<string name="url_sourcecode_new">https://github.com/mide42?tab=repositories\n(successor repository)</string>
 <string name="agpl_text">For the full text of the GNU AGPL click on the following link:</string>
 <string name="url_agpl">https://gnu.org/licenses/agpl-3.0.en.html</string>
 <string name="oinotepad_not_installed">The free app \"OI Notepad\" is not installed on your device, so synchronizing of notes is not possible.</string>
