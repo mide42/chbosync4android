@@ -2,7 +2,7 @@ This folder contains some Bash scripts for the preparation of images needed for 
 
 They were developed for ChBoSync, i.e. they are not part of the PTBV SyncML client or Funambol's open source project.
 
-The scripts are distributed WITHOUT ANY WARRANTY!
+These scripts are all distributed WITHOUT ANY WARRANTY!
 
 Please read the comments at the top of the individual script files.
 
