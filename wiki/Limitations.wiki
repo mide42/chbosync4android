@@ -26,3 +26,9 @@ The app's icon (e.g. used on the homescreen or the app depot) might be blurry de
 
 Synchronization of calendar entries with URLs that contain special characters like ?, =, # might lead to an abort of the calendar syncing. *Workaround:* Use URL shortender like _[http://tinyurl.com tinyurl.com]_ for such URLs (for example http://tinyurl.com/k4cx3hm ).
 <br><br>
+
+=Encrypted notes are not supported=
+
+*Versions: 1.0 & 1.1*
+
+Individual notes in _[oinotepad OI Notepad]_ can be encrypted if the app _"OI Safe"_ is also installed on the devices. If such an encrypted note is synced to another device, then it is not recognized as encrypted note by _OI Notepad_.
