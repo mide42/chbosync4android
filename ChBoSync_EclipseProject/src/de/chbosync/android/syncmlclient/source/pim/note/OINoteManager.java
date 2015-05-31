@@ -52,7 +52,10 @@ import com.funambol.util.StringUtil;
 
 import de.chbosync.android.syncmlclient.source.AbstractDataManager;
 
-
+/**
+ * This class contains the methods for accessing OINotepad's content provider, e.g. to
+ * read or update notes stored in OINotepad.
+ */
 public class OINoteManager extends AbstractDataManager<Note> {
 
     /** Log entries tag */
@@ -77,7 +80,7 @@ public class OINoteManager extends AbstractDataManager<Note> {
     
     
     /**
-     * Added for ChBoSync
+     * Added for ChBoSync; getter for flag if OINotepad is installed on the current device.
      * 
      * @return <tt>true</tt> if "OI Notepad" is installed on the current device,
      *        <tt>false</tt> otherwise.
@@ -87,25 +90,24 @@ public class OINoteManager extends AbstractDataManager<Note> {
     }
 
 
+    /** Inner class with some static variables containing identifiers for OINotepad's content provider. */
     public static final class Notes {
         public static final Uri CONTENT_URI = Uri.parse("content://" + AUTHORITY + "/notes");
 
-        public static final String _ID = "_id";
-        public static final String TITLE = "title";
-        public static final String NOTE = "note";
-        public static final String CREATED_DATE = "created";
-        public static final String MODIFIED_DATE = "modified";
-        public static final String TAGS = "tags";
-        public static final String[] PROJECTION = { _ID,
-                                                    TITLE,
-                                                    NOTE,
-                                                  };
-
+        public static final String   _ID           = "_id";
+        public static final String   TITLE         = "title";
+        public static final String   NOTE          = "note";
+        public static final String   CREATED_DATE  = "created";
+        public static final String   MODIFIED_DATE = "modified";
+        public static final String   TAGS          = "tags";
+        public static final String[] PROJECTION    = { _ID, TITLE, NOTE, };
+                                                                                                                                                          
     }
 
 
     /**
      * Default constructor.
+     * 
      * @param context the Context object 
      * @param appSource the AppSyncSource object to be related to this manager
      */
@@ -115,8 +117,8 @@ public class OINoteManager extends AbstractDataManager<Note> {
     }
 
     /**
-     * Accessor method: get the calendar authority that manages calendars in the
-     * system
+     * Accessor method: get the authority for OINotepad.
+     * 
      * @return String the String formatted representation of the authority
      */
     protected String getAuthority() {
@@ -124,10 +126,11 @@ public class OINoteManager extends AbstractDataManager<Note> {
     }
 
     /**
-     * Load a particular calendar entry
+     * Load a particular note entry.
+     * 
      * @param key the long formatted entry key to load
-     * @return Calendar the Calendar object related to that entry
-     * @throws IOException if anything went wrong accessing the calendar db
+     * @return Note object related to that entry
+     * @throws IOException if anything went wrong accessing OINotepad's content provider
      */
     public Note load(String key) throws IOException {
 
@@ -153,7 +156,7 @@ public class OINoteManager extends AbstractDataManager<Note> {
                 loadNoteFields(cursor, note, id);
             } else {
                 // Item not found
-                throw new IOException("Cannot find event " + key);
+                throw new IOException("Cannot find note " + key);
             }
         } finally {
             cursor.close();
@@ -161,7 +164,11 @@ public class OINoteManager extends AbstractDataManager<Note> {
         return note;
     }
 
+    
     /**
+     * Add a note to OINotepad.
+     * 
+     * @param item Note to be added.
      */
     @Override
     public String add(Note item) throws IOException {
@@ -182,6 +189,7 @@ public class OINoteManager extends AbstractDataManager<Note> {
     }
 
     /**
+     * Method to update a note in OINotepad.
      */
     @Override
     public void update(String key, Note newItem) throws IOException {
@@ -201,7 +209,7 @@ public class OINoteManager extends AbstractDataManager<Note> {
         // If the contact does not exist, then we perform an add
         if (!exists(key)) {
             if (Log.isLoggable(Log.INFO)) {
-                Log.info(TAG_LOG, "Tried to update a non existing event. Creating a new one ");
+                Log.info(TAG_LOG, "Tried to update a non existing note. Creating a new one.");
             }
             add(newItem);
             return;
@@ -212,7 +220,9 @@ public class OINoteManager extends AbstractDataManager<Note> {
         resolver.update(uri, cv, null, null);
     }
 
+    
     /**
+     * Delete a note in OINotepad.
      */
     public void delete(String key) throws IOException {
 
@@ -241,8 +251,8 @@ public class OINoteManager extends AbstractDataManager<Note> {
     }
 
     /**
-     * Delete all calendars from the calendar db
-     * @throws IOException if anything went wrong accessing the calendar db
+     * Delete all note in OINotepad.
+     * @throws IOException if anything went wrong accessing OINotepad's content provider.
      */
     public void deleteAll() throws IOException {
         if (Log.isLoggable(Log.TRACE)) {
@@ -256,7 +266,8 @@ public class OINoteManager extends AbstractDataManager<Note> {
     }
 
     /**
-     * Check if a calendar with the given id exists in the calendar db
+     * Check if a note with the given id exists in OINotepad.
+     * 
      * @param id the id which existence is to be checked
      * @return true if the given id exists in the db false otherwise
      */
@@ -280,10 +291,9 @@ public class OINoteManager extends AbstractDataManager<Note> {
     }
 
     /**
-     * Get all of the calendar keys that exist into the DB
-     * @return Enumeration the enumeration object that contains alll of the
-     * calendar keys
-     * @throws IOException if anything went wrong accessing the calendar db
+     * Get all of the note keys that exist in OINotepad
+     * @return Enumeration the enumeration object that contains all the notes.
+     * @throws IOException if anything went wrong accessing OINotepad's content provider.
      */
     public Enumeration getAllKeys() throws IOException {
 
@@ -353,6 +363,7 @@ public class OINoteManager extends AbstractDataManager<Note> {
 
     /**
      * Put a String property to the given ContentValues.
+     * 
      * @param column the culumn to be written
      * @param property the property to be written into the column
      * @param cv the content values related to the property
