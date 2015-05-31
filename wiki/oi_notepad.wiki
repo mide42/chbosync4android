@@ -29,7 +29,13 @@ The app can also be obtained via _[https://f-droid.org F-Droid]_, which is an al
 You might want to also install _[https://play.google.com/store/apps/details?id=org.openintents.about "OI About"]_, which is another free app from the _"Open Intents"_ project needed to view the about info of _"OI Notepad"_.
 
 The data exchange between _ChBoSync_ and _"OI Notepad"_ is realized using a so called _[http://developer.android.com/guide/topics/providers/content-providers.html Content-Provider]_.
+<br><br>
 
 ==Syncing notes with a Horde server==
 
 When used together with a [Horde] groupware server: There can be several notebooks. If there is more than just one notebook, then _ChBoSync_ seems to sync only the _first_ notebook, whereas _"first"_ means the first notebook according to the alphabetical order (i.e. the notebook that is the upper-most one in the list of notebooks on the left side of the WebUI).
+<br><br>
+
+==Encrypted notes==
+
+_OI Notepad_ can encrypt individual notes if the companion app  _[https://play.google.com/store/apps/details?id=org.openintents.safe OI Safe]_ is installed on the device. Please see the notes concerning encrypted notes _[Limitations on the page with known limitations]_.
