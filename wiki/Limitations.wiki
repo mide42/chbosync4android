@@ -1,0 +1,21 @@
+#summary Known bugs of the app in different versions
+
+On this page known limitations/bugs of _ChBoSync_ are described.
+<br><br>
+
+
+=Self-Signed Certificates from Server are not accepted (Version 1.0)=
+
+Self-signed certificates (for SSL) from the server are no longer supported (but were supported by the _[PTBV_SyncML_Client  PTBV SyncML Client]_). This was fixed as of version 1.1 of ChBoSync (released in April 2015). 
+<br><br>
+
+
+=App icon might be blurry (Version 1.0 & 1.1)=
+
+The app's icon (e.g. used on the homescreen or the app depot) might be blurry depending on the resolution of the display. The reason for this is that the icon is only available with a size of 47x47 pixels, but for screens with a higher resolution and/or DPI value bigger.
+<br><br>
+
+
+=Calendar entries with URLs with special characters (Version 1.0 & 1.1)=
+Synchronization of calendar entries with URLs that contain special characters like ?, =, # might lead to an abort of the calendar syncing. *Workaround:* Use URL shortender like _[http://tinyurl.com tinyurl.com]_ for such URLs (for example http://tinyurl.com/k4cx3hm ).
+<br><br>
