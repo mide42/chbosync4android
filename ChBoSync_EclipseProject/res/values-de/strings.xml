@@ -281,8 +281,8 @@
 <!-- Now strings added for ChBoSync -->
 <string name="contentdescr_logo">Logo</string>
 <string name="contentdescr_logoPoweredBy">Logo: Powered by Funambol</string>
-<string name="url_sourcecode">https://code.google.com/p/chbosync4android/</string>
-<string name="url_sourcecode_new">https://github.com/mide42?tab=repositories</string>
+<string name="url_sourcecode">https://code.google.com/p/chbosync4android\n(wird bald abgeschaltet)</string>
+<string name="url_sourcecode_new">https://github.com/mide42?tab=repositories\n(Nachfolger-Repository)</string>
 <string name="agpl_text">Für den Volltext der GNU AGPL bitte auf den folgenden Link klicken:</string>
 <string name="url_agpl">https://gnu.org/licenses/agpl-3.0.en.html</string>
 <string name="basedOnPtbvAndFunambol"><![CDATA[ChBoSync basiert auf dem <i>PTBV SyncML Client</i> von Andreas Wolff, welcher wiederum auf dem <i>Funambol SyncML Client</i> basiert. ChBoSync wurde im November 2014 als Open-Source-Projekt veröffentlicht.]]></string>
