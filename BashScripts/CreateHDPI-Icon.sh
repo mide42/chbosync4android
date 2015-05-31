@@ -27,8 +27,10 @@ TARGET_FILE=3_logo_72x72.png
 
 
 # Create white bitmap of target size as "background"
-/usr/bin/convert -size 72x72 xc:white $BACKGROUND_BITMAP
+#/usr/bin/convert -size 72x72 xc:white $BACKGROUND_BITMAP
 
+# Create transparent bitmap of target size as background
+/usr/bin/convert -size 72x72 xc:"rgba(0,0,0,0)" $BACKGROUND_BITMAP
 
 # Step 2: Insert small logo on backgroud bitmap
 composite -gravity center $MDPI_LOGO_FILE $BACKGROUND_BITMAP  $TARGET_FILE
