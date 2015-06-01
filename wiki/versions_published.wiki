@@ -14,4 +14,4 @@ The tag in the SVN Repository mentioned in this table represents the snapshot/st
 
 In column _VersionCode_ the integer used as value for the attribute _"android:versionCode"_ in the app's manifest file is stated.
 
-See also the page with the [Limitations list of known limitations and bugs].
+See also the _[Limitations page with the list of known limitations and bugs]_.
