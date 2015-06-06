@@ -44,12 +44,14 @@ import android.util.Log;
 
 
 /**
- * Default debugger to be used instea of System.out.println(msg);
+ * Default logger to be used instea of System.out.println(msg);
+ * Writes to Android's standard logger, i.e. {@link android.util.Log}.
  */ 
 public class AndroidLogAppender implements Appender {
     
     // ---------------------------------------------------------------------------
 
+	/** Tag for log messages, is set in constructor. */
     private String tag;
 
     /** Default constructor */
@@ -59,14 +61,19 @@ public class AndroidLogAppender implements Appender {
 
     //----------------------------------------------------------- Public Methods
     /**
-     * ConsoleAppender writes one message on the standard output
+     * ConsoleAppender writes one message on the standard output.
+     * Changed for ChBoSync: Prepending of date+time (because LogCat
+     * shows this information also). 
      */
     public void writeLogMessage(String level, String msg) {
+    	
+    	/*
         Date now = new Date();
         StringBuffer logMsg = new StringBuffer(now.toString());
         logMsg.append(" ");
         logMsg.append(msg);
         msg = logMsg.toString();
+        */
 
         if (level.equals("ERROR")) {
             Log.e(tag, msg);

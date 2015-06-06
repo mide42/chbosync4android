@@ -60,6 +60,8 @@ import com.funambol.platform.NetworkStatus;
 import com.funambol.storage.StringKeyValueStoreFactory;
 import com.funambol.sync.SyncSource;
 import com.funambol.util.AndroidLogAppender;
+import com.funambol.util.Appender;
+import com.funambol.util.ConsoleAppender;
 import com.funambol.util.FileAppender;
 import com.funambol.util.Log;
 import com.funambol.util.MultipleAppender;
@@ -150,11 +152,15 @@ public class AppInitializer {
         return appSyncSourceManager;
     }
 
-    
-    private void initLog() {
-        MultipleAppender ma = new MultipleAppender();
 
-        if (isFileTracingAllowed()) {
+    /**
+     * Changed by ChBoSync: AndroidLogAppender is no longer put into an MultiAppender.
+     */
+    private void initLog() {
+    	/*
+        MultipleAppender multiAppender = new MultipleAppender();
+
+        if ( isFileTracingAllowed() ) {  // returns always false
         	String fileName = "synclog.txt";
         	String userDir;
 
@@ -169,22 +175,29 @@ public class AppInitializer {
         	FileAppender fileAppender = new FileAppender(userDir, fileName);
         	fileAppender.setLogContentType(!AndroidUtils.isSDCardMounted());
         	fileAppender.setMaxFileSize(256*1024); // Set 256KB log size
-        	ma.addAppender(fileAppender);
+        	multiAppender.addAppender(fileAppender);
 
             if (Log.isLoggable(Log.INFO)) {
                 Log.info(TAG_LOG, "Memory card present: " + AndroidUtils.isSDCardMounted());
                 Log.info(TAG_LOG, "Log file created into: " + userDir + fileName);
             }
         }
+        */
 
+        
+        AndroidLogAppender androidLogAppender = null;
+        
         // If we are running in the emulator, we also use the AndroidLogger
         if (AndroidUtils.isAndroidEmulator() || "debug".equals(BuildInfo.MODE)) {
             // This is an emulator, or a debug build
-            AndroidLogAppender androidLogAppender = new AndroidLogAppender("SyncMLClient");
-            ma.addAppender(androidLogAppender);            
+            androidLogAppender = new AndroidLogAppender("ChBoSync");
+            //multiAppender.addAppender(androidLogAppender);            
         }
 
-        Log.initLog(ma, Log.TRACE);
+        
+        Log.initLog(androidLogAppender, Log.TRACE);
+        //Log.initLog(multiAppender, Log.TRACE);
+                
         
         //for customer who wants to have log locked on specified level
         if(customization.lockLogLevel()){

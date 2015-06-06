@@ -316,7 +316,6 @@ public class OINoteManager extends AbstractDataManager<Note> {
                 String key = cursor.getString(0);
                 if (Log.isLoggable(Log.TRACE)) {
                     Log.trace(TAG_LOG, "Found item with key: " + key);
-                    android.util.Log.d(TAG_LOG, "Notiz gefunden in OINotepad: " + key);
                 }
                 itemKeys.addElement(key);
                 cursor.moveToNext();
@@ -336,16 +335,17 @@ public class OINoteManager extends AbstractDataManager<Note> {
         return null;
     }
 
+    
     private void loadNoteFields(Cursor cursor, Note note, long key) {
 
         // Load TITLE
-        String name = cursor.getString(cursor.getColumnIndex(Notes.TITLE));
+        String name = cursor.getString( cursor.getColumnIndex(Notes.TITLE) );
         if(name != null) {
             note.setTitle(new Property(name));
         }
 
         // Load NOTE
-        String noteValue = cursor.getString(cursor.getColumnIndex(Notes.NOTE));
+        String noteValue = cursor.getString( cursor.getColumnIndex(Notes.NOTE) );
         if(noteValue != null) {
             note.setBody(new Property(noteValue));
         }
@@ -373,8 +373,10 @@ public class OINoteManager extends AbstractDataManager<Note> {
         putStringProperty(Notes.NOTE,  note.getBody(),  contentValues);
         
         // Added for ChBoSync: Setting of content provider's flag if note is encrypted or not
-        if ( note.isNoteEncrypted() )
+        if ( note.isNoteEncrypted() ) {
         	contentValues.put(Notes.ENCRYPTED, 1);
+        	Log.debug("Found encrypted note with id=" + note.getId() );
+        }
         else
         	contentValues.put(Notes.ENCRYPTED, 0);
         	        
