@@ -66,6 +66,6 @@ When the button for a particular Sync Source is pressed (e.g., for syncing notes
  * In method _SyncEngine::fireSync()_ just method _sync()_ of the _SyncManager_ object is invoked.
 
  * Method _SyncManager:sync()_ is rather long. Somewhere in this method the method _postRequest()_ of the same class in invoked.
-
+<br>
 
 Hint: To navigate to the source code of any of these classes mentioned without knowing the package you can press _STRG+SHIFT+T_ for dialog _"Open Type"_ in Eclipse. In this dialog you can search for classes just by their name.
