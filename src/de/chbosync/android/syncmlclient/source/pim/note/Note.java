@@ -40,6 +40,8 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.io.StringReader;
 import java.io.UnsupportedEncodingException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import com.funambol.common.pim.model.common.Property;
 import com.funambol.util.Log;
@@ -50,16 +52,24 @@ import com.funambol.util.Log;
  */
 public class Note {
 
-    private static final String TAG = "Note";
+	/** Tag for writing of log messages. */
+    private static final String TAG4LOGGING = "Note";
 
-    private long id = -1;
-    private Property title;
-    private Property body;
+    /** Regular expression for heuristic detection of encrypted notes; lazy creation. */ 
+    protected static Pattern _regexpPatternForEncryptionDetection = null;
+    
+    
+    private long     id     = -1;
+    private Property title  = null;
+    private Property body   = null;
     
     /** Fallback text for empty notes, to be used in titled and/or body. */
     protected static String TEXT_EMPTY_NOTE = "<Empty Note>";
 
-    
+
+    /**
+     * Default constructor.
+     */
     public Note() {
         super();
     }
@@ -98,7 +108,7 @@ public class Note {
         
         if (bodyValue.trim().length() > 0) {
             body  = new Property(bodyValue);
-            title = new Property(extractTitle(bodyValue));        	
+            title = new Property( extractTitle(bodyValue) );        	
         } else {
         	body  = new Property(TEXT_EMPTY_NOTE);
         	title = new Property(TEXT_EMPTY_NOTE);
@@ -115,27 +125,81 @@ public class Note {
      * @return String to be used as title (first non-empty line).
      */
     protected String extractTitle(String bodyString) {
-    	    	    	
+    	String currentLine = null;    	   
+    	
     	try {
-    		String currentLine = null;
-    		BufferedReader reader = new BufferedReader(new StringReader(bodyString));
+    		BufferedReader reader = new BufferedReader( new StringReader(bodyString) );
     		while ( (currentLine = reader.readLine() ) != null ) {
     		
     			currentLine = currentLine.trim();
     			if ( currentLine.length() > 0) {
     				return currentLine;
     			}
-    			
-    		}
+    		
+    		} // end-while
     	}
     	catch (IOException ex) {
-    		Log.error(TAG, "Exception when parsing note's body for extraction of title: " + ex);
+    		Log.error(TAG4LOGGING, "Exception when parsing note's body for extraction of title: " + ex);
     		return TEXT_EMPTY_NOTE;
     	}
     	
     	return TEXT_EMPTY_NOTE;   	
     }
+    
+    
+    /**
+     * Heuristic check if the note is an encrypted one (encrypted by OISafe as companion app for OINotepad).
+     * The payload (body) of an encrypted note consists just of hexadecimal numbers without blanks, 
+     * so a regular expression is used to find out if this note is encrypted or not.
+     * If a note with just one letter is encrypted then the cipher has a length of 129 hex numbers,
+     * so it is checked for at least 100 hex numbers.
+     * <br/><br/>
+     * Added for ChBoSync.
+     * 
+     * @return <tt>true</tt> if note seems to be an encrypted one, <tt>false</tt> otherwise.
+     */
+    public boolean isNoteEncrypted() {
+    	
+    	if ( _regexpPatternForEncryptionDetection == null) {
+    		// Regular expression to check for at least 100 hexadecimal numbers
+    		_regexpPatternForEncryptionDetection = Pattern.compile("[[a-f][0-9]]{100,}", Pattern.CASE_INSENSITIVE);
+    	}
+    	
 
+    	// Check if body of note is empty
+    	String bodyString = getBody().getPropertyValueAsString();
+    	if (bodyString == null) 
+    		return false;
+    	
+    	bodyString = bodyString.trim();
+        if (bodyString.length() == 0)
+        	return false;
+    	        
+        
+        // If we come to this point then the note is not empty
+        
+    	Matcher matcher = _regexpPatternForEncryptionDetection.matcher(bodyString) ;
+    	
+    	boolean resultBool = matcher.matches();
+    	
+    	if (resultBool) {
+    		android.util.Log.d(TAG4LOGGING, "Encrypted note found: "   + bodyString );
+    	} else {
+    		android.util.Log.d(TAG4LOGGING, "UNencrypted note found: " + bodyString );
+    	}
+    	
+    	
+    	return resultBool;
+    }
+
+    
+    /**
+     * Write plain text into OutputStream
+     * 
+     * @param os         Stream into which the plain text is written
+     * @param allFields  Not used
+     * @throws IOException
+     */
     public void toPlainText(OutputStream os, boolean allFields) throws IOException {
         try {
             String bodyValue = Property.stringFrom(body);
@@ -145,7 +209,7 @@ public class Note {
             byte bytes[] = bodyValue.getBytes("UTF-8");
             os.write(bytes);
         } catch (Exception e) {
-            Log.error(TAG, "Cannot format plain note", e);
+            Log.error(TAG4LOGGING, "Cannot format plain note", e);
             throw new IOException("Cannot format note");
         }
     }

@@ -52,24 +52,28 @@ import com.funambol.util.StringUtil;
 
 import de.chbosync.android.syncmlclient.source.AbstractDataManager;
 
+
 /**
- * This class contains the methods for accessing OINotepad's content provider, e.g. to
- * read or update notes stored in OINotepad.
+ * This class contains the methods for accessing OINotepad's content provider, 
+ * e.g. to read or update notes stored in OINotepad. 
  */
 public class OINoteManager extends AbstractDataManager<Note> {
 
-    /** Log entries tag */
-    private static final String TAG_LOG  = "OINoteManager";
-    public static final String AUTHORITY = "org.openintents.notepad";
+    /** Tag for writing log entries. */
+    private static final String TAG_LOG = "OINoteManager";
+    
+    /** Authority string for OINotepad's content provider. */
+    public  static final String AUTHORITY = "org.openintents.notepad";
     
 
     /** Flag to store if app "OI Notepad" is installed on device (added for ChBoSync). */ 
     protected static boolean sOINotepadInstalled = false;
     
+    
     /**
      * Added for ChBoSync; upon startup in method 
      * {@link de.chbosync.android.syncmlclient.AndroidAppSyncSourceManager.setupNotesSource(AndroidConfiguration)}
-     * it is checked if "OI Notepad" is installed on the current device or not.
+     * it is checked if the app "OI Notepad" is installed on the current device.
      * 
      * @param isInstalled <tt>true</tt> if "OI Notepad" is installed on the current device,
      *        <tt>false</tt> otherwise.
@@ -100,8 +104,8 @@ public class OINoteManager extends AbstractDataManager<Note> {
         public static final String   CREATED_DATE  = "created";
         public static final String   MODIFIED_DATE = "modified";
         public static final String   TAGS          = "tags";
-        public static final String[] PROJECTION    = { _ID, TITLE, NOTE, };
-                                                                                                                                                          
+        public static final String   ENCRYPTED     = "encrypted"; // added for ChBoSync
+        public static final String[] PROJECTION    = { _ID, TITLE, NOTE };                                                                                                                                                         
     }
 
 
@@ -126,7 +130,7 @@ public class OINoteManager extends AbstractDataManager<Note> {
     }
 
     /**
-     * Load a particular note entry.
+     * Load a particular note entry from OINotepad's content provider.
      * 
      * @param key the long formatted entry key to load
      * @return Note object related to that entry
@@ -153,7 +157,7 @@ public class OINoteManager extends AbstractDataManager<Note> {
         Cursor cursor = resolver.query(uri, null, null, null, null);
         try {
             if(cursor != null && cursor.moveToFirst()) {
-                loadNoteFields(cursor, note, id);
+                loadNoteFields(cursor, note, id);                
             } else {
                 // Item not found
                 throw new IOException("Cannot find note " + key);
@@ -342,23 +346,34 @@ public class OINoteManager extends AbstractDataManager<Note> {
         }
     }
 
+    
+    /**
+     * dummy method
+     */
     public Vector commit() {
         return null;
     }
 
+    
     /**
      * Putting title and body of the note into an object of class <tt>ContentValues</tt>,
      * so it can be inserted into "OI Notepad" via a Content Resolver.
      */
     private ContentValues createNoteContentValues(Note note) throws IOException {
 
-        ContentValues cv = new ContentValues();
+        ContentValues contentValues = new ContentValues();
 
-        putStringProperty(Notes.TITLE, note.getTitle(), cv);
+        putStringProperty(Notes.TITLE, note.getTitle(), contentValues);
 
-        putStringProperty(Notes.NOTE,  note.getBody(),  cv);
-
-        return cv;
+        putStringProperty(Notes.NOTE,  note.getBody(),  contentValues);
+        
+        // Added for ChBoSync: Setting of content provider's flag if note is encrypted or not
+        if ( note.isNoteEncrypted() )
+        	contentValues.put(Notes.ENCRYPTED, 1);
+        else
+        	contentValues.put(Notes.ENCRYPTED, 0);
+        	        
+        return contentValues;
     }
 
     /**
@@ -368,8 +383,8 @@ public class OINoteManager extends AbstractDataManager<Note> {
      * @param property the property to be written into the column
      * @param cv the content values related to the property
      */
-    private void putStringProperty(String column,
-            Property property, ContentValues cv) {
+    private void putStringProperty(String column, Property property, ContentValues cv) {
+            
         if(property != null) {
             String value = property.getPropertyValueAsString();
             if(value != null) {
