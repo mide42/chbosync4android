@@ -52,9 +52,6 @@ import com.funambol.util.Log;
  */
 public class Note {
 
-	/** Tag for writing of log messages. */
-    private static final String TAG4LOGGING = "Note";
-
     /** Regular expression for heuristic detection of encrypted notes; lazy creation. */ 
     protected static Pattern _regexpPatternForEncryptionDetection = null;
     
@@ -63,7 +60,7 @@ public class Note {
     private Property title  = null;
     private Property body   = null;
     
-    /** Fallback text for empty notes, to be used in titled and/or body. */
+    /** Fallback text for empty notes, to be used in title and/or body. */
     protected static String TEXT_EMPTY_NOTE = "<Empty Note>";
 
 
@@ -116,6 +113,7 @@ public class Note {
         
     }    
     
+    
     /**
      * Method to obtain title from the whole body of a note
      * (first non-empty line is returned as title).
@@ -139,7 +137,7 @@ public class Note {
     		} // end-while
     	}
     	catch (IOException ex) {
-    		Log.error(TAG4LOGGING, "Exception when parsing note's body for extraction of title: " + ex);
+    		Log.error("Exception when parsing note's body for extraction of title: " + ex);
     		return TEXT_EMPTY_NOTE;
     	}
     	
@@ -182,13 +180,6 @@ public class Note {
     	
     	boolean resultBool = matcher.matches();
     	
-    	if (resultBool) {
-    		android.util.Log.d(TAG4LOGGING, "Encrypted note found: "   + bodyString );
-    	} else {
-    		android.util.Log.d(TAG4LOGGING, "UNencrypted note found: " + bodyString );
-    	}
-    	
-    	
     	return resultBool;
     }
 
@@ -208,8 +199,8 @@ public class Note {
             }
             byte bytes[] = bodyValue.getBytes("UTF-8");
             os.write(bytes);
-        } catch (Exception e) {
-            Log.error(TAG4LOGGING, "Cannot format plain note", e);
+        } catch (Exception ex) {
+            Log.error("Cannot format plain note" + ex);
             throw new IOException("Cannot format note");
         }
     }

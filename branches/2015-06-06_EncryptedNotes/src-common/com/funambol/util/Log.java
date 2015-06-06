@@ -40,7 +40,7 @@ import java.util.Date;
 import java.util.Vector;
 
 /**
- * Generic Log class
+ * Generic Log class, which has only static methods.
  */
 public class Log {
     
@@ -76,7 +76,7 @@ public class Log {
     /**
      * The default appender is the console
      */
-    private static Appender out;
+    private static Appender appender;
     
     /**
      * The default log level is INFO
@@ -132,8 +132,8 @@ public class Log {
     /**
      * This class is static and cannot be intantiated
      */
-    private Log(){
-    }
+    private Log(){}
+    
 
     /**
      * The log can be used via its static methods or as a singleton in case
@@ -156,8 +156,8 @@ public class Log {
      * @param level the log level
      */
     public static void initLog(Appender object, int level){
-        out = object;
-        out.initLogFile();
+        appender = object;
+        appender.initLogFile();
         // Init the caching part
         cache = new Vector(cacheSize);
         first = 0;
@@ -197,7 +197,7 @@ public class Log {
      * Return a reference to the current appender
      */
     public static Appender getAppender() {
-        return out;
+        return appender;
     }
 
     /**
@@ -221,7 +221,7 @@ public class Log {
      *
      */
     public static void deleteLog() {
-        out.deleteLogFile();
+        appender.deleteLogFile();
     }
     
     /**
@@ -232,8 +232,8 @@ public class Log {
     public static void setLogLevel(int newlevel) {
         if(!lockedLogLevel){
             level = newlevel;
-            if (out != null) {
-                out.setLogLevel(level);
+            if (appender != null) {
+                appender.setLogLevel(level);
             }
         }
     }
@@ -245,8 +245,8 @@ public class Log {
     public static void lockLogLevel(int levelToLock) {
         level = levelToLock;
         lockedLogLevel = true;
-        if (out != null) {
-            out.setLogLevel(level);
+        if (appender != null) {
+            appender.setLogLevel(level);
         }
     }
     
@@ -499,7 +499,7 @@ public class Log {
      * Return the current log appender LogContent container object
      */         
     public static LogContent getCurrentLogContent() throws IOException {
-        return out.getLogContent();
+        return appender.getLogContent();
     }
 
     /**
@@ -530,8 +530,8 @@ public class Log {
     private static void writeLogMessageNoCache(int msgLevel, String levelMsg, String msg) {
         if (level >= msgLevel) {
             try {
-                if (out != null) {
-                    out.writeLogMessage(levelMsg, msg);
+                if (appender != null) {
+                    appender.writeLogMessage(levelMsg, msg);
                 } else {
                     Date now = new Date();
                     System.out.print(now.toString());
