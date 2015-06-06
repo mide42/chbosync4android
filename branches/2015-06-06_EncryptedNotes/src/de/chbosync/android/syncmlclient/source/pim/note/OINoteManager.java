@@ -87,7 +87,7 @@ public class OINoteManager extends AbstractDataManager<Note> {
      * Added for ChBoSync; getter for flag if OINotepad is installed on the current device.
      * 
      * @return <tt>true</tt> if "OI Notepad" is installed on the current device,
-     *        <tt>false</tt> otherwise.
+     *         <tt>false</tt> otherwise.
      */
     public static boolean getOINotepadInstalled() {
     	return sOINotepadInstalled;
@@ -141,7 +141,7 @@ public class OINoteManager extends AbstractDataManager<Note> {
         if (Log.isLoggable(Log.TRACE)) {
             Log.trace(TAG_LOG, "Loading Note: " + key);
         }
-
+                
         long id;
         try {
             id = Long.parseLong(key);
@@ -295,7 +295,8 @@ public class OINoteManager extends AbstractDataManager<Note> {
     }
 
     /**
-     * Get all of the note keys that exist in OINotepad
+     * Get all of the note keys that are currently stored in OINotepad.
+     * 
      * @return Enumeration the enumeration object that contains all the notes.
      * @throws IOException if anything went wrong accessing OINotepad's content provider.
      */
@@ -303,7 +304,9 @@ public class OINoteManager extends AbstractDataManager<Note> {
 
         String cols[] = {Notes._ID};
         Cursor cursor = resolver.query(Notes.CONTENT_URI, cols, null, null, null);
+        
         try {
+        	
             int size = cursor.getCount();
             Vector<String> itemKeys = new Vector<String>(size);
             if (!cursor.moveToFirst()) {
@@ -313,11 +316,13 @@ public class OINoteManager extends AbstractDataManager<Note> {
                 String key = cursor.getString(0);
                 if (Log.isLoggable(Log.TRACE)) {
                     Log.trace(TAG_LOG, "Found item with key: " + key);
+                    android.util.Log.d(TAG_LOG, "Notiz gefunden in OINotepad: " + key);
                 }
                 itemKeys.addElement(key);
                 cursor.moveToNext();
             }
             return itemKeys.elements();
+            
         } catch (Exception e) {
             Log.error(TAG_LOG, "Cannot get all items keys: ", e);
             throw new IOException("Cannot get all items keys");

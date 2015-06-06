@@ -55,34 +55,34 @@ import de.chbosync.android.syncmlclient.source.pim.PIMSyncSource;
 
 public class NoteSyncSource extends PIMSyncSource<Note> {
 	
-    private static final String TAG = "NoteSyncSource";
+	/** Tag for writing log message. */
+    private static final String TAG4LOGGING = "NoteSyncSource";
 
+    
     /**
      * CalendarSyncSource constructor: initialize source config.
-     * 
-     * @param config
-     * @param tracker
-     * @param context
-     * @param configuration
-     * @param appSource
      */
     public NoteSyncSource(SourceConfig config, ChangesTracker tracker, Context context,
                           Configuration configuration, AppSyncSource appSource, @SuppressWarnings("rawtypes") AbstractDataManager dm) {
+    	
         super(config, tracker, context, configuration, appSource, dm);
     }
+    
 
-    /** Logs the new item from the server. */
+    /** 
+     * Logs the new item from the server. 
+     * */
     @Override
     public int addItem(SyncItem item) {
         if (Log.isLoggable(Log.INFO)) {
-            Log.info(TAG, "New item " + item.getKey() + " from server.");
+            Log.info(TAG4LOGGING, "New item " + item.getKey() + " from server.");
         }
         if (Log.isLoggable(Log.TRACE)) {
-            Log.trace(TAG, new String(item.getContent()));
+            Log.trace(TAG4LOGGING, new String(item.getContent()));
         }
 
         if (syncMode == SyncML.ALERT_CODE_REFRESH_FROM_CLIENT || syncMode == SyncML.ALERT_CODE_ONE_WAY_FROM_CLIENT) {
-            Log.error(TAG, "Server is trying to update items for a one way sync! " + "(syncMode: " + syncMode + ")");
+            Log.error(TAG4LOGGING, "Server is trying to update items for a one way sync! " + "(syncMode: " + syncMode + ")");
             return SyncSource.ERROR_STATUS;
         }
 
@@ -98,38 +98,45 @@ public class NoteSyncSource extends PIMSyncSource<Note> {
             super.addItem(item);
 
             return SyncSource.SUCCESS_STATUS;
+            
         } catch (Exception e) {
-            Log.error(TAG, "Cannot save note", e);
+            Log.error(TAG4LOGGING, "Cannot save note", e);
             return SyncSource.ERROR_STATUS;
         }
     }
 
-    /** Update a given SyncItem stored on the source backend */
+    
+    /** 
+     * Update a given SyncItem stored on the source backend. 
+     */
     @Override
     public int updateItem(SyncItem item) {
         if (Log.isLoggable(Log.INFO)) {
-            Log.info(TAG, "Updated item " + item.getKey() + " from server.");
+            Log.info(TAG4LOGGING, "Updated item " + item.getKey() + " from server.");
         }
 
         if (syncMode == SyncML.ALERT_CODE_REFRESH_FROM_CLIENT || syncMode == SyncML.ALERT_CODE_ONE_WAY_FROM_CLIENT) {
-            Log.error(TAG, "Server is trying to update items for a one way sync! " + "(syncMode: " + syncMode + ")");
+            Log.error(TAG4LOGGING, "Server is trying to update items for a one way sync! " + "(syncMode: " + syncMode + ")");
             return SyncSource.ERROR_STATUS;
         }
 
         // Create a new note
         try {
+        	
             Note note = new Note();
             note.setPlainText(item.getContent());
             dm.update(item.getKey(), note);
 
             super.updateItem(item);
             return SyncSource.SUCCESS_STATUS;
+            
         } catch (Exception e) {
-            Log.error(TAG, "Cannot update note ", e);
+            Log.error(TAG4LOGGING, "Cannot update note ", e);
             return SyncSource.ERROR_STATUS;
         }
     }
 
+    
     @Override
     protected SyncItem getItemContent(final SyncItem item) throws SyncException {
         try {
@@ -141,7 +148,7 @@ public class NoteSyncSource extends PIMSyncSource<Note> {
             res.setContent(os.toByteArray());
             return res;
         } catch (Exception e) {
-            Log.error(TAG, "Cannot get note content for " + item.getKey(), e);
+            Log.error(TAG4LOGGING, "Cannot get note content for " + item.getKey(), e);
             throw new SyncException(SyncException.CLIENT_ERROR, "Cannot get note content");
         }
     }
