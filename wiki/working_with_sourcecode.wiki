@@ -76,3 +76,7 @@ Hint: To navigate to the source code of any of these classes mentioned without k
 The app has its own logger class, namely _com.funambol.util.Log_, which has only static methods. This logger is initialized by the code in method _initLog()_ of class _AppInitializer_. Here an appender object is created that is passes to _Log.initLog()_. Currently only an instance of class _AndroidLogAppender_ will be used as appender, because method _AppInitializer::isFileTracingAllowed()_ returns a hard-coded _false_. 
 
 The _AndroidLogAppender_ writes the log messages to the corresponding methods of Android's standard logger (class _android.util.Log_). The tag for all these log messages is _"ChBoSync"_.
+
+There are other classes implementing interface _Appender_, namely _FileAppender_ or _ConsoleAppender_. There is also class _MultipleAppender_ for using more than just one appender at the same time.
+
+All the classes for logging mentioned so far can be found in package _com.funambol.util_.
