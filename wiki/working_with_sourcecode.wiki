@@ -69,3 +69,10 @@ When the button for a particular Sync Source is pressed (e.g., for syncing notes
 <br>
 
 Hint: To navigate to the source code of any of these classes mentioned without knowing the package you can press _STRG+SHIFT+T_ for dialog _"Open Type"_ in Eclipse. In this dialog you can search for classes just by their name.
+
+
+=Logging=
+
+The app has its own logger class, namely _com.funambol.util.Log_, which has only static methods. This logger is initialized by the code in method _initLog()_ of class _AppInitializer_. Here an appender object is created that is passes to _Log.initLog()_. Currently only an instance of class _AndroidLogAppender_ will be used as appender, because method _AppInitializer::isFileTracingAllowed()_ returns a hard-coded _false_. 
+
+The _AndroidLogAppender_ writes the log messages to the corresponding methods of Android's standard logger (class _android.util.Log). The tag for all these log messages is _"ChBoSync"_.
