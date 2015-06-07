@@ -20,15 +20,13 @@ INPUT_LOGO_FILE=input_logo_47x47.png
 
 LOGO_CORRECTED=logo_48x48.png
 
-BACKGROUND_BITMAP_MDPI=EmptyBackground_MDPI.png     # 48x48 (  baseline)
+BACKGROUND_BITMAP_MDPI=EmptyBackground_MDPI_48x48.png     # 48x48 (  baseline)
 
-TARGET_FILE_XHDPI=montage_XHDPI.png                 # 96x96    (baseline*2)
+TARGET_FILE_XHDPI=montage_XHDPI_96x96.png                 # 96x96    (baseline*2)
 
-TARGET_FILE_XXHDPI_a=montage_XXHDPI_a.png           # 144x144  (baseline*3)
+TARGET_FILE_XXHDPI=montage_XXHDPI_144x144.png           # 144x144  (baseline*3)
 
-TARGET_FILE_XXHDPI_b=montage_XXHDPI_b.png           # 144x144  (baseline*3)
-
-TARGET_FILE_XXXHDPI=montage_XXXHDPI.png             # 192x192  (baseline*4)
+TARGET_FILE_XXXHDPI=montage_XXXHDPI_192_192.png           # 192x192  (baseline*4)
 
 
 
@@ -46,33 +44,23 @@ TARGET_FILE_XXXHDPI=montage_XXXHDPI.png             # 192x192  (baseline*4)
 
 # Step 2: Actual creation of tiled images
 
-
 # Four tiles for XHDPI (96x96)
-/usr/bin/montage $LOGO_CORRECTED $LOGO_CORRECTED $LOGO_CORRECTED $LOGO_CORRECTED \
+/usr/bin/montage $LOGO_CORRECTED         $BACKGROUND_BITMAP_MDPI \
+                 $BACKGROUND_BITMAP_MDPI $LOGO_CORRECTED \
                  -tile 2x2 \
                  -geometry 48x48+0+0 \
                  -background "rgba(0,0,0,0)" \
                  $TARGET_FILE_XHDPI
                  
-                 
-# Nine tiles for XXHDPI (144x144), variant a
-/usr/bin/montage $LOGO_CORRECTED $LOGO_CORRECTED $LOGO_CORRECTED \
-                 $LOGO_CORRECTED $LOGO_CORRECTED $LOGO_CORRECTED \
-                 $LOGO_CORRECTED $LOGO_CORRECTED $LOGO_CORRECTED \
-                 -tile 3x3 \
-                 -geometry 48x48+0+0 \
-                 -background "rgba(0,0,0,0)" \
-                 $TARGET_FILE_XXHDPI_a
-
-                 
-# Nine tiles for XXHDPI (144x144), variant b: five times the logo in form of an "x"
+                                  
+# Nine tiles for XXHDPI (144x144): five times the logo in form of an "x"
 /usr/bin/montage $LOGO_CORRECTED         $BACKGROUND_BITMAP_MDPI $LOGO_CORRECTED \
                  $BACKGROUND_BITMAP_MDPI $LOGO_CORRECTED         $BACKGROUND_BITMAP_MDPI \
                  $LOGO_CORRECTED         $BACKGROUND_BITMAP_MDPI $LOGO_CORRECTED \
                  -tile 3x3 \
                  -geometry 48x48+0+0 \
                  -background "rgba(0,0,0,0)" \
-                 $TARGET_FILE_XXHDPI_b
+                 $TARGET_FILE_XXHDPI
                  
                  
 # Sixteen tiles for XXXHDPI (192x192), "checkerboard pattern"
