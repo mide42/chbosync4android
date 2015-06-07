@@ -39,7 +39,7 @@ BACKGROUND_BITMAP_XHDPI=EmptyBackground_XHDPI.png     # 96x96
 
 BACKGROUND_BITMAP_XXHDPI=EmptyBackground_XXHDPI.png   # 144x144
 
-BACKGROUND_BITMAP_XXXHDPI=EmptyBackground_XXXHDPI.png # 196x196
+BACKGROUND_BITMAP_XXXHDPI=EmptyBackground_XXXHDPI.png # 192x192
 
 
 # Result files
@@ -49,7 +49,7 @@ TARGET_FILE_XHDPI=TargetFile_XHDPI.png       # 96x96,   copy to res\drawable-xhd
 
 TARGET_FILE_XXHDPI=TargetFile_XXHDPI.png     # 144x144, copy to res\drawable-xxhdpi\logo.png
 
-TARGET_FILE_XXXHDPI=TargetFile_XXXHDPI.png   # 196x196, copy to res\drawable-xxxhdpi\logo.png
+TARGET_FILE_XXXHDPI=TargetFile_XXXHDPI.png   # 192x192, copy to res\drawable-xxxhdpi\logo.png
 
 
 
@@ -64,7 +64,7 @@ BACKGROUND_COLOR_OPTION=xc:"rgba(0,0,0,0)"
 
 /usr/bin/convert -size 144x144 $BACKGROUND_COLOR_OPTION  $BACKGROUND_BITMAP_XXHDPI
 
-/usr/bin/convert -size 196x196 $BACKGROUND_COLOR_OPTION  $BACKGROUND_BITMAP_XXXHDPI
+/usr/bin/convert -size 192x192 $BACKGROUND_COLOR_OPTION  $BACKGROUND_BITMAP_XXXHDPI
 
 
 
@@ -75,7 +75,7 @@ composite -gravity center $INPUT_LOGO_FILE  $BACKGROUND_BITMAP_XHDPI    $TARGET_
 
 composite -gravity center $INPUT_LOGO_FILE  $BACKGROUND_BITMAP_XXHDPI   $TARGET_FILE_XXHDPI   # 144x144
 
-composite -gravity center $INPUT_LOGO_FILE  $BACKGROUND_BITMAP_XXXHDPI  $TARGET_FILE_XXXHDPI  # 196x196
+composite -gravity center $INPUT_LOGO_FILE  $BACKGROUND_BITMAP_XXXHDPI  $TARGET_FILE_XXXHDPI  # 192x192
 
 
 # Step 3: Write some details of each created target file to console (e.g. to check that file is not empty)
