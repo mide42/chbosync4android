@@ -1,0 +1,13 @@
+#summary Changelog for version 1.2 of ChBoSync.
+
+=Changelog: Changes for version 1.2 of _ChBoSync_=
+
+
+ * Special icons for displays with a pixel density higher than 160 DPIs, to prevent that the app's icon becomes "blurry" on such displays.
+
+ * ...
+
+
+<br>
+
+Version 1.2 of _ChBoSync_ is to be released in 2015.
