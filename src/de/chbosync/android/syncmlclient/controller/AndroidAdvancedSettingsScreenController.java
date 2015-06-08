@@ -195,7 +195,7 @@ public class AndroidAdvancedSettingsScreenController extends AdvancedSettingsScr
     		if (this.configuration instanceof AndroidConfiguration) {
     			AndroidConfiguration ac = (AndroidConfiguration)this.configuration;
     			
-    			ac.setShowDummyButtonForNotesSyncing(aast.getShowDummyButtonForNotesSyncing());    			
+    			ac.setShowDummyButtonForNotesSyncing( aast.getShowDummyButtonForNotesSyncing() );    			
     		}    		
     	}    	    	
     }

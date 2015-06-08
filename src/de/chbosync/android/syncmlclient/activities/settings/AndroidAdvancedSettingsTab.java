@@ -104,8 +104,10 @@ public class AndroidAdvancedSettingsTab extends AndroidSettingsTab
     // Added for ChBoSync: Elements concerning "OI Notepad"
     private Button installOINotepadButton;
     private TwoLinesCheckBox showNoteDummySyncButton;
+    private TwoLinesCheckBox supportEncryptedNotesCheckbox;
     private LinearLayout oiNotepadSection;
     private boolean originalShowNoteDummySyncButton;
+
     
     private Hashtable<String, Integer> logLevelReference = new Hashtable<String, Integer>();
     private LinearLayout settingsContainer;
@@ -377,17 +379,28 @@ public class AndroidAdvancedSettingsTab extends AndroidSettingsTab
         addDivider(devSettingsSection);
         
         
-        // Added for ChBoSync
+        // *** Added for ChBoSync ***
         oiNotepadSection = (LinearLayout) findViewById(R.id.advanced_settings_show_oi_notepad_missing_button);
+        
         installOINotepadButton = (Button) findViewById(R.id.advanced_settings_button_install_oi_notepad);
         installOINotepadButton.setOnClickListener( new OINotepadInstallListener() );
+        
         showNoteDummySyncButton = new TwoLinesCheckBox(activity);
-        showNoteDummySyncButton.setText1(localization.getLanguage("conf_show_oinotepad_dummy_sync_button"));
+        showNoteDummySyncButton.setText1( localization.getLanguage("conf_show_oinotepad_dummy_sync_button") );
         //showNoteDummySyncButton.setText2(localization.getLanguage("conf_...")); // for further description below text1 in a smaller font
         showNoteDummySyncButton.setPadding(0, showNoteDummySyncButton.getPaddingBottom(), 
         		                              showNoteDummySyncButton.getPaddingRight (),
         		                              showNoteDummySyncButton.getPaddingBottom() );
         oiNotepadSection.addView(showNoteDummySyncButton);
+        
+        supportEncryptedNotesCheckbox = new TwoLinesCheckBox(activity);
+        supportEncryptedNotesCheckbox.setText1( localization.getLanguage("conf_show_oinotepad_support_encrypted_notes") );
+        supportEncryptedNotesCheckbox.setText2( localization.getLanguage("conf_show_oinotepad_support_encrypted_notes_explanation") ); 
+        supportEncryptedNotesCheckbox.setPadding(0, supportEncryptedNotesCheckbox.getPaddingBottom(), 
+        		                                    supportEncryptedNotesCheckbox.getPaddingRight (),
+        		                                    supportEncryptedNotesCheckbox.getPaddingBottom() );        
+        oiNotepadSection.addView(supportEncryptedNotesCheckbox);
+        
     }
 
     public void cancelSettings() {

@@ -255,6 +255,8 @@ public final class R {
         public static final int conf_save_bandwidth=0x7f0500ee;
         public static final int conf_save_bandwidth_description=0x7f0500e2;
         public static final int conf_show_oinotepad_dummy_sync_button=0x7f050133;
+        public static final int conf_show_oinotepad_support_encrypted_notes=0x7f050134;
+        public static final int conf_show_oinotepad_support_encrypted_notes_explanation=0x7f050135;
         public static final int conf_sync_mode_title=0x7f0500cb;
         public static final int conf_upload_older_media=0x7f0500cf;
         public static final int conf_upload_older_media_warning=0x7f0500c0;
@@ -278,7 +280,7 @@ public final class R {
         public static final int dialog_appstoreclient_not_available=0x7f05012d;
         public static final int dialog_cancel=0x7f050073;
         public static final int dialog_cancel_import=0x7f050093;
-        public static final int dialog_confirm_logout_question=0x7f050135;
+        public static final int dialog_confirm_logout_question=0x7f050137;
         public static final int dialog_continue=0x7f0500e4;
         public static final int dialog_delete1=0x7f0500dc;
         public static final int dialog_delete2=0x7f0500db;
@@ -310,7 +312,7 @@ public final class R {
         public static final int dialog_sync_now=0x7f050082;
         public static final int dialog_text_oinotepad_already_installed=0x7f050132;
         public static final int dialog_title_appstore_client=0x7f050130;
-        public static final int dialog_title_confirm_logout=0x7f050134;
+        public static final int dialog_title_confirm_logout=0x7f050136;
         public static final int dialog_title_operation_not_possible=0x7f05012e;
         public static final int dialog_try_later=0x7f050115;
         public static final int dialog_wait_for_media_identification=0x7f050056;
@@ -413,11 +415,11 @@ public final class R {
         public static final int portal_info=0x7f0500d9;
         public static final int powered_by_funambol=0x7f050117;
         public static final int psw_label=0x7f05001c;
-        public static final int read_permission_desc=0x7f050137;
+        public static final int read_permission_desc=0x7f050139;
         /**   Strings needed for Tasquid's permissions (3rd-party-app needed for syncing of task, fork/successor of "Astrid") 
   Strings needed for Tasquid's permissions (3rd-party-app needed for syncing of task, fork/successor of "Astrid") 
          */
-        public static final int read_permission_label=0x7f050136;
+        public static final int read_permission_label=0x7f050138;
         public static final int removePicture=0x7f05006c;
         public static final int revert_button=0x7f0500e9;
         public static final int save_button=0x7f05003c;
@@ -518,8 +520,8 @@ public final class R {
         public static final int word_at=0x7f050104;
         public static final int word_today=0x7f0500d4;
         public static final int word_yesterday=0x7f0500a1;
-        public static final int write_permission_desc=0x7f050139;
-        public static final int write_permission_label=0x7f050138;
+        public static final int write_permission_desc=0x7f05013b;
+        public static final int write_permission_label=0x7f05013a;
     }
     public static final class style {
         public static final int advanced_settings_button_raw_layout=0x7f07000c;
