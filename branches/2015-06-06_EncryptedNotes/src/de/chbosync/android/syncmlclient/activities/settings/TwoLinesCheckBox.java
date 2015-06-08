@@ -45,7 +45,11 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import de.chbosync.android.syncmlclient.R;
 
-
+/**
+ * <i>Text2</i> is shown in second line with smaller font, can be used for  
+ * explanation about the effects of the checkbox. This text may be put into
+ * several lines.
+ */
 public class TwoLinesCheckBox extends LinearLayout implements OnClickListener {
 
     private LinearLayout checkboxContainer;
@@ -58,8 +62,8 @@ public class TwoLinesCheckBox extends LinearLayout implements OnClickListener {
     public TwoLinesCheckBox(Context context) {
         super(context);
 
-        LayoutInflater inflater = (LayoutInflater)getContext().getSystemService(
-                Context.LAYOUT_INFLATER_SERVICE);
+        LayoutInflater inflater = (LayoutInflater)getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                
         checkboxContainer = (LinearLayout)inflater.inflate(
                 R.layout.two_lines_checkbox, this, false);
         this.addView(checkboxContainer);

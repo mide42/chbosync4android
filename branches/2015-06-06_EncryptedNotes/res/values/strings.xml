@@ -307,6 +307,8 @@
 <string name="button_install_oi_notepad">Install \"OI Notepad\"</string>
 <string name="dialog_text_oinotepad_already_installed">The app \"OI Notepad\" is already installed on your device.</string>
 <string name="conf_show_oinotepad_dummy_sync_button">Show button to install \"OI Notepad\" instead of sync button</string>
+<string name="conf_show_oinotepad_support_encrypted_notes">Support for encrypted notes</string>
+<string name="conf_show_oinotepad_support_encrypted_notes_explanation">If a new or updated note from the server is considered as encrypted by the heuristic detection, then \"OI Notepad\" will be instructed to handle the note as encrypted note.</string>
 <string name="dialog_title_confirm_logout">Confirmation of Logout</string>
 <string name="dialog_confirm_logout_question">Do you really want to logout? You will have to enter your credentials again to connect to the SyncML server.</string>
 

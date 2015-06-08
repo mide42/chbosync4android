@@ -304,6 +304,8 @@
 <string name="button_install_oi_notepad">\"OI Notepad\" installieren</string>
 <string name="dialog_text_oinotepad_already_installed">Die App \"OI Notepad\" ist bereits auf diesem Gerät installiert.</string>
 <string name="conf_show_oinotepad_dummy_sync_button">Button zum Installieren von \"OI Notepad\" anstelle von Sync-Button anzeigen</string>
+<string name="conf_show_oinotepad_support_encrypted_notes">Erkennung von verschlüsselten Notizen</string>
+<string name="conf_show_oinotepad_support_encrypted_notes_explanation">Wenn eine vom Server empfangene neue oder aktualisierte Notiz durch die Heuristik als verschlüsselt erkannt wird, dann wird \"OI Notepad\" angewiesen, diese Notiz als verschlüsselte Notiz zu behandeln.</string>
 <string name="dialog_title_confirm_logout">Bestätigung für Logout</string>
 <string name="oinotepad_not_installed">Die kostenlose App \"OI Notepad\" ist nicht auf Ihrem Gerät installiert. Es können deshalb keine Notizen synchronisiert werden.</string>
 <string name="install_oinotepad_now">Möchten Sie diese App jetzt installieren?</string>
