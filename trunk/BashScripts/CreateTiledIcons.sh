@@ -20,23 +20,22 @@ INPUT_LOGO_FILE=input_logo_47x47.png
 
 LOGO_CORRECTED=logo_48x48.png
 
-BACKGROUND_BITMAP_MDPI=EmptyBackground_MDPI_48x48.png     # 48x48 (  baseline)
+BACKGROUND_BITMAP_MDPI=EmptyBackground_MDPI_48x48.png     # 48x48   ( baseline   )
 
-TARGET_FILE_XHDPI=montage_XHDPI_96x96.png                 # 96x96    (baseline*2)
+TARGET_FILE_XHDPI=montage_XHDPI_96x96.png                 # 96x96   ( baseline*2 )
 
-TARGET_FILE_XXHDPI=montage_XXHDPI_144x144.png           # 144x144  (baseline*3)
+TARGET_FILE_XXHDPI=montage_XXHDPI_144x144.png             # 144x144 ( baseline*3 )
 
-TARGET_FILE_XXXHDPI=montage_XXXHDPI_192_192.png           # 192x192  (baseline*4)
-
+TARGET_FILE_XXXHDPI=montage_XXXHDPI_192_192.png           # 192x192 ( baseline*4 )
 
 
 
 # Step 1: Correct original logo of size 47x47 to 48x48 by adding transparent pixels.
-# (using -geometry 48x48+1+1 would not work, because this would add 1 pixel to each
+# (Using -geometry 48x48+1+1 would not work, because this would add 1 pixel to each
 #  side of the logo BEFORE tiling, so the resulting image would have a size of
 #  98x98 instead of 96x96).
 
-/usr/bin/convert -size 48x48   xc:"rgba(0,0,0,0)"  $BACKGROUND_BITMAP_MDPI
+/usr/bin/convert -size 48x48  xc:"rgba(0,0,0,0)"  $BACKGROUND_BITMAP_MDPI
 
 /usr/bin/composite -gravity center $INPUT_LOGO_FILE  $BACKGROUND_BITMAP_MDPI  $LOGO_CORRECTED
 
@@ -75,7 +74,7 @@ TARGET_FILE_XXXHDPI=montage_XXXHDPI_192_192.png           # 192x192  (baseline*4
                  
                  
                  
-# Step 3: Write some details of each created target file to console (e.g. to check that file is not empty)
+# Step 3: Write some details about each created target file to console (e.g. to check that file is not empty)
 echo -e "\n"
 for TARGET_FILE in montage_*.png
 do
