@@ -9,7 +9,6 @@
 
  * Added link to new sourcecode repository at GitHub on about screen because of the _[http://google-opensource.blogspot.de/2015/03/farewell-to-google-code.html upcoming shutdown of "Google Code"]_. 
 
-
-
+<br>
 
 Version 1.1 of _ChBoSync_ was released on 18 April 2015.
