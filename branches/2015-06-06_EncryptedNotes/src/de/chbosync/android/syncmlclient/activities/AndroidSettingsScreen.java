@@ -50,13 +50,12 @@ import android.widget.RelativeLayout;
 import android.widget.TabHost;
 import android.widget.TextView;
 
-import com.funambol.client.controller.HomeScreenController;
 import com.funambol.client.localization.Localization;
 import com.funambol.client.ui.Screen;
 import com.funambol.util.Log;
 
-import de.chbosync.android.syncmlclient.R;
 import de.chbosync.android.syncmlclient.AndroidCustomization;
+import de.chbosync.android.syncmlclient.R;
 import de.chbosync.android.syncmlclient.activities.settings.AndroidAdvancedSettingsTab;
 import de.chbosync.android.syncmlclient.activities.settings.AndroidSettingsTab;
 import de.chbosync.android.syncmlclient.activities.settings.AndroidSyncSettingsTab;
@@ -74,18 +73,16 @@ public class AndroidSettingsScreen extends Activity
 
     private static final String TAG = "AndroidSettingsScreen";
 
-    private TabHost tabs;
+    private TabHost tabs = null;
 
-    private Localization localization;
-    private AndroidCustomization customization;
+    private Localization         localization   = null;
+    private AndroidCustomization customization  = null;
 
-    private AndroidDisplayManager displayManager;
+    private AndroidDisplayManager displayManager = null;
 
-    private static final String LAST_SELECTED_TAB_ID = "LastSelectedTabId";
-
+    private static final String LAST_SELECTED_TAB_ID            = "LastSelectedTabId";
     private static final String REFRESH_DIRECTION_ALERT_PENDING = "RefreshDirectionAlert";
-
-    private static final String REFRESH_TYPE_ALERT_PENDING = "RefreshTypeAlert";
+    private static final String REFRESH_TYPE_ALERT_PENDING      = "RefreshTypeAlert";
 
     private List<AndroidSettingsTab> settingsTabList = new ArrayList<AndroidSettingsTab>();
 
@@ -151,11 +148,14 @@ public class AndroidSettingsScreen extends Activity
 
         //Notifies to the Bundle resource if a selection alert is pending (For example after screen rotation)
         if (displayManager.isAlertPending(AndroidDisplayManager.REFRESH_DIRECTION_DIALOG_ID)) {
+        	
             displayManager.dismissSelectionDialog(AndroidDisplayManager.REFRESH_DIRECTION_DIALOG_ID);
             outState.putInt(REFRESH_DIRECTION_ALERT_PENDING, AndroidDisplayManager.REFRESH_DIRECTION_DIALOG_ID);
+            
         } else if (displayManager.isAlertPending(AndroidDisplayManager.REFRESH_TYPE_DIALOG_ID)) {
+        	
             displayManager.dismissSelectionDialog(AndroidDisplayManager.REFRESH_TYPE_DIALOG_ID);
-            outState.putInt(REFRESH_TYPE_ALERT_PENDING, AndroidDisplayManager.REFRESH_TYPE_DIALOG_ID);
+            outState.putInt(REFRESH_TYPE_ALERT_PENDING, AndroidDisplayManager.REFRESH_TYPE_DIALOG_ID);            
         }
     }
 
@@ -273,15 +273,17 @@ public class AndroidSettingsScreen extends Activity
             Log.info(TAG, "Saving settings");
         }
 
-        AndroidController gc = AndroidController.getInstance();
-        AndroidHomeScreenController ahsc = (AndroidHomeScreenController)gc
-                .getHomeScreenController();
+        AndroidController androidController = AndroidController.getInstance();
+        AndroidHomeScreenController ahsc    = (AndroidHomeScreenController)androidController.getHomeScreenController();
+                
         if (ahsc.isSynchronizing() || ahsc.isFirstSyncDialogDisplayed()){
-            displayManager.showMessage(this, localization.getLanguage(
-                    "sync_in_progress_dialog_save"));
+        	
+            displayManager.showMessage(this, localization.getLanguage( "sync_in_progress_dialog_save" ));
+                    
             if (Log.isLoggable(Log.INFO)) {
                 Log.info(TAG, "Cannot save settings. Synchronization in progress...");
             }
+            
             return;
         }
         
@@ -343,7 +345,7 @@ public class AndroidSettingsScreen extends Activity
             if(count <= 0 && result == true) {
                 if (changesFound) {
                     displayManager.showMessage(AndroidSettingsScreen.this,
-                            localization.getLanguage("settings_saved"));
+                                               localization.getLanguage("settings_saved"));
                 }
                 if (close) {
                     finish();

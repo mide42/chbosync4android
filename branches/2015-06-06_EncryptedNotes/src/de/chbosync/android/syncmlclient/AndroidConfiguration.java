@@ -258,11 +258,18 @@ public class AndroidConfiguration extends Configuration {
     /** Key for the preference "showDummyButtonForNotesSyncing". */
     protected static final String CONF_SHOW_DUMMY_BUTTON_FOR_SYNCING_NOTES = "DUMMY_BUTTON_FOR_SYNCING_NOTES";
     
+    /** Key for the preference "detectionOfEncryptedNotesEnabled". */
+    protected static final String CONF_DETECTION_OF_ENCRYPTED_NOTES_ENABLED = "DETECTION_OF_ENCRYPTED_NOTES";
+    
     /** Member variable holding the current state of the preference value "showDummyButtonForNotesSyncing". */
     protected boolean showDummyButtonForNotesSyncing = true;
     
+    /** Member variable holding the current state of the preferen value "detectionOfEncryptedNotesEnabled". */
+    protected boolean detectionOfEncryptedNotesEnabled = false;
+    
     
     /**
+     * Getter for preference "showDummyButtonForNotesSyncing".
      * 
      * @return <tt>true</tt> if dummy button instead of sync button
      *         for notes should be shown when "OI Notepad" is not available
@@ -274,6 +281,7 @@ public class AndroidConfiguration extends Configuration {
     
     
     /**
+     * Setter for preference "showDummyButtonForNotesSyncing".
      * 
      * @param enabled <tt>true</tt> if dummy button instead of sync button
      *        for notes should be shown when "OI Notepad" is not available
@@ -283,6 +291,24 @@ public class AndroidConfiguration extends Configuration {
     	showDummyButtonForNotesSyncing = enabled;
     }
 
+    
+    /**
+     * Getter for preference "detectionOfEncryptedNotesEnabled".
+     * 
+     * @return <tt>true</tt> iff detection of encrypted notes is currently enabled.
+     */
+    public boolean getDetectionOfEncryptedNotesEnabled() {
+    	return detectionOfEncryptedNotesEnabled;
+    }
+    
+    /**
+     * Setter for preference "detectionOfEncryptedNotesEnabled".
+     * 
+     * @param <tt>true</tt> iff detection of encrypted notes is to be enabled. 
+     */
+    public void setDetectionOfEncryptedNotesEnabled(boolean enabled) {
+    	detectionOfEncryptedNotesEnabled = enabled;
+    }
     
     /**
      * Overwriting of method for loading of preferences from shared preferences, so 
@@ -295,7 +321,9 @@ public class AndroidConfiguration extends Configuration {
 			return CONF_OK;
 		}
 		
-		showDummyButtonForNotesSyncing = loadBooleanKey(CONF_SHOW_DUMMY_BUTTON_FOR_SYNCING_NOTES, true); // "true" is default value
+		showDummyButtonForNotesSyncing   = loadBooleanKey(CONF_SHOW_DUMMY_BUTTON_FOR_SYNCING_NOTES, true  ); // "true" is default value
+		
+		detectionOfEncryptedNotesEnabled = loadBooleanKey(CONF_DETECTION_OF_ENCRYPTED_NOTES_ENABLED, false); // false: disabled by default
 		
 		return super.load();
 	}
