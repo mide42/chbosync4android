@@ -71,6 +71,7 @@ import de.chbosync.android.syncmlclient.source.pim.note.OINotepadInstallationHel
 public class AndroidAdvancedSettingsTab extends AndroidSettingsTab
                                         implements AdvancedSettingsScreen {
 
+	/** Tag for log messages. */
     private static final String TAG_LOG = "AndroidAdvancedSettingsTag";
 
     /** The string that references this class into the log content*/
@@ -79,46 +80,47 @@ public class AndroidAdvancedSettingsTab extends AndroidSettingsTab
     private static final int LAYOUT_ID = R.id.advanced_settings_tab;
 
     // Log section elements
-    private Spinner spin;
-    private Button  viewLogBtn;
-    private Button  sendLogBtn;
-    private LinearLayout logSection;
-    private LinearLayout logButtonsRaw;
+    private Spinner      spin          = null;
+    private Button       viewLogBtn    = null;
+    private Button       sendLogBtn    = null;
+    private LinearLayout logSection    = null;
+    private LinearLayout logButtonsRaw = null;
 
     // Reset section elements
-    private Button resetBtn;
-    private LinearLayout resetSection;
+    private Button       resetBtn     = null;
+    private LinearLayout resetSection = null;
 
     // Import section elements
-    private Button importBtn;
-    private LinearLayout importSection;
+    private Button       importBtn     = null;
+    private LinearLayout importSection = null;
 
     // Source remote uris elements
-    private Button devSettingsBtn;
-    private LinearLayout devSettingsSection;
+    private Button       devSettingsBtn     = null;
+    private LinearLayout devSettingsSection = null;
 
     // Bandwidth saver elements
-    private LinearLayout bandwidthSaverSection;
-    private TwoLinesCheckBox saveBandwidthCheckBox;
+    private LinearLayout     bandwidthSaverSection = null;
+    private TwoLinesCheckBox saveBandwidthCheckBox = null;
     
-    // Added for ChBoSync: Elements concerning "OI Notepad"
-    private Button installOINotepadButton;
-    private TwoLinesCheckBox showNoteDummySyncButton;
-    private TwoLinesCheckBox supportEncryptedNotesCheckbox;
-    private LinearLayout oiNotepadSection;
-    private boolean originalShowNoteDummySyncButton;
+    // Added for ChBoSync: Settings concerning "OI Notepad"
+    private Button           installOINotepadButton        = null;
+    private TwoLinesCheckBox showNoteDummySyncButton       = null;
+    private TwoLinesCheckBox supportEncryptedNotesCheckbox = null;
+    private LinearLayout     oiNotepadSection              = null;
+    private boolean          originalShowNoteDummySyncButton;
 
     
     private Hashtable<String, Integer> logLevelReference = new Hashtable<String, Integer>();
-    private LinearLayout settingsContainer;
+    private LinearLayout settingsContainer = null;
 
-    private int originalLogLevel;
+    private int     originalLogLevel;
     private boolean originalBandwidthStatus;
     //private boolean originalRemoteUriStatus;
 
-    private AndroidDisplayManager dm;
+    private AndroidDisplayManager displayManager = null;
 
-    private AndroidAdvancedSettingsScreenController screenController;
+    private AndroidAdvancedSettingsScreenController screenController = null;
+    
 
     /**
      * Default constructor.
@@ -130,7 +132,7 @@ public class AndroidAdvancedSettingsTab extends AndroidSettingsTab
 
         AndroidController cont = AndroidController.getInstance();
 
-        this.dm = (AndroidDisplayManager)cont.getDisplayManager();
+        this.displayManager = (AndroidDisplayManager)cont.getDisplayManager();
 
         screenController = new AndroidAdvancedSettingsScreenController(cont, this);
 
@@ -139,7 +141,7 @@ public class AndroidAdvancedSettingsTab extends AndroidSettingsTab
     }
 
     /**
-     * get the tag of this class
+     * Get the tag of this class
      * @return String the TAG that represents this class' name
      */
     public String getTag() {
@@ -184,11 +186,10 @@ public class AndroidAdvancedSettingsTab extends AndroidSettingsTab
         originalBandwidthStatus = configuration.getBandwidthSaverActivated();
         
         if (configuration instanceof AndroidConfiguration) { // added for ChBoSync
-        	AndroidConfiguration ac = (AndroidConfiguration)configuration;
+        	AndroidConfiguration ac         = (AndroidConfiguration)configuration;
         	originalShowNoteDummySyncButton = ac.getShowDummyButtonForNotesSyncing();
         }
-        
-        
+                
         callback.saveSettingsResult(true);
     }
 
@@ -312,8 +313,7 @@ public class AndroidAdvancedSettingsTab extends AndroidSettingsTab
 
     /**
      * Getter for current state of <i>TwoLinesCheckBox</i> for preference "showDummyButtonForNotesSyncing". 
-     * Added for ChBoSync
-     * 
+     * Added for ChBoSync 
      */
     public boolean getShowDummyButtonForNotesSyncing() {
     	return showNoteDummySyncButton.isChecked();
@@ -321,17 +321,17 @@ public class AndroidAdvancedSettingsTab extends AndroidSettingsTab
 
     private void initScreenElements() {
 
-        logLevelReference.put( localization.getLanguage("advanced_settings_log_level_none" ), Log.DISABLED);
-        logLevelReference.put( localization.getLanguage("advanced_settings_log_level_error"), Log.ERROR   );
-        logLevelReference.put( localization.getLanguage("advanced_settings_log_level_info" ), Log.INFO    );
-        logLevelReference.put( localization.getLanguage("advanced_settings_log_level_debug"), Log.DEBUG   );
-        logLevelReference.put( localization.getLanguage("advanced_settings_log_level_trace"), Log.TRACE   );
+        logLevelReference.put( localization.getLanguage("advanced_settings_log_level_none" ), Log.DISABLED );
+        logLevelReference.put( localization.getLanguage("advanced_settings_log_level_error"), Log.ERROR    );
+        logLevelReference.put( localization.getLanguage("advanced_settings_log_level_info" ), Log.INFO     );
+        logLevelReference.put( localization.getLanguage("advanced_settings_log_level_debug"), Log.DEBUG    );
+        logLevelReference.put( localization.getLanguage("advanced_settings_log_level_trace"), Log.TRACE    );
 
         saveBandwidthCheckBox = new TwoLinesCheckBox(activity);
-        saveBandwidthCheckBox.setText1(localization.getLanguage("conf_save_bandwidth"));
+        saveBandwidthCheckBox.setText1(localization.getLanguage("conf_save_bandwidth"            ));
         saveBandwidthCheckBox.setText2(localization.getLanguage("conf_save_bandwidth_description"));
         saveBandwidthCheckBox.setPadding(0, saveBandwidthCheckBox.getPaddingBottom(), saveBandwidthCheckBox.getPaddingRight(),
-                saveBandwidthCheckBox.getPaddingBottom());
+                                            saveBandwidthCheckBox.getPaddingBottom() );
 
         View.inflate(activity, R.layout.advanced_settings_view, this);
 
@@ -408,11 +408,13 @@ public class AndroidAdvancedSettingsTab extends AndroidSettingsTab
 
     
     /**
-     * Inner class for call-back invoked when the user presses the button for installing "OI Notepad"
+     * Inner class for call-back invoked when the user presses the button for installing "OI Notepad".
      * Added for ChBoSync
      */
     private class OINotepadInstallListener implements OnClickListener {
+    	
         public void onClick(View view) {
+        	
         	Activity activity = AndroidAdvancedSettingsTab.this.getActivity();
         	
         	if ( OINoteManager.getOINotepadInstalled() ) {
@@ -443,6 +445,7 @@ public class AndroidAdvancedSettingsTab extends AndroidSettingsTab
         }
     } // end of inner class OINotepadInstallListener
     
+    
     /**
      * A call-back invoked when the user presses the reset button.
      */
@@ -451,8 +454,7 @@ public class AndroidAdvancedSettingsTab extends AndroidSettingsTab
             AndroidSettingsScreen ass = (AndroidSettingsScreen) getUiScreen();
             //check the changes on other settings tabs before refresh
             if (ass.hasChanges()) {
-                    dm.askYesNoQuestion(ass, localization.getLanguage(
-                    "settings_changed_alert"),
+                    displayManager.askYesNoQuestion(ass, localization.getLanguage("settings_changed_alert"),                    
                     new Runnable() {
                         AndroidSettingsScreen ass = (AndroidSettingsScreen) getUiScreen();
                         public void run() {
@@ -468,7 +470,8 @@ public class AndroidAdvancedSettingsTab extends AndroidSettingsTab
                 screenController.reset();
             }
         }
-    }
+    } // end of inner class
+    
 
     /**
      * A call-back invoked when the user presses the reset button.
@@ -478,12 +481,13 @@ public class AndroidAdvancedSettingsTab extends AndroidSettingsTab
             // We open a new activity here
             AndroidSettingsScreen ass = (AndroidSettingsScreen) getUiScreen();
             try {
-                dm.showScreen(ass, Controller.DEV_SETTINGS_SCREEN_ID);
+                displayManager.showScreen(ass, Controller.DEV_SETTINGS_SCREEN_ID);
             } catch (Exception e) {
                 Log.error(TAG_LOG, "Cannot show dev settings screen", e);
             }
         }
-    }
+    } // end of inner class
+    
 
     private class ResetSaveCallback extends SaveSettingsCallback {
 
@@ -502,7 +506,8 @@ public class AndroidAdvancedSettingsTab extends AndroidSettingsTab
                 screenController.reset();
             }
         }
-    }
+    } // end of inner class
+    
 
     /**
      * A call-back for when the user presses the view log button.
@@ -530,4 +535,5 @@ public class AndroidAdvancedSettingsTab extends AndroidSettingsTab
             screenController.importContacts();
         }
     }
+    
 }
