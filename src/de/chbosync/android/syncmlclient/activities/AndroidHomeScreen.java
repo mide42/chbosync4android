@@ -86,6 +86,7 @@ import de.chbosync.android.syncmlclient.source.pim.note.OINotepadInstallationHel
  */
 public class AndroidHomeScreen extends Activity implements HomeScreen, UISyncSourceContainer {
 
+	/** Tag for logging */
     private static final String TAG = "AndroidHomeScreen";
 
     private static final String FIRST_SYNC_ALERT_PENDING         = "FirstSyncAlertPending";

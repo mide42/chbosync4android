@@ -50,6 +50,9 @@ import com.funambol.common.pim.model.common.Property;
 import com.funambol.util.Log;
 import com.funambol.util.StringUtil;
 
+import de.chbosync.android.syncmlclient.AndroidConfiguration;
+import de.chbosync.android.syncmlclient.App;
+import de.chbosync.android.syncmlclient.AppInitializer;
 import de.chbosync.android.syncmlclient.source.AbstractDataManager;
 
 
@@ -63,11 +66,16 @@ public class OINoteManager extends AbstractDataManager<Note> {
     private static final String TAG_LOG = "OINoteManager";
     
     /** Authority string for OINotepad's content provider. */
-    public  static final String AUTHORITY = "org.openintents.notepad";
+    public static final String AUTHORITY = "org.openintents.notepad";
     
 
     /** Flag to store if app "OI Notepad" is installed on device (added for ChBoSync). */ 
     protected static boolean sOINotepadInstalled = false;
+    
+    /** Configuration object, needed to find out if detection of encrypted notes is enabled or not.
+     * Lazy initialization of this variable in method {@link OINoteManager#createNoteContentValues(Note)}.
+     */
+    protected AndroidConfiguration androidConfiguration = null; 
     
     
     /**
@@ -105,8 +113,9 @@ public class OINoteManager extends AbstractDataManager<Note> {
         public static final String   MODIFIED_DATE = "modified";
         public static final String   TAGS          = "tags";
         public static final String   ENCRYPTED     = "encrypted"; // added for ChBoSync
-        public static final String[] PROJECTION    = { _ID, TITLE, NOTE };                                                                                                                                                         
-    }
+        public static final String[] PROJECTION    = { _ID, TITLE, NOTE };
+        
+    } // End of inner class
 
 
     /**
@@ -120,6 +129,7 @@ public class OINoteManager extends AbstractDataManager<Note> {
         //this.appSource = appSource;
     }
 
+    
     /**
      * Accessor method: get the authority for OINotepad.
      * 
@@ -128,6 +138,7 @@ public class OINoteManager extends AbstractDataManager<Note> {
     protected String getAuthority() {
         return AUTHORITY;
     }
+    
 
     /**
      * Load a particular note entry from OINotepad's content provider.
@@ -191,6 +202,7 @@ public class OINoteManager extends AbstractDataManager<Note> {
 
         return "" + id;
     }
+    
 
     /**
      * Method to update a note in OINotepad.
@@ -254,8 +266,10 @@ public class OINoteManager extends AbstractDataManager<Note> {
         }
     }
 
+    
     /**
      * Delete all note in OINotepad.
+     * 
      * @throws IOException if anything went wrong accessing OINotepad's content provider.
      */
     public void deleteAll() throws IOException {
@@ -294,6 +308,7 @@ public class OINoteManager extends AbstractDataManager<Note> {
         return found;
     }
 
+    
     /**
      * Get all of the note keys that are currently stored in OINotepad.
      * 
@@ -329,13 +344,25 @@ public class OINoteManager extends AbstractDataManager<Note> {
             cursor.close();
         }
     }
-
+    
+    
+    /**
+     * Empty method, returns only <tt>null</tt> so far.
+     */
     public Vector<com.funambol.syncml.protocol.Property> getSupportedProperties() {
         // TODO: FIXME
         return null;
     }
 
     
+    /**
+     * Gets values for properties TITLE and NOTE and puts them into the
+     * note object. 
+     * 
+     * @param cursor Cursor from which the values of the two fields will be read
+     * @param note   Note object for setting fields TITLE and NOTE.
+     * @param key Not used
+     */
     private void loadNoteFields(Cursor cursor, Note note, long key) {
 
         // Load TITLE
@@ -353,7 +380,7 @@ public class OINoteManager extends AbstractDataManager<Note> {
 
     
     /**
-     * dummy method
+     * Empty method, returns only <tt>null</tt> so far.
      */
     public Vector commit() {
         return null;
@@ -363,25 +390,39 @@ public class OINoteManager extends AbstractDataManager<Note> {
     /**
      * Putting title and body of the note into an object of class <tt>ContentValues</tt>,
      * so it can be inserted into "OI Notepad" via a Content Resolver.
+     * <br><br>
+     * Added for ChBoSync: Also setting value for property "encrypted" (if enabled according to settings).
      */
     private ContentValues createNoteContentValues(Note note) throws IOException {
 
         ContentValues contentValues = new ContentValues();
+        
 
         putStringProperty(Notes.TITLE, note.getTitle(), contentValues);
 
         putStringProperty(Notes.NOTE,  note.getBody(),  contentValues);
         
+        
         // Added for ChBoSync: Setting of content provider's flag if note is encrypted or not
-        if ( note.isNoteEncrypted() ) {
-        	contentValues.put(Notes.ENCRYPTED, 1);
-        	Log.debug("Found encrypted note with id=" + note.getId() );
+        if (androidConfiguration == null) {        		
+        	AppInitializer initializer = App.i().getAppInitializer();
+        	androidConfiguration       = initializer.getConfiguration();
         }
-        else
-        	contentValues.put(Notes.ENCRYPTED, 0);
+        
+        if (androidConfiguration != null && androidConfiguration.getDetectionOfEncryptedNotesEnabled() ) {
+        
+	        if ( note.isNoteEncrypted() ) {
+	        	contentValues.put(Notes.ENCRYPTED, 1);
+	        	Log.debug("Found encrypted note with id=" + note.getId() );
+	        }
+	        else
+	        	contentValues.put(Notes.ENCRYPTED, 0);        
+        }
         	        
+        
         return contentValues;
     }
+    
 
     /**
      * Put a String property to the given ContentValues.

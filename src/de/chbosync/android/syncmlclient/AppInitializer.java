@@ -80,14 +80,21 @@ public class AppInitializer {
 
     private static final String TAG_LOG = "AppInitializer";
 
-    private Localization localization;
-    private AndroidConfiguration configuration;
-    private Customization customization;
-    private AndroidAppSyncSourceManager appSyncSourceManager;
-    private AndroidController controller;
-    private Context context;
+    private Localization localization = null; 
+    
+    private AndroidConfiguration configuration = null;
+    
+    private Customization customization = null;
+    
+    private AndroidAppSyncSourceManager appSyncSourceManager = null;
+    
+    private AndroidController controller = null;
+    
+    private Context context = null;
+    
     private WifiLock wifiLock = null;
-    private SyncLock syncLock;
+    
+    private SyncLock syncLock = null; 
 
     private boolean initialized = false;
 
@@ -385,6 +392,7 @@ public class AppInitializer {
 
         // Check if there is not funambol account
         if(account == null) {
+        	
             if (Log.isLoggable(Log.DEBUG)) {
                 Log.debug(TAG_LOG, "Account not found, create a default one");
             }
@@ -405,7 +413,9 @@ public class AppInitializer {
                         }
                     }
                 }, null);
+            
         } else {
+        	
             if (Log.isLoggable(Log.DEBUG)) {
                 Log.debug(TAG_LOG, "Account already defined");
             }
