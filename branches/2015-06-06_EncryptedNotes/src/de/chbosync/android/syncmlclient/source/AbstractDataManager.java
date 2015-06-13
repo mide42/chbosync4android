@@ -55,13 +55,15 @@ public abstract class AbstractDataManager<E> {
 
     private static final String TAG_LOG = "AbstractDataManager";
 
-    protected Context context;
-    protected ContentResolver resolver;
+    protected Context context = null;
+    
+    protected ContentResolver resolver = null;
 
     protected String accountType = null;
     protected String accountName = null;
 
     protected Vector<String> supportedFields = null;
+    
     
     public AbstractDataManager(Context context) {
         this.context = context;

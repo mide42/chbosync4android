@@ -44,8 +44,9 @@ import android.app.Application;
  */
 public class App extends Application {
     
-    private static App instance;
-    protected static AppInitializer appInitializer;
+    private static   App instance = null;
+    
+    protected static AppInitializer appInitializer = null;
 
     private static final Object mSyncObject = new Object();
 
@@ -58,7 +59,9 @@ public class App extends Application {
     }
 
     
-    //---------- Singleton
+    /**
+     * Getter for singleton instance.
+     */
     public static App i() {
         synchronized(mSyncObject) {
             if (null == instance) {
@@ -88,7 +91,7 @@ public class App extends Application {
 
     /**
      * Setup the environment, visibility is public only because
-     * it's called from test classes
+     * it's called from test classes.
      */
     public void setupEnvironment() {
         //creates a single instance of AppInitializer class
