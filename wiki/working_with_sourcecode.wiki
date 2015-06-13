@@ -21,6 +21,7 @@ For the following description it is assumed that you have an installation of Ecl
  * The project contains all libraries needed for compiling in the folder _"external-libs"_ (several Funambol libraries and _"[joda_time_library Joda Time]"_).
 
  * Start the app in the emulator or a device connected via the _"Android Debug Bridge (ADB)"_ to your PC by opening the context menu (right button of mouse) of the node labled _"ChBoSync"_ in the _"Package Explorer"_ and choose _"Run As | Android Application"_. 
+<br>
 
 
 =Get along in the source code=
@@ -34,6 +35,8 @@ If for the activation of a particular _Sync Source_ it has to be checked if a pa
 The big buttons on the app's main screen used for triggering the syncing of a particular syncing action (e.g. syncing of contacts or notes) are instances of class _AndroidButtonUISyncSource_. 
 
 Class _AndroidHomeScreen_ represents the main screen of the app, i.e. the screen with the big buttons for the individual _Sync Sources_. The creation of these button is done in class _UpdateAvailableSourcesUIThread_, which is an inner class of _AndroidHomeScreen_ . 
+<br>
+
 
 ==Program flow when a sync button is pressed==
 
@@ -69,7 +72,7 @@ When the button for a particular Sync Source is pressed (e.g., for syncing notes
 <br>
 
 Hint: To navigate to the source code of any of these classes mentioned without knowing the package you can press _STRG+SHIFT+T_ for dialog _"Open Type"_ in Eclipse. In this dialog you can search for classes just by their name.
-
+<br>
 
 =Logging=
 
@@ -80,3 +83,9 @@ The _AndroidLogAppender_ writes the log messages to the corresponding methods of
 There are other classes implementing the interface _Appender_, namely _FileAppender_ or _ConsoleAppender_. There is also class _MultipleAppender_ for using more than just one appender at the same time.
 
 All the classes for logging mentioned so far can be found in package _com.funambol.util_.
+<br>
+
+
+=Settings=
+
+Management of app's setting/preferences (e.g. show button to install _[oi_notepad OI Notepad]_ on main screen instead of sync button when this app is not found on the current device) is handled by class _AndroidConfiguration_ in package _de.chbosync.android.syncmlclient_. This class implements the singleton pattern and stored the settings as shared preferences file named _"fnblPref"_.
