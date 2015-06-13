@@ -72,25 +72,29 @@ public class AndroidHomeScreenController extends HomeScreenController {
     public static final String REFRESH_DIRECTION = "RefreshDirection";
     public static final String AUTHORITY_TYPE = "AuthorityType";
 
-    protected Context context;
+    protected Context context = null;
 
-    private AndroidDisplayManager dm;
+    private AndroidDisplayManager displayManager = null;
 
     private boolean syncAll = false;
 
-    protected AutoSyncServiceHandler autoSyncServiceHandler;
+    protected AutoSyncServiceHandler autoSyncServiceHandler = null;
 
-    private NotificationManager notificationManager;
+    private NotificationManager notificationManager = null;
 
+ 
     public AndroidHomeScreenController(Context context, Controller controller, HomeScreen homeScreen, NetworkStatus networkStatus) {
         super(controller, homeScreen, networkStatus);
-        this.dm = (AndroidDisplayManager)controller.getDisplayManager();
-        this.context = context;
+        
+        this.displayManager = (AndroidDisplayManager)controller.getDisplayManager();
+        this.context        = context;
+        
         engine.setSpawnThread(true);
         engine.setNetworkStatus(networkStatus);
+        
         autoSyncServiceHandler = new AutoSyncServiceHandler(context);
-        notificationManager = (NotificationManager)
-                context.getSystemService(Context.NOTIFICATION_SERVICE);
+        notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+                
     }
 
     @Override
@@ -219,8 +223,7 @@ public class AndroidHomeScreenController extends HomeScreenController {
         // Check if the sync retry feature is enabled
         if(((AndroidCustomization)customization).getSyncRetryEnabled()) {
             // Keep track of a sync attempt if nobody did it
-            if(configuration.getCurrentSyncRetryCount() == -1
-                    || MANUAL.equals(syncType)) {
+            if(configuration.getCurrentSyncRetryCount() == -1 || MANUAL.equals(syncType)) {                    
                 configuration.setCurrentSyncRetryCount(0);
                 configuration.save();
             }
@@ -244,7 +247,7 @@ public class AndroidHomeScreenController extends HomeScreenController {
     }
 
     public boolean isFirstSyncDialogDisplayed() {
-        if (dm.isAlertPending(DisplayManager.FIRST_SYNC_DIALOG_ID)) {
+        if (displayManager.isAlertPending(DisplayManager.FIRST_SYNC_DIALOG_ID)) {
             return true;
         } else {
             return false;

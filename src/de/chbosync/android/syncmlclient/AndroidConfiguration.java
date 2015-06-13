@@ -55,18 +55,22 @@ import com.funambol.util.Base64;
  */
 public class AndroidConfiguration extends Configuration {
 
+	/** Tag for logging */
     private static final String TAG_LOG = "AndroidConfiguration";
 
-    /** Key for the preferences file, will lead to file "fnblPref.xml"
-     * in the app's folder "shared_prefs".
-     */
+    /** Name for the preferences file, will lead to file <i>"fnblPref.xml"</i>
+     * in the app's folder <i>"shared_prefs"</i>.<br/>
+     * Full path in emulator: <i>/data/data/de.chbosync.android.syncmlclient/shared_prefs/fnblPref.xml</i>. */       
     public static final String KEY_FUNAMBOL_PREFERENCES = "fnblPref";
     
-    private static AndroidConfiguration instance = null;
-    private        Context context;
-    protected      SharedPreferences settings;
-    protected      SharedPreferences.Editor editor;
-    private        DeviceConfig devconf;
+    /** Reference to singleton instance of this class. */
+    private static AndroidConfiguration sSingletonInstance = null;
+    
+    private   Context                  context  = null;
+    protected SharedPreferences        settings = null; 
+    protected SharedPreferences.Editor editor   = null;
+    private   DeviceConfig             devconf  = null;
+    
 
     /**
      * Private contructor to enforce the Singleton implementation.
@@ -85,13 +89,16 @@ public class AndroidConfiguration extends Configuration {
                                  AppSyncSourceManager appSyncSourceManager)
     {
         super(customization, appSyncSourceManager);
-        this.context = context;
-        settings = context.getSharedPreferences(KEY_FUNAMBOL_PREFERENCES, 0); // Name for preferences file: fnblPref.xml
-        editor = settings.edit();
+        
+        this.context  = context;
+        
+        this.settings = context.getSharedPreferences(KEY_FUNAMBOL_PREFERENCES, 0); // Name for preferences file: fnblPref.xml
+        this.editor   = settings.edit();
     }
 
     /**
-     * Static method that returns the AndroidConfiguration unique instance
+     * Static method that returns the AndroidConfiguration unique instance (singleton).
+     * 
      * @param context the application Context object
      * @param customization the AndoidCustomization object used in this client
      * @param appSyncSourceManager the AppSyncSourceManager object. Better to
@@ -102,17 +109,17 @@ public class AndroidConfiguration extends Configuration {
                                                    Customization customization,
                                                    AppSyncSourceManager appSyncSourceManager)
     {
-        if (instance == null) {
-            instance = new AndroidConfiguration(context, customization, appSyncSourceManager);
+        if (sSingletonInstance == null) {
+            sSingletonInstance = new AndroidConfiguration(context, customization, appSyncSourceManager);
         }
-        return instance;
+        return sSingletonInstance;
     }
 
     /**
-     * Dispose this object referencing it with the null object
+     * Dispose this object (singleton) referencing it with the null object.
      */
     public static void dispose() {
-        instance = null;
+        sSingletonInstance = null;
     }
 
     /**
@@ -126,7 +133,8 @@ public class AndroidConfiguration extends Configuration {
 
     /**
      * Save the loaded twin key-value using the android context package
-     * SharedPreferences.Editor instance
+     * <i>SharedPreferences.Editor</i> instance.
+     * 
      * @param key the key to be saved
      * @param value the value related to the key String formatted
      */
@@ -216,14 +224,14 @@ public class AndroidConfiguration extends Configuration {
      */
     protected String getUserAgent() {
     	
-        StringBuffer ua = new StringBuffer( ((AndroidCustomization)customization).getUserAgentName() );
+        StringBuffer stringBuffer = new StringBuffer( ((AndroidCustomization)customization).getUserAgentName() );
                         
-        ua.append(" ");
+        stringBuffer.append(" ");
         
         String appVersion = AndroidUtils.getVersionNumberFromManifest(context);
         
-        ua.append(appVersion);
-        return ua.toString();
+        stringBuffer.append(appVersion);
+        return stringBuffer.toString();
     }
 
     /**
@@ -255,21 +263,21 @@ public class AndroidConfiguration extends Configuration {
     
     // *** Starting here: Methods/attributes added for ChBoSync ***
     
-    /** Key for the preference "showDummyButtonForNotesSyncing". */
+    /** Key for the preference <i>"showDummyButtonForNotesSyncing"</i>. */
     protected static final String CONF_SHOW_DUMMY_BUTTON_FOR_SYNCING_NOTES = "DUMMY_BUTTON_FOR_SYNCING_NOTES";
     
-    /** Key for the preference "detectionOfEncryptedNotesEnabled". */
+    /** Key for the preference <i>"detectionOfEncryptedNotesEnabled"</i>. */
     protected static final String CONF_DETECTION_OF_ENCRYPTED_NOTES_ENABLED = "DETECTION_OF_ENCRYPTED_NOTES";
     
-    /** Member variable holding the current state of the preference value "showDummyButtonForNotesSyncing". */
+    /** Member variable holding the current state of the preference value <i>"showDummyButtonForNotesSyncing"</i>. */
     protected boolean showDummyButtonForNotesSyncing = true;
     
-    /** Member variable holding the current state of the preferen value "detectionOfEncryptedNotesEnabled". */
+    /** Member variable holding the current state of the preferen value <i>"detectionOfEncryptedNotesEnabled"</i>. */
     protected boolean detectionOfEncryptedNotesEnabled = false;
     
     
     /**
-     * Getter for preference "showDummyButtonForNotesSyncing".
+     * Getter for preference <i>"showDummyButtonForNotesSyncing"</i>.
      * 
      * @return <tt>true</tt> if dummy button instead of sync button
      *         for notes should be shown when "OI Notepad" is not available
@@ -281,7 +289,7 @@ public class AndroidConfiguration extends Configuration {
     
     
     /**
-     * Setter for preference "showDummyButtonForNotesSyncing".
+     * Setter for preference <i>"showDummyButtonForNotesSyncing"</i>.
      * 
      * @param enabled <tt>true</tt> if dummy button instead of sync button
      *        for notes should be shown when "OI Notepad" is not available
@@ -293,7 +301,7 @@ public class AndroidConfiguration extends Configuration {
 
     
     /**
-     * Getter for preference "detectionOfEncryptedNotesEnabled".
+     * Getter for preference <i>"detectionOfEncryptedNotesEnabled"</i>.
      * 
      * @return <tt>true</tt> iff detection of encrypted notes is currently enabled.
      */
@@ -301,8 +309,9 @@ public class AndroidConfiguration extends Configuration {
     	return detectionOfEncryptedNotesEnabled;
     }
     
+    
     /**
-     * Setter for preference "detectionOfEncryptedNotesEnabled".
+     * Setter for preference <i>"detectionOfEncryptedNotesEnabled"</i>.
      * 
      * @param <tt>true</tt> iff detection of encrypted notes is to be enabled. 
      */
@@ -310,9 +319,11 @@ public class AndroidConfiguration extends Configuration {
     	detectionOfEncryptedNotesEnabled = enabled;
     }
     
+    
     /**
      * Overwriting of method for loading of preferences from shared preferences, so 
-     * that preference for "showDummyButtonForNotesSyncing" is also loaded.
+     * that preference for <i>"showDummyButtonForNotesSyncing"</i> and 
+     * <i>"detectionOfEncryptedNotesEnabled"</i> is also loaded.
      */
 	@Override
 	public int load() {
@@ -321,9 +332,9 @@ public class AndroidConfiguration extends Configuration {
 			return CONF_OK;
 		}
 		
-		showDummyButtonForNotesSyncing   = loadBooleanKey(CONF_SHOW_DUMMY_BUTTON_FOR_SYNCING_NOTES, true  ); // "true" is default value
+		showDummyButtonForNotesSyncing   = loadBooleanKey(CONF_SHOW_DUMMY_BUTTON_FOR_SYNCING_NOTES,  true  ); // "true" is default value
 		
-		detectionOfEncryptedNotesEnabled = loadBooleanKey(CONF_DETECTION_OF_ENCRYPTED_NOTES_ENABLED, false); // false: disabled by default
+		detectionOfEncryptedNotesEnabled = loadBooleanKey(CONF_DETECTION_OF_ENCRYPTED_NOTES_ENABLED, false ); // false: disabled by default
 		
 		return super.load();
 	}
@@ -331,7 +342,8 @@ public class AndroidConfiguration extends Configuration {
 	
 	/**
 	 * Overwriting of method for loading of preferences from shared preferences, so 
-     * that preference for "showDummyButtonForNotesSyncing" is also saved.
+     * that preference for <i>"showDummyButtonForNotesSyncing"</i> and 
+     * <i>"detectionOfEncryptedNotesEnabled"</i> is also saved.
      * 
 	 * @return Either {@link com.funambol.client.configuration.Configuration.CONF_OK} or
 	 *         {@link com.funambol.client.configuration.Configuration.CONF_INVALID}.
@@ -340,6 +352,8 @@ public class AndroidConfiguration extends Configuration {
 	public int save() {
 		
 		saveBooleanKey(CONF_SHOW_DUMMY_BUTTON_FOR_SYNCING_NOTES, showDummyButtonForNotesSyncing);
+		
+		saveBooleanKey(CONF_DETECTION_OF_ENCRYPTED_NOTES_ENABLED, detectionOfEncryptedNotesEnabled);
 		
 		return super.save();
 	}
