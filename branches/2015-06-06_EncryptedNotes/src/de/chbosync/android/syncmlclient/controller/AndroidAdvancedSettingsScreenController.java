@@ -95,7 +95,9 @@ public class AndroidAdvancedSettingsScreenController extends AdvancedSettingsScr
     		if (this.configuration instanceof AndroidConfiguration) {
     			AndroidConfiguration ac = (AndroidConfiguration)this.configuration;
     			
-    			aast.setShowDummyButtonForNotesSyncing( ac.getShowDummyButtonForNotesSyncing() );
+    			aast.setShowDummyButtonForNotesSyncing( ac.getShowDummyButtonForNotesSyncing()   );
+    			aast.setEncryptedNotesEnabled         ( ac.getDetectionOfEncryptedNotesEnabled() );
+    			
     		}    		    		
     	}    	    	
     }
@@ -190,12 +192,14 @@ public class AndroidAdvancedSettingsScreenController extends AdvancedSettingsScr
         
         // Added for ChBoSync
     	if(this.screen instanceof AndroidAdvancedSettingsTab) {
+    		
     		AndroidAdvancedSettingsTab aast = (AndroidAdvancedSettingsTab) screen;
     		
     		if (this.configuration instanceof AndroidConfiguration) {
-    			AndroidConfiguration ac = (AndroidConfiguration)this.configuration;
     			
-    			ac.setShowDummyButtonForNotesSyncing( aast.getShowDummyButtonForNotesSyncing() );    			
+    			AndroidConfiguration ac = (AndroidConfiguration)this.configuration;    			
+    			ac.setShowDummyButtonForNotesSyncing  ( aast.getShowDummyButtonForNotesSyncing() );
+    			ac.setDetectionOfEncryptedNotesEnabled( aast.getDetectEncryptedNotes()           );
     		}    		
     	}    	    	
     }

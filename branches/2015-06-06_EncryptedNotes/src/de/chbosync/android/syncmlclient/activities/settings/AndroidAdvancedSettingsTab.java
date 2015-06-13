@@ -103,11 +103,13 @@ public class AndroidAdvancedSettingsTab extends AndroidSettingsTab
     private TwoLinesCheckBox saveBandwidthCheckBox = null;
     
     // Added for ChBoSync: Settings concerning "OI Notepad"
-    private Button           installOINotepadButton        = null;
-    private TwoLinesCheckBox showNoteDummySyncButton       = null;
-    private TwoLinesCheckBox supportEncryptedNotesCheckbox = null;
-    private LinearLayout     oiNotepadSection              = null;
-    private boolean          originalShowNoteDummySyncButton;
+    private Button           installOINotepadButton          = null;
+    private TwoLinesCheckBox showNoteDummySyncButtonCheckbox = null;
+    private TwoLinesCheckBox detectionEncryptedNotesCheckbox = null;
+    private LinearLayout     oiNotepadSection                = null;
+    
+    private boolean originalShowNoteDummySyncButton = false;
+    private boolean originalDetectEncryptedNotes    = false;
 
     
     private Hashtable<String, Integer> logLevelReference = new Hashtable<String, Integer>();
@@ -141,7 +143,7 @@ public class AndroidAdvancedSettingsTab extends AndroidSettingsTab
     }
 
     /**
-     * Get the tag of this class
+     * Get the tag of this class (for logging)
      * @return String the TAG that represents this class' name
      */
     public String getTag() {
@@ -169,14 +171,15 @@ public class AndroidAdvancedSettingsTab extends AndroidSettingsTab
     /**
      * Get the title related to the AdvancedSettingsScreenTab that is visible
      * under the tab icon.
-     * @return Stirng the title related to this tab
+     * @return the title related to this tab
      */
     public String getIndicatorLabel() {
         return localization.getLanguage("settings_advanced_tab");
     }
 
     /**
-     * Save the values contained into this view using the dedicated controller
+     * Save the values contained into this view using the dedicated controller.
+     * Added for ChBoSync: Saving of settings concerning OINotepad.
      */
     public void saveSettings(SaveSettingsCallback callback) {
         //FIX-ME - return true if and only if the save action is successful
@@ -185,9 +188,12 @@ public class AndroidAdvancedSettingsTab extends AndroidSettingsTab
         originalLogLevel        = configuration.getLogLevel();
         originalBandwidthStatus = configuration.getBandwidthSaverActivated();
         
-        if (configuration instanceof AndroidConfiguration) { // added for ChBoSync
+        // added for ChBoSync
+        if (configuration instanceof AndroidConfiguration) { 
         	AndroidConfiguration ac         = (AndroidConfiguration)configuration;
+        	
         	originalShowNoteDummySyncButton = ac.getShowDummyButtonForNotesSyncing();
+        	originalDetectEncryptedNotes    = ac.getDetectionOfEncryptedNotesEnabled();
         }
                 
         callback.saveSettingsResult(true);
@@ -198,6 +204,7 @@ public class AndroidAdvancedSettingsTab extends AndroidSettingsTab
      * loglevel, bandwith saver, dummy button for notes syncing.
      */
     public boolean hasChanges() {
+    	
         boolean hasChanges = false;
 
         if( (logSection != null) && (originalLogLevel != getViewLogLevel()) ) {
@@ -208,8 +215,11 @@ public class AndroidAdvancedSettingsTab extends AndroidSettingsTab
             hasChanges = true;
         }
 
-        // the next one was added for ChBoSync
-        if ( (showNoteDummySyncButton != null) && (originalShowNoteDummySyncButton != getShowDummyButtonForNotesSyncing()) ){
+        // Added for ChBoSync
+        if ( (showNoteDummySyncButtonCheckbox != null) && (originalShowNoteDummySyncButton != getShowDummyButtonForNotesSyncing() ) ){
+        	hasChanges = true;
+        }        
+        if ( (detectionEncryptedNotesCheckbox != null) && (originalDetectEncryptedNotes    != getDetectEncryptedNotes() ) ) {
         	hasChanges = true;
         }
         
@@ -225,13 +235,29 @@ public class AndroidAdvancedSettingsTab extends AndroidSettingsTab
      * Added for ChBoSync
      */
     public boolean hasShowNotesDummySyncButtonChanges() {
-        if ( (showNoteDummySyncButton != null) && 
+    	
+        if ( (showNoteDummySyncButtonCheckbox != null) && 
         	 (originalShowNoteDummySyncButton != getShowDummyButtonForNotesSyncing()) )
         	
         	return true;
         else
     	    return false;
     }
+    
+    /**
+     * Method returns if there are changes for the checkbox for enabling the detection of encrypted notes. 
+     * Added for ChBoSync
+     */
+    public boolean hasDetectEnryptedNotesCheckboxChanges() {
+    	
+    	if ( (detectionEncryptedNotesCheckbox != null) &&
+    		 (originalDetectEncryptedNotes    != getDetectEncryptedNotes() ) )
+    	
+            return true;
+    	else
+    		return false;    		
+    }
+     
     
     public void enableResetCommand(boolean enable) {
         resetBtn.setEnabled(enable);
@@ -308,15 +334,33 @@ public class AndroidAdvancedSettingsTab extends AndroidSettingsTab
      */
     public void setShowDummyButtonForNotesSyncing(boolean enabled) {
     	originalShowNoteDummySyncButton = enabled;
-        showNoteDummySyncButton.setChecked(enabled);
+        showNoteDummySyncButtonCheckbox.setChecked(enabled);
     }
 
+    /**
+     * Setter for state of <i>TwoLinesCheckBox</i> for preference ""detectionOfEncryptedNotesEnabled"".
+     * Added for ChBoSync
+     */
+    public void setEncryptedNotesEnabled(boolean enabled) {
+    	originalDetectEncryptedNotes = enabled;
+    	detectionEncryptedNotesCheckbox.setChecked(enabled);
+    }
+    
     /**
      * Getter for current state of <i>TwoLinesCheckBox</i> for preference "showDummyButtonForNotesSyncing". 
      * Added for ChBoSync 
      */
     public boolean getShowDummyButtonForNotesSyncing() {
-    	return showNoteDummySyncButton.isChecked();
+    	return showNoteDummySyncButtonCheckbox.isChecked();
+    }
+    
+    
+    /**
+     * Getter for current state of <i>TwoLinesCheckBox</i> for preference "detectionOfEncryptedNotesEnabled".
+     * Added for ChBoSync.
+     */
+    public boolean getDetectEncryptedNotes() {
+    	return detectionEncryptedNotesCheckbox.isChecked();
     }
 
     private void initScreenElements() {
@@ -385,24 +429,25 @@ public class AndroidAdvancedSettingsTab extends AndroidSettingsTab
         installOINotepadButton = (Button) findViewById(R.id.advanced_settings_button_install_oi_notepad);
         installOINotepadButton.setOnClickListener( new OINotepadInstallListener() );
         
-        showNoteDummySyncButton = new TwoLinesCheckBox(activity);
-        showNoteDummySyncButton.setText1( localization.getLanguage("conf_show_oinotepad_dummy_sync_button") );
+        showNoteDummySyncButtonCheckbox = new TwoLinesCheckBox(activity);
+        showNoteDummySyncButtonCheckbox.setText1( localization.getLanguage("conf_show_oinotepad_dummy_sync_button") );
         //showNoteDummySyncButton.setText2(localization.getLanguage("conf_...")); // for further description below text1 in a smaller font
-        showNoteDummySyncButton.setPadding(0, showNoteDummySyncButton.getPaddingBottom(), 
-        		                              showNoteDummySyncButton.getPaddingRight (),
-        		                              showNoteDummySyncButton.getPaddingBottom() );
-        oiNotepadSection.addView(showNoteDummySyncButton);
+        showNoteDummySyncButtonCheckbox.setPadding(0, showNoteDummySyncButtonCheckbox.getPaddingBottom(), 
+        		                              showNoteDummySyncButtonCheckbox.getPaddingRight (),
+        		                              showNoteDummySyncButtonCheckbox.getPaddingBottom() );
+        oiNotepadSection.addView(showNoteDummySyncButtonCheckbox);
         
-        supportEncryptedNotesCheckbox = new TwoLinesCheckBox(activity);
-        supportEncryptedNotesCheckbox.setText1( localization.getLanguage("conf_show_oinotepad_support_encrypted_notes") );
-        supportEncryptedNotesCheckbox.setText2( localization.getLanguage("conf_show_oinotepad_support_encrypted_notes_explanation") ); 
-        supportEncryptedNotesCheckbox.setPadding(0, supportEncryptedNotesCheckbox.getPaddingBottom(), 
-        		                                    supportEncryptedNotesCheckbox.getPaddingRight (),
-        		                                    supportEncryptedNotesCheckbox.getPaddingBottom() );        
-        oiNotepadSection.addView(supportEncryptedNotesCheckbox);
+        detectionEncryptedNotesCheckbox = new TwoLinesCheckBox(activity);
+        detectionEncryptedNotesCheckbox.setText1( localization.getLanguage("conf_show_oinotepad_support_encrypted_notes") );
+        detectionEncryptedNotesCheckbox.setText2( localization.getLanguage("conf_show_oinotepad_support_encrypted_notes_explanation") ); 
+        detectionEncryptedNotesCheckbox.setPadding(0, detectionEncryptedNotesCheckbox.getPaddingBottom(), 
+        		                                    detectionEncryptedNotesCheckbox.getPaddingRight (),
+        		                                    detectionEncryptedNotesCheckbox.getPaddingBottom() );        
+        oiNotepadSection.addView(detectionEncryptedNotesCheckbox);
         
     }
 
+    /** Empty method */
     public void cancelSettings() {
     }
 
@@ -450,7 +495,7 @@ public class AndroidAdvancedSettingsTab extends AndroidSettingsTab
      * A call-back invoked when the user presses the reset button.
      */
     private class ResetListener implements OnClickListener {
-        public void onClick(View v) {
+        public void onClick(View view) {
             AndroidSettingsScreen ass = (AndroidSettingsScreen) getUiScreen();
             //check the changes on other settings tabs before refresh
             if (ass.hasChanges()) {
@@ -477,7 +522,7 @@ public class AndroidAdvancedSettingsTab extends AndroidSettingsTab
      * A call-back invoked when the user presses the reset button.
      */
     private class DevSettingsListener implements OnClickListener {
-        public void onClick(View v) {
+        public void onClick(View view) {
             // We open a new activity here
             AndroidSettingsScreen ass = (AndroidSettingsScreen) getUiScreen();
             try {
@@ -513,7 +558,7 @@ public class AndroidAdvancedSettingsTab extends AndroidSettingsTab
      * A call-back for when the user presses the view log button.
      */
     private class ViewLogListener implements OnClickListener {
-        public void onClick(View v) {
+        public void onClick(View view) {
             screenController.viewLog();
         }
     }
@@ -522,7 +567,7 @@ public class AndroidAdvancedSettingsTab extends AndroidSettingsTab
      * A call-back for when the user presses the send log button.
      */
     private class SendLogListener implements OnClickListener {
-        public void onClick(View v) {
+        public void onClick(View view) {
             screenController.sendLog();
         }
     }
@@ -531,7 +576,7 @@ public class AndroidAdvancedSettingsTab extends AndroidSettingsTab
      * A call-back for when the user presses the Import button.
      */
     private class ImportListener implements OnClickListener {
-        public void onClick(View v) {
+        public void onClick(View view) {
             screenController.importContacts();
         }
     }

@@ -263,6 +263,7 @@ public class AndroidSettingsScreen extends Activity
 
     /**
      * Save settings for all the tabs, and eventually close the screen.
+     * Added for ChBoSync: Consideration of preferences for OINotepad. 
      * 
      * @param close true if the settings screen must be closed after saving
      * @param callback Used to be notified when tab settings are saved
@@ -314,8 +315,12 @@ public class AndroidSettingsScreen extends Activity
             	
             	aast = (AndroidAdvancedSettingsTab) tab;
             	if ( aast.hasShowNotesDummySyncButtonChanges() )
-            	  syncButtonsHaveToBeUpdated = true; 
+            	  syncButtonsHaveToBeUpdated = true;
+            	
+            	if ( aast.hasDetectEnryptedNotesCheckboxChanges() )
+            		syncButtonsHaveToBeUpdated = true;
             }
+            
             
             
             // Save the settings for this tab
@@ -331,6 +336,7 @@ public class AndroidSettingsScreen extends Activity
         } // for tabs
     }
 
+    /* *** Start of inner class */
     private class SaveCallback extends SaveSettingsCallback {
 
         public SaveCallback(boolean close, int count) {
@@ -353,8 +359,10 @@ public class AndroidSettingsScreen extends Activity
             }
         }
     }
+    /* *** End of inner class SaveCallback */
 
     /**
+     * Check the two tabs with settings for changes.
      * @return true if there are changes in settings (i.e. changes for at least one of the two tab).
      */
     public boolean hasChanges() {
