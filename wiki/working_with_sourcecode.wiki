@@ -88,7 +88,7 @@ All the classes for logging mentioned so far can be found in package _com.funamb
 
 =Settings=
 
-Management of app's setting/preferences (e.g. show button to install _[oi_notepad OI Notepad]_ on main screen instead of sync button when this app is not found on the current device) is handled by class _AndroidConfiguration_ in package _de.chbosync.android.syncmlclient_. This class implements the singleton pattern and stored the settings as shared preferences file named _"fnblPref.xml"_. The saving and loading of the settings used by the original Funambol client are handled in a superclass of this class, namely class _Configuration_ in package _com.funambol.client.configuration_.
+Management of app's setting/preferences (e.g. show button to install _[oi_notepad OI Notepad]_ on main screen instead of sync button when this app is not found on the current device) is handled by class _AndroidConfiguration_ in package _de.chbosync.android.syncmlclient_. This class implements the singleton pattern and stored the settings as shared preferences file named _"fnblPref.xml"_ (full path on emulator's filesystem: _/data/data/de.chbosync.android.syncmlclient/shared_prefs/fnblPref.xml_) . The saving and loading of the settings used by the original Funambol client are handled in a superclass of this class, namely class _Configuration_ in package _com.funambol.client.configuration_.
 
 Some important methods in class _AndroidAdvancedSettingsTab_ (on which the settings introduced by _ChBoSync_ were added):
  * _initScreenElements()_: Setup of UI element, e.g. instances of class _TwoLinesCheckBox_ for settings concerning _[oi_notepad "OI Notepad"]_.
