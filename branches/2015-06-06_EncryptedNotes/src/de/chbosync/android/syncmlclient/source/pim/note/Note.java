@@ -99,6 +99,24 @@ public class Note {
         return body;
     }
 
+    // Original version of method, before it was changed for ChBoSync 1.0
+    public void setPlainText(byte note[]) throws UnsupportedEncodingException {
+        // there is just a body for plain notes
+        String bodyValue = new String(note, "UTF-8");
+        body = new Property(bodyValue);
+
+        // Extract the title
+        int lfIdx = bodyValue.indexOf("\n");
+        if (lfIdx >= 0) {
+            title = new Property(bodyValue.substring(0, lfIdx));
+        } else {
+            if (bodyValue.length() < 32) {
+                title = new Property(bodyValue);
+            }
+        }
+    }
+
+    /*    
     public void setPlainText(byte note[]) throws UnsupportedEncodingException {
         // there is just a body for plain notes
         String bodyValue = new String(note, "UTF-8");
@@ -112,7 +130,7 @@ public class Note {
         }
         
     }    
-    
+    */  
     
     /**
      * Method to obtain title from the whole body of a note
