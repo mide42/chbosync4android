@@ -273,7 +273,7 @@ public class AndroidConfiguration extends Configuration {
     protected boolean showDummyButtonForNotesSyncing = true;
     
     /** Member variable holding the current state of the preferen value <i>"detectionOfEncryptedNotesEnabled"</i>. */
-    protected boolean detectionOfEncryptedNotesEnabled = false;
+    protected boolean detectionOfEncryptedNotesEnabled = true;
     
     
     /**
@@ -334,7 +334,7 @@ public class AndroidConfiguration extends Configuration {
 		
 		showDummyButtonForNotesSyncing   = loadBooleanKey(CONF_SHOW_DUMMY_BUTTON_FOR_SYNCING_NOTES,  true  ); // "true" is default value
 		
-		detectionOfEncryptedNotesEnabled = loadBooleanKey(CONF_DETECTION_OF_ENCRYPTED_NOTES_ENABLED, false ); // false: disabled by default
+		detectionOfEncryptedNotesEnabled = loadBooleanKey(CONF_DETECTION_OF_ENCRYPTED_NOTES_ENABLED, true ); 
 		
 		return super.load();
 	}
