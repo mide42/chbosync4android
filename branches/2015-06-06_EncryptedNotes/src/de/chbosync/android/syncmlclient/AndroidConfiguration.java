@@ -334,7 +334,7 @@ public class AndroidConfiguration extends Configuration {
 		
 		showDummyButtonForNotesSyncing   = loadBooleanKey(CONF_SHOW_DUMMY_BUTTON_FOR_SYNCING_NOTES,  true  ); // "true" is default value
 		
-		detectionOfEncryptedNotesEnabled = loadBooleanKey(CONF_DETECTION_OF_ENCRYPTED_NOTES_ENABLED, true ); 
+		detectionOfEncryptedNotesEnabled = loadBooleanKey(CONF_DETECTION_OF_ENCRYPTED_NOTES_ENABLED, true );  // "true" is default value
 		
 		return super.load();
 	}
