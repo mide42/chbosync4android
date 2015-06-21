@@ -93,3 +93,6 @@ Management of app's setting/preferences (e.g. show button to install _[oi_notepa
 Some important methods in class _AndroidAdvancedSettingsTab_ (on which the settings introduced by _ChBoSync_ were added):
  * _initScreenElements()_: Setup of UI element, e.g. instances of class _TwoLinesCheckBox_ for settings concerning _[oi_notepad "OI Notepad"]_.
  * _hasChanges()_: Determines if at least one setting was changed, so that saving is necessary.
+<br>
+
+The default values for settings are defined in method _load()_ either in class _Configuration_ or in the subclass _AndroidConfiguration_. 
