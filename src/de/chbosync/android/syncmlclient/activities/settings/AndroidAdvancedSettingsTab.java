@@ -338,7 +338,7 @@ public class AndroidAdvancedSettingsTab extends AndroidSettingsTab
     }
 
     /**
-     * Setter for state of <i>TwoLinesCheckBox</i> for preference ""detectionOfEncryptedNotesEnabled"".
+     * Setter for state of <i>TwoLinesCheckBox</i> for preference "detectionOfEncryptedNotesEnabled".
      * Added for ChBoSync
      */
     public void setEncryptedNotesEnabled(boolean enabled) {

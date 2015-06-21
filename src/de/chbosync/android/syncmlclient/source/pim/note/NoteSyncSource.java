@@ -60,7 +60,7 @@ public class NoteSyncSource extends PIMSyncSource<Note> {
 
     
     /**
-     * CalendarSyncSource constructor: initialize source config.
+     * SyncSource constructor: initialize source config.
      */
     public NoteSyncSource(SourceConfig config, ChangesTracker tracker, Context context,
                           Configuration configuration, AppSyncSource appSource, @SuppressWarnings("rawtypes") AbstractDataManager dm) {
