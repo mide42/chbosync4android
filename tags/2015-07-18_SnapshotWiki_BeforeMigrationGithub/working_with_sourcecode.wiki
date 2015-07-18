@@ -1,0 +1,98 @@
+#summary Description on how to use the Eclipse project of the app's source code.
+#labels Eclipse,source,import,ADT
+
+=Using the Eclipse project=
+
+The source code of _ChBoSync_ is provided as Eclipse project in the SVN repository of this project at _code.google.com_.
+
+For the following description it is assumed that you have an installation of Eclipse with the _"Android Developer Tools (ADT)"_, which can be obtained at the following URL: http://developer.android.com/sdk/index.html
+
+
+ * Check out the folder _"trunk/ChBoSync_EclipseProject"_ from the SVN repository of this project (see tab _"[https://code.google.com/p/chbosync4android/source/checkout Source]"_ of this GoogleCode project).
+
+ * In Eclipse/ADT choose _"Import ..."_ in menu _"File"_.
+
+ * Selection of import source: _"Existing Android Code Into Workspace"_ under node _"Android"_.
+
+ * Folder to select as _"Root Directory"_: _"ChBoSync_EclipseProject"_
+
+ * One project should appear in the table unter the _"Root Directory"_; ensure that in column _"Project to Import"_ this project is selected and click on button _"Finish"_.
+
+ * The project contains all libraries needed for compiling in the folder _"external-libs"_ (several Funambol libraries and _"[joda_time_library Joda Time]"_).
+
+ * Start the app in the emulator or a device connected via the _"Android Debug Bridge (ADB)"_ to your PC by opening the context menu (right button of mouse) of the node labled _"ChBoSync"_ in the _"Package Explorer"_ and choose _"Run As | Android Application"_. 
+<br><br>
+
+
+=Get along in the source code=
+
+A good starting point for exploring the source code are the screen classes in package _de.chbosync.android.syncmlclient.activities_, e.g. _AndroidHomeScreen_ or _AndroidLoginScreen_. These classes are subclasses of class _android.app.Activity_.
+
+The different types of data that can be synced (e.g., contacts, calendar or notes) are called _"Sync Sources"_. For the setup of each of these _Sync Sources_ there is a method in class _AndroidAppSyncSourceManager_, e.g. method _setupContactsSource()_. Each _Sync Source_ is an instance of class _AndroidAppSyncSource_, whereas this class inherits from class _AppSyncSource_. For some data types there are special sub classes of _AndroidAppSyncSource_, e.g. _CalendarAppSyncSource_ and _ContactAppSyncSource_.
+
+If for the activation of a particular _Sync Source_ it has to be checked if a particular 3rd party app is installed on the Android device, then the presence of this app is also checked in the _setupXXXSource()_ method. For example, in method _setupNotesSource()_ it is checked if _[oi_notepad "OI Notepad"]_ is installed. 
+
+The big buttons on the app's main screen used for triggering the syncing of a particular syncing action (e.g. syncing of contacts or notes) are instances of class _AndroidButtonUISyncSource_. 
+
+Class _AndroidHomeScreen_ represents the main screen of the app, i.e. the screen with the big buttons for the individual _Sync Sources_. The creation of these button is done in class _UpdateAvailableSourcesUIThread_, which is an inner class of _AndroidHomeScreen_ . 
+<br><br>
+
+
+==Program flow when a sync button is pressed==
+
+When the button for a particular Sync Source is pressed (e.g., for syncing notes), then the following happens:
+
+ * For each Sync Source's button an instance of class _ButtonListener_ (inner class of class _AndroidHomeScreen_) is created.
+
+ * The corresponding _ButtonListener's_ method _onClick()_ calls the method _buttonPressed()_ of the _HomeScreenController_ object referenced by the _AndroidHomeScreen_ object (actually an object of class _AndroidHomeScreenController_, which is a sub class of _HomeScreenController_).
+
+ * The method _buttonPressed()_ of class _HomeScreenController_ receives the index of the Sync Source as parameter. It fetches the corresponding object of class _AppSyncSource_ and calls method _HomeScreenController::syncSource()_.
+
+ * Method _syncSource()_ calls method _synchronize()_ (still in class _HomeScreenController_). After several overloaded variants of this method have passed method _SynchronizationController::forceSynchronization()_ is invoked.
+
+ * After some checks by _forceSynchronization()_ method _continueSynchronizationAfterBandwithSaverDialog()_ is invoked, which again invokes another method named _continueSynchronizationAfterFirstSyncDialog()_.
+
+ * In this method an instance of class _AppSyncRequest_ is created. An object of class _AppSyncSource_ is added to this _AppSyncRequest_. The _AppSyncRequest_ again is added to an object of class _SyncScheduler_.
+
+ * For adding the _AppSyncRequest_ the _SyncScheduler's_ method _addRequest()_ is called, which again calls method _doSync()_.
+
+ * Add the end of method _SyncSchedule::doSync()_ method _callListener()_ is invoked. At the end of this method the sync request's content is passed as argument to method _sync()_ of an _SyncSchedulerListener_ object. 
+
+ * Since _SyncSchedulerListener_ is just an interface an object of class _SyncEngine_ is used. Method _sync()_ of _SyncEngine_ is called, which calls method _synchronize()_. 
+
+ * In method _SyncEngine::synchronize()_ some checks are performed (e.g., if the device has connectivity). If all these checks are passed, then an object of class _SyncThread_ is created and started. _SyncThread_ is an inner class of class _SyncEngine_. 
+
+ * The work that is done in a background thread (rather than blocking the UI/main thread) is done in method _SyncEngine::run()_. This method just calls method _sync()_ in the same class. 
+
+ * Method _sync()_ calls method _synchronize()_ (still in class _SyncEngine_). Within this method another method of _SyncEngine_ is called, namely _fireSync()_. However, before this is done an instance of class _SyncManager_ is returned, which is also one of _fireSync()'s_ parameters. (There are two implementations of interface _SyncManagerI_, namely the already mentioned class _SyncManager_ and class _SapiSyncManager_; however, for the Sync Sources supported by _ChBoSync_ so far always class _SyncManager_ is chosen. _SapiSyncManager_ seems to be for media content like images.)
+
+ * In method _SyncEngine::fireSync()_ just method _sync()_ of the _SyncManager_ object is invoked.
+
+ * Method _SyncManager:sync()_ is rather long. Somewhere in this method the method _postRequest()_ of the same class in invoked.
+<br>
+
+Hint: To navigate to the source code of any of these classes mentioned without knowing the package you can press _STRG+SHIFT+T_ for dialog _"Open Type"_ in Eclipse. In this dialog you can search for classes just by their name.
+<br><br>
+
+=Logging=
+
+The app has its own logger class, namely _com.funambol.util.Log_, which has only static methods. This logger is initialized by the code in method _initLog()_ of class _AppInitializer_. Here an appender object is created that is passed to method _Log.initLog()_. Currently only an instance of class _AndroidLogAppender_ will be used as appender, because method _AppInitializer::isFileTracingAllowed()_ returns a hard-coded _false_. 
+
+The _AndroidLogAppender_ writes the log messages to the corresponding methods of Android's standard logger (class _android.util.Log_). The tag for all these log messages is _"ChBoSync"_.
+
+There are other classes implementing the interface _Appender_, namely _FileAppender_ or _ConsoleAppender_. There is also class _MultipleAppender_ for using more than just one appender at the same time.
+
+All the classes for logging mentioned so far can be found in package _com.funambol.util_.
+<br><br>
+
+
+=Settings=
+
+Management of app's setting/preferences (e.g. show button to install _[oi_notepad OI Notepad]_ on main screen instead of sync button when this app is not found on the current device) is handled by class _AndroidConfiguration_ in package _de.chbosync.android.syncmlclient_. This class implements the singleton pattern and stored the settings as shared preferences file named _"fnblPref.xml"_ (full path on emulator's filesystem: _/data/data/de.chbosync.android.syncmlclient/shared_prefs/fnblPref.xml_) . The saving and loading of the settings used by the original Funambol client are handled in a superclass of this class, namely class _Configuration_ in package _com.funambol.client.configuration_.
+
+Some important methods in class _AndroidAdvancedSettingsTab_ (on which the settings introduced by _ChBoSync_ were added):
+ * _initScreenElements()_: Setup of UI element, e.g. instances of class _TwoLinesCheckBox_ for settings concerning _[oi_notepad "OI Notepad"]_.
+ * _hasChanges()_: Determines if at least one setting was changed, so that saving is necessary.
+<br>
+
+The default values for settings are defined in method _load()_ either in class _Configuration_ or in the subclass _AndroidConfiguration_. 
