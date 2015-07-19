@@ -38,14 +38,11 @@ package de.chbosync.android.syncmlclient.activities;
 import java.util.List;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
-import android.net.Uri;
 import android.os.Bundle;
 import android.text.Html;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -59,10 +56,10 @@ import com.funambol.client.customization.Customization;
 import com.funambol.client.ui.AboutScreen;
 import com.funambol.client.ui.Bitmap;
 
-import de.chbosync.android.syncmlclient.R;
 import de.chbosync.android.syncmlclient.AndroidUtils;
 import de.chbosync.android.syncmlclient.App;
 import de.chbosync.android.syncmlclient.AppInitializer;
+import de.chbosync.android.syncmlclient.R;
 import de.chbosync.android.syncmlclient.controller.AndroidController;
 
 
@@ -72,18 +69,18 @@ import de.chbosync.android.syncmlclient.controller.AndroidController;
  */
 public class AndroidAboutScreen extends Activity implements AboutScreen {
 	
-    private AppInitializer initializer;
+    private AppInitializer initializer = null;
 
-    private AboutScreenController aboutScreenController;
+    private AboutScreenController aboutScreenController = null;
 
-    private TextView  copyTitle;
-    private TextView  copyText;
-    private TextView  company;
-    private TextView  copyUrl;
-    private TextView  license;
-    private TextView  poweredBy;
-    private ImageView poweredByLogo;
-    private TextView  portalInfo;
+    private TextView  copyTitle     = null;
+    private TextView  copyText      = null;
+    private TextView  company       = null;
+    private TextView  copyUrl       = null;
+    private TextView  license       = null;
+    private TextView  poweredBy     = null;
+    private ImageView poweredByLogo = null;
+    private TextView  portalInfo    = null;
 
     
     /** 
@@ -94,24 +91,24 @@ public class AndroidAboutScreen extends Activity implements AboutScreen {
         super.onCreate(icicle);
         setContentView(R.layout.about);
 
-        copyTitle     = (TextView)  findViewById(R.id.aboutCopyTitle   );
-        copyText      = (TextView)  findViewById(R.id.aboutCopyText    );
-        copyUrl       = (TextView)  findViewById(R.id.aboutCopyUrl     );
-        license       = (TextView)  findViewById(R.id.aboutLicense     );
-        poweredBy     = (TextView)  findViewById(R.id.poweredBy        );
-        poweredByLogo = (ImageView) findViewById(R.id.poweredByLogo    );
-        company       = (TextView)  findViewById(R.id.aboutCompanyName );
-        portalInfo    = (TextView)  findViewById(R.id.aboutPortalInfo  );        
+        copyTitle     = (TextView)  findViewById( R.id.aboutCopyTitle   );
+        copyText      = (TextView)  findViewById( R.id.aboutCopyText    );
+        copyUrl       = (TextView)  findViewById( R.id.aboutCopyUrl     );
+        license       = (TextView)  findViewById( R.id.aboutLicense     );
+        poweredBy     = (TextView)  findViewById( R.id.poweredBy        );
+        poweredByLogo = (ImageView) findViewById( R.id.poweredByLogo    );
+        company       = (TextView)  findViewById( R.id.aboutCompanyName );
+        portalInfo    = (TextView)  findViewById( R.id.aboutPortalInfo  );        
                 
 
-        Button closeButton = ((Button) findViewById(R.id.aboutClose));
+        Button closeButton = ((Button) findViewById( R.id.aboutClose ));
         closeButton.setOnClickListener( new CloseListener() );
        
         
-        // for ChBoSync: HTML formatting for text in TextView element.
+        // For ChBoSync: HTML formatting for text in TextView element.
         // String resource defined using CDATA block.
-        TextView basedOnTextView = (TextView)  findViewById(R.id.basedOnPtbvAndFunambolText);
-        basedOnTextView.setText( Html.fromHtml( getString(R.string.basedOnPtbvAndFunambol)) );
+        TextView basedOnTextView = (TextView)  findViewById( R.id.basedOnPtbvAndFunambolText );
+        basedOnTextView.setText( Html.fromHtml( getString( R.string.basedOnPtbvAndFunambol )) );
         
                         
         // Initialize the view for this controller
@@ -145,12 +142,14 @@ public class AndroidAboutScreen extends Activity implements AboutScreen {
 						
 		List<ResolveInfo> list = packageManager.queryIntentActivities(intent, flags); 
 									 								
-		// If at least one app was found that can handle the intent then this method returns "true"
+		// If at least one app was found that can handle the intent, then this method returns "true"
 		return list.size() > 0;		
 	}	    
 	
 
 	/**
+	 * Getter to obtain self-reference (this) of this activity.
+	 * 
 	 * @return Self-reference (this) of this activity.
 	 */
     public Object getUiScreen() {
@@ -210,8 +209,9 @@ public class AndroidAboutScreen extends Activity implements AboutScreen {
         finish();
     }
 
+    
     /**
-     * A call-back for when the user presses the close button.
+     * Inner class: A call-back for when the user presses the close button.
      */
     private class CloseListener implements OnClickListener {
         public void onClick(View v) {
