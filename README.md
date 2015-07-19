@@ -17,7 +17,9 @@ _ChBoSync_ should also work with other groupware solutions that support SyncML, 
  
 <br>
 
-See [_this page_](https://github.com/mide42/chbosync4android/wiki/Contact-Info) on how to contact the developers of _ChBoSync_.
+See [_this wiki page_](https://github.com/mide42/chbosync4android/wiki/Contact-Info) on how to contact the developers of _ChBoSync_.
+
+On [_this wiki page_](https://github.com/mide42/chbosync4android/wiki/Screenshots) you'll find some screenshots.
 
 <br>
 ### License
