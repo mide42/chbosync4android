@@ -16,6 +16,10 @@ _ChBoSync_ should also work with other groupware solutions that support SyncML, 
  * Optional: For synchronizing notes you have to install the free app _OI Notepad_.
  
 <br>
+
+See [_this page_](https://github.com/mide42/chbosync4android/wiki/Contact-Info) on how to contact the developers of _ChBoSync_.
+
+<br>
 ### License
 
 It is licensed under the _GNU Affero General Public License version 3 (AGPL)_, see [_this wiki page_](https://github.com/mide42/chbosync4android/wiki/AGPL). 
