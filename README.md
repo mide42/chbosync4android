@@ -13,7 +13,7 @@ _ChBoSync_ should also work with other groupware solutions that support SyncML, 
 **Requirements:**
  * Device with at least version 4.0.3 of Android (API level 15, _"Ice Cream Sandwich MR1"_).
  * An account on a SyncML server, e.g. Horde.
- * Optional: For synchronizing notes you have to install the free app _OI Notepad_.
+ * Optional: For synchronizing notes you have to install the free app [_OI Notepad_](https://github.com/mide42/chbosync4android/wiki/OI-Notepad).
  
 <br>
 
