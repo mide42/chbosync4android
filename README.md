@@ -18,6 +18,6 @@ _ChBoSync_ should also work with other groupware solutions that support SyncML, 
 <br>
 ### License
 
-It is licensed under the _GNU Affero General Public License version 3 (AGPL)_. 
+It is licensed under the _GNU Affero General Public License version 3 (AGPL)_, see [_this wiki page_](https://github.com/mide42/chbosync4android/wiki/AGPL). 
 In accordance with this license the source code of _ChBoSync_ is made available by this GitHub repository in form of a project for Eclipse/ADT.
 
