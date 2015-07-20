@@ -6,7 +6,7 @@ Supported languages are English and German.
 
 The app is available in Google's official app store _Google Play_ free of charge, [_see here_](https://play.google.com/store/apps/details?id=de.chbosync.android.syncmlclient).
 
-_ChBoSync_ was developed for synchronization with data on a _Horde server_, which is a groupware solution that supports SyncML. 
+_ChBoSync_ was developed for synchronization with data on a _Horde server_, which is a groupware solution that supports the [_SyncML_](https://github.com/mide42/chbosync4android/wiki/SyncML) protocol. 
 _ChBoSync_ should also work with other groupware solutions that support SyncML, but the only other server we tested was Funambol's own server.
 
 <br>
