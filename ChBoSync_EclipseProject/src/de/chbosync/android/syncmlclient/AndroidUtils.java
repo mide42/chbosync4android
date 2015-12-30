@@ -106,6 +106,7 @@ public class AndroidUtils {
         return Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED);
     }
     
+    
     /**
      * Get app's version from manifest file (attribute <i>android:versionName</i>).
      * (Method added for ChBoSync)
@@ -128,6 +129,5 @@ public class AndroidUtils {
     	
     	return appVersionStr;
     }
-    
-     
+         
 }
