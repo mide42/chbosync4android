@@ -36,7 +36,7 @@
 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="de.chbosync.android.syncmlclient"
-          android:versionCode="8"
+          android:versionCode="9"
           android:versionName="1.2 (December 2015)"
           android:installLocation="auto" >
 
