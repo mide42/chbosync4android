@@ -181,8 +181,8 @@ public final class R {
         public static final int textview_agpl_url=0x7f08000f;
         public static final int textview_joda_license_url=0x7f080011;
         public static final int textview_joda_project_url=0x7f080010;
-        public static final int textview_sourcecode_new=0x7f08000e;
-        public static final int textview_sourcecode_url=0x7f08000d;
+        public static final int textview_sourcecode_new=0x7f08000d;
+        public static final int textview_sourcecode_url=0x7f08000e;
         public static final int username=0x7f080043;
     }
     public static final class layout {
