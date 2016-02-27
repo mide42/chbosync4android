@@ -159,6 +159,28 @@ public class AndroidSettingsUISyncSource extends RelativeLayout
 
     public void setAvailableSyncModes(int[] modes) {
 
+        // ChBoSync: Check if mode INCREMENTAL_DOWNLOAD is in argument modes[] 
+        boolean hasModeIncrementalDownload = false;
+        
+        for (int i = 0; i < modes.length; i++){
+            if (modes[i] == SyncSource.INCREMENTAL_DOWNLOAD)
+                hasModeIncrementalDownload = true;
+        }
+        
+        // ChBoSync: Add mode for INCREMENTAL_DOWNLOAD to modes[] if not already included
+        if (hasModeIncrementalDownload == false) {
+            
+            int[] newModes = new int[modes.length+1];
+            
+            // copy original values
+            for (int i = 0; i < modes.length; i++) newModes[i] = modes[i]; 
+                            
+            newModes[modes.length] = SyncSource.INCREMENTAL_DOWNLOAD;
+            
+            modes = newModes;
+        }
+        
+        
         availableSyncModes = modes;
         
         ArrayAdapter<CharSequence> adapter = new ArrayAdapter<CharSequence>(
@@ -174,6 +196,7 @@ public class AndroidSettingsUISyncSource extends RelativeLayout
             }
         }
 
+        
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         syncModeSpinner.setAdapter(adapter);
     }
