@@ -276,7 +276,7 @@
 <string name="dialog_try_later">Später versuchen</string>
 <string name="login_heading_label">Zugangsdaten</string>
 <string name="powered_by_funambol">Powered by Funambol and PTBV Sync !</string>
-<string name="source_code_text">Gemäß der Anforderungen der GNU AGPL wird der Quellcode von ChBoSync bereitgestellt unter:</string>
+<string name="source_code_text">Gemäß der Anforderungen der GNU AGPL wird der Quellcode von ChBoSync unter der folgenden URL bereitgestellt:</string>
 
 <!-- Now strings added for ChBoSync -->
 <string name="contentdescr_logo">Logo</string>
@@ -289,7 +289,7 @@
 <string name="button_no">Nein</string>
 <string name="buttonAboutThisApp">Über diese App</string>
 <string name="syncing_notes_disabled">Synchronisation von Notizen: deaktiviert</string>
-<string name="usage_of_joda_time_library">Diese App verwndet \"Joda-Time\" als externe Bibliothek:</string>
+<string name="usage_of_joda_time_library">Diese App verwendet \"Joda-Time\" als externe Bibliothek:</string>
 <string name="joda_time_project_url">"http://www.joda.org/joda-time/"</string>
 <string name="joda_license">Joda-Time steht unter der \"Apache License Version 2.0\":</string>
 <string name="joda_license_url">http://www.joda.org/joda-time/license.html</string>
