@@ -2,10 +2,6 @@
 _ChBoSync_ is a free _SyncML client_ for Android based on Funambol's open source suite & the _PTBV SyncML Client_. 
 The app can sync calendar entries, contacts & notes.
 
-Supported languages are English and German.
-
-The app is available in Google's official app store _Google Play_ free of charge, [_see here_](https://play.google.com/store/apps/details?id=de.chbosync.android.syncmlclient).
-
 <br>
 
 # Warning
@@ -18,6 +14,10 @@ The app is available in Google's official app store _Google Play_ free of charge
 
 _ChBoSync_ was developed for synchronization with data on a _Horde server_, which is a groupware solution that supports the [_SyncML_](https://github.com/mide42/chbosync4android/wiki/SyncML) protocol. 
 _ChBoSync_ should also work with other groupware solutions that support SyncML, but the only other server we tested was Funambol's own server.
+
+<br>
+
+The app is available in Google's official app store _Google Play_ free of charge, [_see here_](https://play.google.com/store/apps/details?id=de.chbosync.android.syncmlclient). Supported languages are English and German.
 
 <br>
 **Requirements:**
