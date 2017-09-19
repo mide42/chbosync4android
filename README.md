@@ -10,6 +10,7 @@ _ChBoSync_ was developed for synchronization with data on a _Horde server_, whic
 _ChBoSync_ should also work with other groupware solutions that support SyncML, but the only other server we tested was Funambol's own server.
 
 <br>
+
 **Requirements:**
  * Device with at least version 4.0.3 of Android (API level 15, _"Ice Cream Sandwich MR1"_).
  * An account on a SyncML server, e.g. Horde.
@@ -25,7 +26,8 @@ _ChBoSync_ should also work with other groupware solutions that support SyncML, 
  * The changelog / list of all versions can be found on [_this wiki page_](https://github.com/mide42/chbosync4android/wiki/Versions-Published-%28Changelog%29). 
 
 <br>
-### License
+
+## License
 
 It is licensed under the _GNU Affero General Public License version 3 (AGPL)_, see [_this wiki page_](https://github.com/mide42/chbosync4android/wiki/AGPL). 
 In accordance with this license the source code of _ChBoSync_ is made available by this GitHub repository in form of a project for Eclipse/ADT.

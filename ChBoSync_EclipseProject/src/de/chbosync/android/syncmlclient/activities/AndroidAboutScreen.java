@@ -164,7 +164,7 @@ public class AndroidAboutScreen extends Activity implements AboutScreen {
     		    	
 		String appVersionStr = AndroidUtils.getVersionNumberFromManifest(this);
     	
-        copyTitle.setText(name + " " + appVersionStr );
+        copyTitle.setText(name.trim() + " " + appVersionStr );
         copyTitle.setVisibility(View.VISIBLE);
     }
 
