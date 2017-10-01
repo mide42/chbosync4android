@@ -1,1 +1,10 @@
 ChBoSync_EclipseProject/bin
+
+ChBoSync_AndroidStudioProject/local.properties
+ChBoSync_AndroidStudioProject/import-summary.txt
+ChBoSync_AndroidStudioProject/.gradle
+ChBoSync_AndroidStudioProject/.idea
+ChBoSync_AndroidStudioProject/build
+ChBoSync_AndroidStudioProject/app/build
+
+
