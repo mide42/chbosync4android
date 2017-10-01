@@ -163,8 +163,8 @@ public class AndroidAboutScreen extends Activity implements AboutScreen {
     public void addApplicationName(String name) {
     		    	
 		String appVersionStr = AndroidUtils.getVersionNumberFromManifest(this);
-    	
-        copyTitle.setText(name + " " + appVersionStr );
+
+        copyTitle.setText(name.trim() + " " + appVersionStr );
         copyTitle.setVisibility(View.VISIBLE);
     }
 

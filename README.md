@@ -40,5 +40,6 @@ The app is available in Google's official app store _Google Play_ free of charge
 ## License
 
 _ChBoSync_ is licensed under the _GNU Affero General Public License version 3 (AGPL)_, see [_this wiki page_](https://github.com/mide42/chbosync4android/wiki/AGPL). 
-In accordance with this license the source code of _ChBoSync_ is made available by this GitHub repository in form of a project for Eclipse/ADT.
+In accordance with this license the source code of _ChBoSync_ is made available by this GitHub repository in form of a [project for Eclipse/ADT (till version 1.4)}(https://github.com/mide42/chbosync4android/tree/master/ChBoSync_EclipseProject) 
+and [_Android Studio_ (versions after version 1.4)](https://github.com/mide42/chbosync4android/tree/master/ChBoSync_AndroidStudioProject).
 

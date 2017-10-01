@@ -35,15 +35,15 @@
  -->
 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="de.chbosync.android.syncmlclient"
-          android:versionCode="11"
-          android:versionName="1.3 (March 2016)"
-          android:installLocation="auto" >
+    package="de.chbosync.android.syncmlclient"
+    android:versionCode="13"
+    android:versionName="1.5 (xx 2017)"
+    android:installLocation="auto" >
 
-    
+
     <uses-sdk android:minSdkVersion="15" android:targetSdkVersion="18" />
     <!-- API-Level 15 is Android version 4.0.3/4.0.4 -->
-    
+
     <uses-permission android:name="android.permission.READ_CONTACTS"         />
     <uses-permission android:name="android.permission.WRITE_CONTACTS"        />
     <uses-permission android:name="android.permission.READ_CALENDAR"         />
@@ -58,13 +58,13 @@
     <uses-permission android:name="android.permission.WRITE_SYNC_SETTINGS"   />
     <uses-permission android:name="android.permission.READ_SYNC_STATS"       />
     <uses-permission android:name="android.permission.WAKE_LOCK"             /> <!-- required to do Wifi-Lock -->
- 
+
     <!-- Needed, because as of OINotepad 1.5.3 the content provider is protected by permissions. -->
-    <uses-permission android:name="org.openintents.notepad.READ_PERMISSION" />
-    <uses-permission android:name="org.openintents.notepad.WRITE_PERMISSION" />   
- 
+    <uses-permission android:name="org.openintents.notepad.READ_PERMISSION"  />
+    <uses-permission android:name="org.openintents.notepad.WRITE_PERMISSION" />
+
     <!-- Permissions needed for access to content provider of external app "Tasquid" (needed for syncing of tasks). -->
-    <!-- 
+    <!--
     <permission android:name="com.todoroo.astrid.READ"
                 android:description="@string/read_permission_desc"
                 android:protectionLevel="normal"
@@ -74,20 +74,20 @@
                 android:description="@string/write_permission_desc"
                 android:protectionLevel="normal"
                 android:label="@string/write_permission_label" />
-    
- 	<uses-permission android:name="com.todoroo.astrid.READ"   /> 	
+
+ 	<uses-permission android:name="com.todoroo.astrid.READ"   />
  	<uses-permission android:name="com.todoroo.astrid.WRITE"  />
      -->
- 	
-    <application android:icon="@drawable/logo"            
-                 android:label="@string/app_name"
-                 android:name="de.chbosync.android.syncmlclient.App"
-                 android:theme="@android:style/Theme.Holo.Light">
 
-        <activity android:name="de.chbosync.android.syncmlclient.activities.AndroidHomeScreen" 
-                  android:label="@string/app_name"
-                  android:screenOrientation="portrait"
-                  android:configChanges="keyboardHidden|orientation">
+    <application android:icon="@drawable/logo"
+        android:label="@string/app_name"
+        android:name="de.chbosync.android.syncmlclient.App"
+        android:theme="@android:style/Theme.Holo.Light">
+
+        <activity android:name="de.chbosync.android.syncmlclient.activities.AndroidHomeScreen"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:configChanges="keyboardHidden|orientation">
             <intent-filter>
                 <action   android:name="android.intent.action.MAIN"       />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -95,23 +95,23 @@
         </activity>
 
         <activity android:name="de.chbosync.android.syncmlclient.activities.AndroidAboutScreen" android:label="@string/about_label"/>
-        
+
         <activity android:name="de.chbosync.android.syncmlclient.activities.AndroidSettingsScreen" android:label="@string/settings_label"/>
 
         <activity android:name="de.chbosync.android.syncmlclient.activities.AndroidDevSettingsScreen" android:label="@string/dev_settings_label"/>
-        
+
         <activity android:name="de.chbosync.android.syncmlclient.activities.AndroidLoginScreen" android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.accounts.AccountAuthenticator" />
             </intent-filter>
         </activity>
-            
-     	<receiver android:name="de.chbosync.android.syncmlclient.services.SyncAlarmReceiver">
+
+        <receiver android:name="de.chbosync.android.syncmlclient.services.SyncAlarmReceiver">
             <intent-filter>
                 <action android:name="de.chbosync.android.syncmlclient.services.AUTO_SYNC" />
             </intent-filter>
         </receiver>
-        
+
         <receiver android:name="de.chbosync.android.syncmlclient.StartupIntentReceiver">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
@@ -128,21 +128,31 @@
                 <action android:name="android.net.conn.CONNECTIVITY_CHANGE"/>
             </intent-filter>
         </receiver>
-        
+
         <service android:name="de.chbosync.android.syncmlclient.services.AutoSyncService">
             <intent-filter>
                 <action android:name="de.chbosync.android.syncmlclient.services.AutoSyncService"/>
                 <action android:name="de.chbosync.android.syncmlclient.services.AUTO_SYNC"/>
+                <action android:name="android.content.SyncAdapter" />  <!-- ChBo 18.9.2017 - enable creation of contacts in ChBo address book -->
             </intent-filter>
-         </service>
-         
+
+            <!-- ChBo 18.9.2017 - start block: enable creation of contacts in ChBo address book -->
+            <meta-data
+                android:name="android.content.SyncAdapter"
+                android:resource="@xml/contacts_syncadapter" />
+            <meta-data
+                android:name="android.provider.CONTACTS_STRUCTURE"
+                android:resource="@xml/contacts" />
+            <!-- ChBo 18.9.2017 - end block: enable creation of contacts in ChBo address book -->
+        </service>
+
         <service android:name="de.chbosync.android.syncmlclient.services.FunambolAccountsAuthenticator">
-             <intent-filter>
-                 <action android:name="android.accounts.AccountAuthenticator" />
-             </intent-filter>
-             <meta-data android:name="android.accounts.AccountAuthenticator" android:resource="@xml/authenticator" />
-         </service>
-        
+            <intent-filter>
+                <action android:name="android.accounts.AccountAuthenticator" />
+            </intent-filter>
+            <meta-data android:name="android.accounts.AccountAuthenticator" android:resource="@xml/authenticator" />
+        </service>
+
         <receiver android:label="Account Receiver" android:name="de.chbosync.android.syncmlclient.AndroidAccountManager">
             <intent-filter>
                 <action android:name="android.accounts.LOGIN_ACCOUNTS_CHANGED" />
@@ -150,8 +160,8 @@
         </receiver>
 
         <receiver android:label="AutoSyncAlarm Receiver" android:name="de.chbosync.android.syncmlclient.services.SynchronizationTask">
-             <intent-filter>
-                 <action android:name="de.chbosync.android.syncmlclient.services.AUTO_SYNC"/>
+            <intent-filter>
+                <action android:name="de.chbosync.android.syncmlclient.services.AUTO_SYNC"/>
             </intent-filter>
         </receiver>
 
