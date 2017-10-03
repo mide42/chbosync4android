@@ -240,7 +240,7 @@ public class Log {
 
     /**
      * Accessor method to lock defined log level
-     * @param level log level to be lock
+     * @param levelToLock log level to be lock
      */
     public static void lockLogLevel(int levelToLock) {
         level = levelToLock;
@@ -503,15 +503,45 @@ public class Log {
     }
 
     /**
-     * Return true if a message is currently loggable at the given log level
+     * Query if log level is currently loggable.
      *
      * @param msgLevel the log level the msg shall be logged at.
+     * @return Return true if a message is currently loggable at the given log level
      */
     public static boolean isLoggable(int msgLevel) {
         return msgLevel <= level;
     }
-    
+
+
+    /** Tag used for Log messages written to Android's standard logger
+     *  (class {@link android.util.Log}).
+     */
+    public static final String TAG4LOGGING = "ChBoSync";
+
+
+    /**
+     * Change for ChBoSync: Message is also written to Android Standard-Logger.
+     */
     private static synchronized void writeLogMessage(int msgLevel, String levelMsg, String msg) {
+
+        // Start: added for ChBoSync
+        switch(msgLevel) {
+
+            case TRACE: android.util.Log.v(TAG4LOGGING, levelMsg + " " + msg);
+                break;
+
+            case DEBUG: android.util.Log.d(TAG4LOGGING, levelMsg + " " + msg);
+                break;
+
+            case INFO: android.util.Log.i(TAG4LOGGING, levelMsg + " " + msg);
+                break;
+
+            default:
+            case ERROR: android.util.Log.e(TAG4LOGGING, levelMsg + " " + msg);
+                break;
+        };
+        // End: added for ChBoSync
+
         if (contextLogging) {
             try {
                 cacheMessage(msgLevel, levelMsg, msg);
