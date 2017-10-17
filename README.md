@@ -23,7 +23,7 @@ The app is available in Google's official app store _Google Play_ free of charge
 
 ## Requirements:
  * Device with at least version 4.0.3 of Android (API level 15, _"Ice Cream Sandwich MR1"_).
- * An account on a SyncML server, e.g. Horde.
+ * An account on a SyncML server, e.g. [Horde](https://github.com/mide42/chbosync4android/wiki/Horde).
  * Optional: For synchronizing notes you have to install the free app [_OI Notepad_](https://github.com/mide42/chbosync4android/wiki/OI-Notepad).
  
 <br>
