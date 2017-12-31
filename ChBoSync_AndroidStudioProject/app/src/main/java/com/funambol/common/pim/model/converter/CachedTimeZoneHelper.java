@@ -41,8 +41,7 @@ import java.util.Hashtable;
 import java.util.List;
 import java.util.ListIterator;
 import java.util.Map;
-import com.funambol.org.joda.time.DateTimeZone;
-import org.w3c.dom.Node;
+import org.joda.time.DateTimeZone;
 
 /**
  * This class is a cached extension of 

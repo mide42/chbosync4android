@@ -40,7 +40,7 @@ import com.funambol.common.pim.model.model.TzDaylightComponent;
 import com.funambol.common.pim.model.model.TzStandardComponent;
 import com.funambol.common.pim.model.model.VComponent;
 import com.funambol.common.pim.model.model.VTimezone;
-import com.funambol.org.joda.time.DateTimeZone;
+import org.joda.time.DateTimeZone;
 
 import java.text.DateFormat;
 import java.text.DecimalFormat;
