@@ -37,6 +37,7 @@ package de.chbosync.android.syncmlclient.services;
 
 import java.util.List;
 
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 
@@ -106,12 +107,17 @@ public class AutoSyncServiceHandler {
         context.startService(serviceIntent);
     }
 
+    // Changed for ChBoSync in December 2017
     public void startMonitoringUri(String uri, int sourceId) {
         Intent serviceIntent = new Intent();
         serviceIntent.setAction(SYNC_SERVICE);
         serviceIntent.putExtra(AutoSyncService.OPERATION, AutoSyncService.START_MONITORING_URI);
         serviceIntent.putExtra(AutoSyncService.URI, uri);
         serviceIntent.putExtra(AutoSyncService.SOURCE_ID, sourceId);
+
+        ComponentName comp = new ComponentName(context.getPackageName(), this.getClass().getName());
+
+        serviceIntent.setComponent(comp);
         context.startService(serviceIntent);
     }
 

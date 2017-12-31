@@ -557,18 +557,28 @@ public class Log {
         }
     }
 
-    private static void writeLogMessageNoCache(int msgLevel, String levelMsg, String msg) {
-        if (level >= msgLevel) {
-            try {
-                if (out != null) {
+    // Changed for ChBoSync in December 2017
+    private static void writeLogMessageNoCache(int msgLevel, String levelMsg, String msg)
+    {
+        android.util.Log.e("TAG",msg);
+
+        if (level >= msgLevel)
+        {
+            try
+            {
+                if (out != null)
+                {
                     out.writeLogMessage(levelMsg, msg);
-                } else {
+                }
+                else {
                     Date now = new Date();
                     System.out.print(now.toString());
                     System.out.print(" [" + levelMsg + "] " );
                     System.out.println(msg);
                 }
-            } catch (Exception ex) {
+            }
+            catch (Exception ex)
+            {
                 ex.printStackTrace();
             }
         }
