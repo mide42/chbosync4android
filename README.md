@@ -17,7 +17,9 @@ _ChBoSync_ should also work with other groupware solutions that support SyncML, 
 
 <br>
 
-The app is available in Google's official app store _Google Play_ free of charge, [_see here_](https://play.google.com/store/apps/details?id=de.chbosync.android.syncmlclient). Supported languages are English and German.
+~~The app is available in Google's official app store _Google Play_ free of charge, [_see here_](https://play.google.com/store/apps/details?id=de.chbosync.android.syncmlclient).~~
+
+Supported languages are English and German.
 
 <br>
 
