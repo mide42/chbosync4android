@@ -51,7 +51,7 @@ The publication of the app was suspended on 7th January 2018, because we found o
 
 ## License
 
-_ChBoSync_ is licensed under the _GNU Affero General Public License version 3 (AGPL)_, see [_this wiki page_](https://github.com/mide42/chbosync4android/wiki/AGPL). 
+_ChBoSync_ is licensed under the [_GNU Affero General Public License version 3 (AGPL)_](LICENSE.txt), see [_this wiki page_](https://github.com/mide42/chbosync4android/wiki/AGPL). 
 In accordance with this license, the source code of _ChBoSync_ is made available by this GitHub repository in form of a [project for Eclipse/ADT (till version 1.4)](https://github.com/mide42/chbosync4android/tree/master/ChBoSync_EclipseProject) 
 and [_Android Studio_ (versions after version 1.4)](https://github.com/mide42/chbosync4android/tree/master/ChBoSync_AndroidStudioProject).
 
