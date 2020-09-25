@@ -315,4 +315,7 @@
 <string name="write_permission_label">Tasquid Permission</string>    
 <string name="write_permission_desc">create new tasks, edit existing tasks</string>
 
+    <!-- TODO -->
+    <string name="pref_sync_summ">Preferences for synchronization</string>
+    <string name="pref_sync">Synchronization preference</string>
 </resources>
