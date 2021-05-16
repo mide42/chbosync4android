@@ -81,11 +81,11 @@ public class AndroidDisplayManager implements DisplayManager {
     /** The tag to be written into log messages*/
     private static final String TAG = "AndroidDisplayManager";
     /** Reference object for the native alert dialogs*/
-    private Hashtable<Integer, Object> holdingDialogs = new Hashtable<Integer, Object>();
+    private final Hashtable<Integer, Object> holdingDialogs = new Hashtable<>();
     /** Reference object for the custom alert dialogs*/
-    private Hashtable<Integer, AlertDialog> pendingAlerts = new Hashtable<Integer, AlertDialog>();
+    private final Hashtable<Integer, AlertDialog> pendingAlerts = new Hashtable<>();
     /** Reference the runnable to be executed after a specific dialog is dismissed*/
-    private Hashtable dismissRunnable = new Hashtable<Integer, Runnable>();
+    private final Hashtable<Integer, Runnable> dismissRunnable = new Hashtable<>();
     /** References the native alert dialog with a db sequence-like progression*/
     private static int incrementalId;
     /** Holds the last message shown by the showMessage method. Used for test purpose */
@@ -125,7 +125,8 @@ public class AndroidDisplayManager implements DisplayManager {
     public void showScreen(Context context, int screenId, Bundle extras) throws Exception {
         Intent intent = null;
         switch (screenId) {
-            case Controller.CONFIGURATION_SCREEN_ID: {
+            case Controller.CONFIGURATION_SCREEN_ID:
+            case Controller.ADVANCED_SETTINGS_SCREEN_ID: {
                 intent = new Intent(context, AndroidSettingsScreen.class);
                 break;
             }
@@ -135,10 +136,6 @@ public class AndroidDisplayManager implements DisplayManager {
             }
             case Controller.ABOUT_SCREEN_ID: {
                 intent = new Intent(context, AndroidAboutScreen.class);
-                break;
-            }
-            case Controller.ADVANCED_SETTINGS_SCREEN_ID: {
-                intent = new Intent(context, AndroidSettingsScreen.class);
                 break;
             }
             case Controller.DEV_SETTINGS_SCREEN_ID: {
@@ -219,8 +216,7 @@ public class AndroidDisplayManager implements DisplayManager {
             AlertDialog.Builder result = (AlertDialog.Builder) dialog;
             return result.create();
         } else if (dialog instanceof Dialog) {
-            Dialog result = (Dialog) dialog;
-            return result;
+            return (Dialog) dialog;
         } else {
             if (Log.isLoggable(Log.DEBUG)) {
                 Log.debug(TAG, "Unknown dialog id: " + id);
@@ -297,14 +293,14 @@ public class AndroidDisplayManager implements DisplayManager {
 
     public void setProgressDialogMaxValue(int dialogId, int value) {
         Object dialog = holdingDialogs.get(dialogId);
-        if(dialog != null && dialog instanceof ProgressDialog) {
+        if(dialog instanceof ProgressDialog) {
             ((ProgressDialog)dialog).setMax(value);
         }
     }
 
     public void setProgressDialogProgressValue(int dialogId, int value) {
         Object dialog = holdingDialogs.get(dialogId);
-        if(dialog != null && dialog instanceof ProgressDialog) {
+        if(dialog instanceof ProgressDialog) {
             ((ProgressDialog)dialog).setProgress(value);
         }
     }
@@ -512,9 +508,9 @@ public class AndroidDisplayManager implements DisplayManager {
      */
     class NotifyRunnable extends Thread implements Runnable {
 
-        private String message;
-        private int time;
-        private Activity activity;
+        private final String message;
+        private final int time;
+        private final Activity activity;
 
         /**
          * Constructor
@@ -688,8 +684,11 @@ public class AndroidDisplayManager implements DisplayManager {
             icon = 0;
             break;
         }
-        Notification notification = new Notification(icon, tickerText, when);
-        notification.flags = Notification.DEFAULT_LIGHTS | Notification.FLAG_AUTO_CANCEL;
+        Notification.Builder notification = new Notification.Builder(context);
+        notification.setAutoCancel(true);
+        notification.setSmallIcon(icon);
+        notification.setTicker(tickerText);
+        notification.setWhen(when);
         
         CharSequence contentTitle = notificationData.getTitle();
         CharSequence contentText = notificationData.getMessage();
@@ -706,10 +705,12 @@ public class AndroidDisplayManager implements DisplayManager {
             notificationIntent.addCategory("android.intent.category.LAUNCHER");
         }
         PendingIntent contentIntent = PendingIntent.getActivity(context, 0, notificationIntent, 0);
-        notification.setLatestEventInfo(context, contentTitle, contentText, contentIntent);
+        notification.setContentTitle(contentTitle);
+        notification.setContentText(contentText);
+        notification.setContentIntent(contentIntent);
         
         //finally, launches the notification
-        notificationManager.notify(notificationData.getId(), notification);        
+        notificationManager.notify(notificationData.getId(), notification.getNotification());
     }
 
     /**
@@ -717,9 +718,9 @@ public class AndroidDisplayManager implements DisplayManager {
      * listener for the DialogInterface and view. When the click event happens
      * this listener runs the related Runnable option.
      */
-    private class OnButtonListener implements DialogInterface.OnClickListener, OnClickListener {
+    private static class OnButtonListener implements DialogInterface.OnClickListener, OnClickListener {
 
-        private Runnable action;
+        private final Runnable action;
 
         public OnButtonListener(Runnable action) {
             this.action = action;

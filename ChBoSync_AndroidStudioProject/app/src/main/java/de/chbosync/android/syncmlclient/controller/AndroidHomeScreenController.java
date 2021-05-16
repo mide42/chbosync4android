@@ -74,13 +74,13 @@ public class AndroidHomeScreenController extends HomeScreenController {
 
     protected Context context;
 
-    private AndroidDisplayManager dm;
+    private final AndroidDisplayManager dm;
 
     private boolean syncAll = false;
 
     protected AutoSyncServiceHandler autoSyncServiceHandler;
 
-    private NotificationManager notificationManager;
+    private final NotificationManager notificationManager;
 
     public AndroidHomeScreenController(Context context, Controller controller, HomeScreen homeScreen, NetworkStatus networkStatus) {
         super(controller, homeScreen, networkStatus);
@@ -167,7 +167,10 @@ public class AndroidHomeScreenController extends HomeScreenController {
         
         long when = System.currentTimeMillis();
 
-        Notification notification = new Notification(icon, tickerText, when);
+        Notification.Builder notification = new Notification.Builder(context);
+        notification.setSmallIcon(icon);
+        notification.setTicker(tickerText);
+        notification.setWhen(when);
 
         CharSequence contentTitle = context.getString(R.string.app_name);
         CharSequence contentText = context.getString(R.string.notification_sync_in_progress_message);
@@ -178,10 +181,14 @@ public class AndroidHomeScreenController extends HomeScreenController {
         notificationIntent.addCategory("android.intent.category.LAUNCHER");
 
         PendingIntent contentIntent = PendingIntent.getActivity(context, 0, notificationIntent, 0);
-        notification.setLatestEventInfo(context, contentTitle, contentText, contentIntent);
+        notification.setContentTitle(contentTitle);
+        notification.setContentText(contentText);
+        notification.setContentIntent(contentIntent);
 
-        notification.flags = Notification.FLAG_ONGOING_EVENT | Notification.FLAG_NO_CLEAR;
-        notificationManager.notify(AUTO_SYNC_NOTIFICATION_ID, notification);
+        notification.setOngoing(true);
+        Notification n = notification.getNotification();
+        n.flags |= Notification.FLAG_NO_CLEAR;
+        notificationManager.notify(AUTO_SYNC_NOTIFICATION_ID, n);
     }
 
     private void hideSyncNotification() {
@@ -244,11 +251,7 @@ public class AndroidHomeScreenController extends HomeScreenController {
     }
 
     public boolean isFirstSyncDialogDisplayed() {
-        if (dm.isAlertPending(DisplayManager.FIRST_SYNC_DIALOG_ID)) {
-            return true;
-        } else {
-            return false;
-        }
+        return dm.isAlertPending(DisplayManager.FIRST_SYNC_DIALOG_ID);
     }
 
     public boolean getSyncAll() {
@@ -320,7 +323,7 @@ public class AndroidHomeScreenController extends HomeScreenController {
             super.continueSynchronizationAfterFirstSyncDialog(syncType, filteredSources,
                     refresh, direction, delay, fromOutside, continueSyncFromDialog);
         } else {
-            AppSyncSource first = (AppSyncSource)filteredSources.get(0);
+            AppSyncSource first = filteredSources.get(0);
             if(filteredSources.size() > 1) {
                 this.syncAll = true;
             }

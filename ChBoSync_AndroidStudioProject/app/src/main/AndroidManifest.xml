@@ -36,13 +36,7 @@
 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="de.chbosync.android.syncmlclient"
-    android:versionCode="13"
-    android:versionName="1.5 (xx 2018)"
-    android:installLocation="auto" >
-
-
-    <uses-sdk android:minSdkVersion="15" android:targetSdkVersion="18" />
-    <!-- API-Level 15 is Android version 4.0.3/4.0.4 -->
+    android:installLocation="auto">
 
     <uses-permission android:name="android.permission.READ_CONTACTS"         />
     <uses-permission android:name="android.permission.WRITE_CONTACTS"        />
