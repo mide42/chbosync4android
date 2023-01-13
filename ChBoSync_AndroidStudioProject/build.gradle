@@ -2,18 +2,24 @@
 buildscript {
 
     repositories {
-        jcenter()
+        gradlePluginPortal()
+        google()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.3.3'
+        classpath 'com.android.tools.build:gradle:7.0.4'
     }
 }
 allprojects {
     repositories {
-        jcenter()
+        gradlePluginPortal()
+        google()
     }
 }
 
 dependencies {
 
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
 }

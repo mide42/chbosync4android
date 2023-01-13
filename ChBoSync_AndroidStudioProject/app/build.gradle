@@ -1,12 +1,14 @@
 apply plugin: 'com.android.application'
 android {
-    compileSdkVersion 18
-    buildToolsVersion "26.0.1"
+    compileSdkVersion 30
+    buildToolsVersion "30.0.3"
 
     defaultConfig {
         applicationId "de.chbosync.android.syncmlclient"
         minSdkVersion 15
-        targetSdkVersion 18
+        targetSdkVersion 30
+        versionCode 13
+        versionName "1.5 (xx 2018)"
     }
 
     buildTypes {
@@ -20,10 +22,13 @@ android {
     // "This may happen particularly when migrating from Eclipse to Android Studio."
     lintOptions {
         disable "ResourceType"
+        abortOnError false
     }
+
+    useLibrary 'org.apache.http.legacy'
 }
 
 dependencies {
-    compile 'joda-time:joda-time:1.6.2'
-    //implementation 'joda-time:joda-time:1.6.2'
+    //compile 'joda-time:joda-time:1.6.2'
+    implementation 'joda-time:joda-time:2.12.2'
 }
